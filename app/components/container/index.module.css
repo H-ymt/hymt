@@ -1,0 +1,15 @@
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+}
+
+@media screen and (width <= 1024px) {
+  .container {
+    padding-inline: 1.5rem;
+  }
+}
+
+.subpage {
+  padding-block: 4rem;
+}

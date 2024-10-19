@@ -1,0 +1,23 @@
+.headerInner {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 54rem;
+  height: 100%;
+  height: var(--header-height);
+  margin-inline: auto;
+}
+
+.logo {
+  width: 2rem;
+  height: auto;
+  aspect-ratio: 1;
+}
+
+@media screen and (width <= 1120px) {
+  .headerInner {
+    padding-inline: 1.5rem;
+  }
+}

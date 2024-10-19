@@ -1,168 +1,105 @@
-.page {
-  --gray-rgb: 0, 0, 0;
-  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
-  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
+.container {
+  padding-block: 2rem 4rem;
+}
 
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
+.section {
+  padding-block: 3.5rem;
+}
 
+.sectionTitle {
+  padding-bottom: 1.75rem;
+  font-size: 1.5rem;
+}
+
+@media screen and (width <= 576px) {
+  .section {
+    padding-block: 2rem;
+  }
+}
+
+.pageHeading {
+  padding-block: 0 1.25rem;
+}
+
+.heroText {
+  font-size: 1rem;
+}
+
+@media screen and (width <= 576px) {
+  .pageHeading {
+    padding-bottom: 0.75rem;
+  }
+
+  .heroText {
+    font-size: 0.9375rem;
+  }
+}
+
+.bioList {
   display: grid;
-  grid-template-rows: 20px 1fr 20px;
-  align-items: center;
-  justify-items: center;
-  min-height: 100svh;
-  padding: 80px;
-  gap: 64px;
-  font-family: var(--font-geist-sans);
+  gap: 1rem;
+  padding-left: 1.5rem;
+  margin-left: 0.25rem;
+  border-left: 1px solid var(--color-border);
 }
 
-@media (prefers-color-scheme: dark) {
-  .page {
-    --gray-rgb: 255, 255, 255;
-    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
-    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
+.bioItem {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.25rem;
+  font-size: 1rem;
+}
 
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
+.bioItem[data-current='true']::after {
+  position: absolute;
+  left: -1.55rem;
+  display: block;
+  width: 1px;
+  height: 100%;
+  margin-inline: auto;
+  content: '';
+  background-color: var(--color-primary);
+  border-radius: 9999em;
+}
+
+.bioDate {
+  font-size: 0.875em;
+}
+
+@media screen and (width <= 576px) {
+  .bioList {
+    padding-left: 0.75rem;
+  }
+
+  .bioItem {
+    font-size: 0.875em;
+  }
+
+  .bioItem[data-current='true']::after {
+    left: -0.8rem;
   }
 }
 
-.main {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  grid-row-start: 2;
-}
-
-.main ol {
-  font-family: var(--font-geist-mono);
-  padding-left: 0;
-  margin: 0;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: -0.01em;
-  list-style-position: inside;
-}
-
-.main li:not(:last-of-type) {
-  margin-bottom: 8px;
-}
-
-.main code {
-  font-family: inherit;
-  background: var(--gray-alpha-100);
-  padding: 2px 4px;
-  border-radius: 4px;
-  font-weight: 600;
-}
-
-.ctas {
-  display: flex;
-  gap: 16px;
-}
-
-.ctas a {
-  appearance: none;
-  border-radius: 128px;
-  height: 48px;
-  padding: 0 20px;
-  border: none;
-  border: 1px solid transparent;
-  transition:
-    background 0.2s,
-    color 0.2s,
-    border-color 0.2s;
-  cursor: pointer;
-  display: flex;
+.buttonArea {
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  gap: 0.5rem;
   align-items: center;
+}
+
+.buttonGithub {
+  display: inline-grid;
+  display: inline-flex;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem;
+  place-items: center center;
   justify-content: center;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 500;
 }
 
-a.primary {
-  background: var(--foreground);
-  color: var(--background);
-  gap: 8px;
-}
-
-a.secondary {
-  border-color: var(--gray-alpha-200);
-  min-width: 180px;
-}
-
-.footer {
-  grid-row-start: 3;
-  display: flex;
-  gap: 24px;
-}
-
-.footer a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.footer img {
-  flex-shrink: 0;
-}
-
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
-
-  .footer a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
-}
-
-@media (max-width: 600px) {
-  .page {
-    padding: 32px;
-    padding-bottom: 80px;
-  }
-
-  .main {
-    align-items: center;
-  }
-
-  .main ol {
-    text-align: center;
-  }
-
-  .ctas {
-    flex-direction: column;
-  }
-
-  .ctas a {
-    font-size: 14px;
-    height: 40px;
-    padding: 0 16px;
-  }
-
-  a.secondary {
-    min-width: auto;
-  }
-
-  .footer {
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
+@media screen and (width <= 576px) {
+  .buttonArea {
+    grid-template-columns: 1fr;
+    width: 100%;
   }
 }
