@@ -15,7 +15,10 @@
     "eslint-plugin-unused-imports": "^4.1.4",
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
+    "microcms-js-sdk": "^3.1.2",
+    "modern-css-reset": "^1.4.0",
     "next": "14.2.15",
+    "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18",
     "stylelint-config-recess-order": "^5.1.1"
@@ -26,6 +29,7 @@
     "@types/react-dom": "^18",
     "@typescript-eslint/eslint-plugin": "^8.8.1",
     "@typescript-eslint/parser": "^8.8.1",
+    "clsx": "^2.1.1",
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
     "eslint-config-prettier": "^9.1.0",
@@ -39,8 +43,8 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
+      "bun lint",
+      "bun format"
     ]
   }
 }
