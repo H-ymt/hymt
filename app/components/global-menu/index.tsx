@@ -11,8 +11,12 @@ const navLink = [
     path: '/',
   },
   {
-    label: 'Project',
-    path: '/project',
+    label: 'Projects',
+    path: '/projects',
+  },
+  {
+    label: 'Stack',
+    path: '/stack',
   },
   {
     label: 'Note',
@@ -35,6 +39,7 @@ export default function GlobalMenu() {
             key={path}
             href={path}
             className={`${styles.menuItem} ${pathname === path ? styles.active : ''}`}
+            aria-current={pathname === path ? 'page' : undefined}
           >
             {label}
           </Link>

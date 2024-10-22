@@ -1,6 +1,5 @@
 import ProjectListItem from '@/app/components/project-list-item'
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
-import { Project } from '@/lib/microcms'
+import type { Project } from '@/lib/microcms'
 
 type ProjectListProps = {
   projects?: Project[]

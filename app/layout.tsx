@@ -2,13 +2,13 @@ import './globals.css'
 import 'modern-css-reset'
 
 import clsx from 'clsx'
+import { GeistSans } from 'geist/font/sans'
 import type { Metadata } from 'next'
-import { Inter, Noto_Sans_JP } from 'next/font/google'
+import { Noto_Sans_JP } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 
 import Header from '@/app/components/header'
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const notoSansJP = Noto_Sans_JP({ subsets: ['latin'], variable: '--font-noto-sans' })
 
 export const metadata: Metadata = {
@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" suppressHydrationWarning>
-      <body className={clsx(inter.variable, notoSansJP.variable)}>
+      <body className={clsx(GeistSans.variable, notoSansJP.variable)}>
         <ThemeProvider>
           <Header />
           <main>{children}</main>

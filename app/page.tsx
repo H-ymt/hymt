@@ -1,9 +1,11 @@
+import Image from 'next/image'
+
 import Container from '@/app/components/container'
 import Button from '@/app/components/ui/button'
 
 import styles from './page.module.css'
 
-const Bio = [
+const bio = [
   { id: 1, date: '2017.04', body: '高校卒業後、公務員として従事。' },
   {
     id: 2,
@@ -21,6 +23,112 @@ const Bio = [
   },
 ]
 
+const stack = [
+  {
+    category: 'Frontend',
+    items: [
+      {
+        label: 'WordPress',
+        logo: '/logo-wordpress.svg',
+      },
+      {
+        label: 'JavaScript',
+        logo: '/logo-javascript.svg',
+      },
+      {
+        label: 'TypeScript',
+        logo: '/logo-typescript.svg',
+      },
+      {
+        label: 'React',
+        logo: '/logo-react.svg',
+      },
+      {
+        label: 'Next.js',
+        logo: '/logo-nextjs.svg',
+      },
+      {
+        label: 'Astro',
+        logo: '/logo-astro.svg',
+      },
+      {
+        label: 'Sass',
+        logo: '/logo-sass.svg',
+      },
+      {
+        label: 'Tailwind CSS',
+        logo: '/logo-tailwind-css.svg',
+      },
+      {
+        label: 'microCMS',
+        logo: '/logo-microcms.svg',
+      },
+    ],
+  },
+  {
+    category: 'Development Tools',
+    items: [
+      {
+        label: 'Prettier',
+        logo: '/logo-prettier.svg',
+      },
+      {
+        label: 'Stylelint',
+        logo: '/logo-stylelint.svg',
+      },
+      {
+        label: 'ESLint',
+        logo: '/logo-eslint.svg',
+      },
+      {
+        label: 'Biome',
+        logo: '/logo-biome.svg',
+      },
+      {
+        label: 'npm',
+        logo: '/logo-npm.svg',
+      },
+      {
+        label: 'pnpm',
+        logo: '/logo-pnpm.svg',
+      },
+      {
+        label: 'Bun',
+        logo: '/logo-bun.svg',
+      },
+      {
+        label: 'Vite',
+        logo: '/logo-vite.svg',
+      },
+      {
+        label: 'Gulp',
+        logo: '/logo-gulp.svg',
+      },
+      {
+        label: 'VSCode',
+        logo: '/logo-vscode.svg',
+      },
+      {
+        label: 'GitHub',
+        logo: '/logo-github.svg',
+      },
+    ],
+  },
+  {
+    category: 'Other',
+    items: [
+      {
+        label: 'Figma',
+        logo: '/logo-figma.svg',
+      },
+      {
+        label: 'XD',
+        logo: '/logo-xd.svg',
+      },
+    ],
+  },
+]
+
 export default function Home() {
   return (
     <Container className={styles.container}>
@@ -30,14 +138,15 @@ export default function Home() {
         <br />
         業務の案件ではWordPressを使用したWebサイト制作が多いですが、Next.jsやAstroなどのJSフレームワークとmicroCMSなどのヘッドレスCMSを用いたアーキテクチャが好きです。
       </p>
+
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>Biography</h2>
         <ul className={styles.bioList}>
-          {Bio.map(({ id, date, body }, index) => (
+          {bio.map(({ id, date, body }, index) => (
             <li
               key={id}
               className={styles.bioItem}
-              data-current={index === Bio.length - 1 ? 'true' : 'false'}
+              data-current={index === bio.length - 1 ? 'true' : 'false'}
             >
               {date && (
                 <time className={styles.bioDate} dateTime={`${date.replace('.', '-')}-01`}>
@@ -48,19 +157,40 @@ export default function Home() {
             </li>
           ))}
         </ul>
-      </section>
-      <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Contact</h2>
-        <div className={styles.buttonArea}>
-          <Button
-            className={styles.buttonGithub}
-            href="https://github.com/H-ymt"
-            target="_blank"
-            visual="primary"
-          >
-            <span>GitHub</span>
+
+        <div className={styles.stackButton}>
+          <Button href="/stack" size="large">
+            About me
           </Button>
-          <Button visual="secondary">Mail</Button>
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>Stack</h2>
+        <div className={styles.stackContainer}>
+          {stack.map((stack, stackIndex) => (
+            <div key={stackIndex} className={styles.stackCard}>
+              <h3 className={styles.stackCategory}>{stack.category}</h3>
+              <div className={styles.stackList}>
+                {stack.items.map((item, index) => (
+                  <div key={index} className={styles.stackItem}>
+                    {item.logo && (
+                      <div className={styles.stackLogo}>
+                        <Image src={item.logo} alt="" width="36" height="36" />
+                      </div>
+                    )}
+                    <p className={styles.stackLabel}>{item.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className={styles.stackButton}>
+          <Button href="/stack" size="large">
+            Read more
+          </Button>
         </div>
       </section>
     </Container>

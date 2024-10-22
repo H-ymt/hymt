@@ -19,6 +19,7 @@
 
 .pageHeading {
   padding-block: 0 1.25rem;
+  font-size: 2.25rem;
 }
 
 .heroText {
@@ -40,7 +41,7 @@
   gap: 1rem;
   padding-left: 1.5rem;
   margin-left: 0.25rem;
-  border-left: 1px solid var(--color-border);
+  border-left: 2px solid var(--color-border);
 }
 
 .bioItem {
@@ -53,18 +54,22 @@
 
 .bioItem[data-current='true']::after {
   position: absolute;
-  left: -1.55rem;
+  left: -1.625rem;
   display: block;
-  width: 1px;
+  width: 2px;
   height: 100%;
   margin-inline: auto;
   content: '';
   background-color: var(--color-primary);
-  border-radius: 9999em;
 }
 
 .bioDate {
   font-size: 0.875em;
+  line-height: 1.5;
+}
+
+.bioBody {
+  line-height: 1.5;
 }
 
 @media screen and (width <= 576px) {
@@ -77,22 +82,62 @@
   }
 
   .bioItem[data-current='true']::after {
-    left: -0.8rem;
+    left: -0.9rem;
+  }
+}
+
+.stackContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.stackCard {
+  padding: 1rem 1.5rem;
+  font-size: 0.875rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--rounded-lg);
+}
+
+.stackCategory {
+  padding-bottom: 0.75rem;
+}
+
+.stackList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.stackItem {
+  display: inline-grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.stackButton {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+@media screen and (width <= 767px) {
+  .stackContainer {
+    grid-template-columns: 1fr;
   }
 }
 
 .buttonArea {
   display: inline-grid;
   grid-template-columns: auto auto;
-  gap: 0.5rem;
+  gap: 1rem 0.5rem;
   align-items: center;
 }
 
 .buttonGithub {
-  display: inline-grid;
   display: inline-flex;
   grid-template-columns: 1fr auto;
-  gap: 0.5rem;
+  gap: 0.75rem;
   place-items: center center;
   justify-content: center;
 }

@@ -7,6 +7,17 @@ import type {
 import { createClient } from 'microcms-js-sdk'
 import { notFound } from 'next/navigation'
 
+export type Works = {
+  thumbnail?: MicroCMSImage
+  title: string
+  content: string
+  url: string
+  source: string
+  created: string
+  category: Category[]
+  meta: Meta
+}
+
 export type Category = {
   id: string
   createdAt: string
@@ -20,19 +31,9 @@ export type Category = {
 export type Meta = {
   title?: string
   description?: string
+  ogTitle?: string
   ogDescription?: string
-  ogImage: MicroCMSImage
-}
-
-export type Works = {
-  thumbnail?: MicroCMSImage
-  title: string
-  content: string
-  url: string
-  source: string
-  created: string
-  category: Category[]
-  meta: Meta
+  ogImage?: MicroCMSImage
 }
 
 export type Project = Works & Meta & MicroCMSContentId & MicroCMSDate
@@ -62,13 +63,11 @@ export const getWorksList = async (queries?: MicroCMSQueries) => {
 }
 
 export const getWorksDetail = async (contentId: string, queries?: MicroCMSQueries) => {
-  const detailData = await client
-    .getListDetail<Category>({
-      endpoint: 'categories',
-      contentId,
-      queries,
-    })
-    .catch(notFound)
+  const detailData = await client.getListDetail<Works>({
+    endpoint: 'works',
+    contentId,
+    queries,
+  })
 
   return detailData
 }
