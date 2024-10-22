@@ -1,0 +1,43 @@
+.item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  padding: 1.75rem 1.5rem;
+  font-size: 1rem;
+  border: 2px solid var(--color-border-muted);
+  border-radius: var(--rounded-lg);
+  transition: background 0.2s;
+}
+
+.item:hover,
+.item:focus {
+  background: var(--color-background-soft);
+}
+
+.text {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.title {
+  font-size: 1em;
+}
+
+.date {
+  font-size: 0.75em;
+  color: var(--color-text-muted);
+}
+
+.liked {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.35em;
+  align-items: center;
+  font-size: 0.75em;
+  color: var(--color-text-base);
+}
+
+.emoji {
+  align-self: center;
+  font-size: 3.5em;
+}
