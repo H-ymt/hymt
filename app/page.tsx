@@ -104,6 +104,11 @@ const stack = [
         label: 'Gulp',
         logo: '/logo-gulp.svg',
       },
+    ],
+  },
+  {
+    category: 'Other',
+    items: [
       {
         label: 'VSCode',
         logo: '/logo-vscode.svg',
@@ -112,11 +117,6 @@ const stack = [
         label: 'GitHub',
         logo: '/logo-github.svg',
       },
-    ],
-  },
-  {
-    category: 'Other',
-    items: [
       {
         label: 'Figma',
         logo: '/logo-figma.svg',
@@ -157,12 +157,6 @@ export default function Home() {
             </li>
           ))}
         </ul>
-
-        <div className={styles.stackButton}>
-          <Button href="/stack" size="large">
-            About me
-          </Button>
-        </div>
       </section>
 
       <section className={styles.section}>
@@ -189,7 +183,7 @@ export default function Home() {
 
         <div className={styles.stackButton}>
           <Button href="/stack" size="large">
-            Read more
+            View more
           </Button>
         </div>
       </section>

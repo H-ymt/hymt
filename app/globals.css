@@ -23,7 +23,7 @@
   /* Border Radius */
   --rounded-sm: 0.25rem;
   --rounded-md: 0.5rem;
-  --rounded-lg: 1rem;
+  --rounded-lg: 1.25rem;
   --rounded-full: 9999em;
 }
 
@@ -34,7 +34,7 @@
     --color-text-base: #adadad;
     --color-text-muted: #929292;
     --color-background: #101010;
-    --color-background-soft: #212121;
+    --color-background-soft: #1b1b1b;
     --color-border: #767676;
     --color-border-muted: #f5f5f51a;
     --color-button-primary: #14b8a6;
