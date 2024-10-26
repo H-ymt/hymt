@@ -1,6 +1,7 @@
 import Image from 'next/image'
 
 import Container from '@/app/components/container'
+import { GithubIcon } from '@/app/components/icons'
 import Button from '@/app/components/ui/button'
 
 import styles from './page.module.css'
@@ -132,12 +133,30 @@ const stack = [
 export default function Home() {
   return (
     <Container className={styles.container}>
-      <h1 className={styles.pageHeading}>Yamato Handai</h1>
-      <p className={styles.heroText}>
-        現在、フロントエンドエンジニアとしてWebサイト制作に携わっています。
-        <br />
-        業務の案件ではWordPressを使用したWebサイト制作が多いですが、Next.jsやAstroなどのJSフレームワークとmicroCMSなどのヘッドレスCMSを用いたアーキテクチャが好きです。
-      </p>
+      <div className={styles.hero}>
+        <h1 className={styles.heroHeading}>Yamato Handai</h1>
+        <p className={styles.heroText}>
+          現在、フロントエンドエンジニアとしてWebサイト制作に携わっています。
+          <br />
+          業務の案件ではWordPressを使用したWebサイト制作が多いですが、Next.jsやAstroなどのJSフレームワークとmicroCMSなどのヘッドレスCMSを用いたアーキテクチャが好きです。
+        </p>
+        <div className={styles.heroButtonContainer}>
+          <Button href="/projects" visual="primary" className={styles.heroButton}>
+            Projects
+          </Button>
+          <Button
+            href="https://github.com/H-ymt/hymt"
+            target="_blank"
+            visual="outline"
+            className={styles.heroButton}
+          >
+            View Source
+            <span className={styles.heroButtonIcon}>
+              <GithubIcon />
+            </span>
+          </Button>
+        </div>
+      </div>
 
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>Biography</h2>

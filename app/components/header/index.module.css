@@ -25,3 +25,19 @@
     padding-inline: 1.5rem;
   }
 }
+
+@media screen and (width <= 767px) {
+  .header {
+    position: fixed;
+    top: unset;
+    bottom: 0;
+    bottom: 1rem;
+    left: 50%;
+    height: auto;
+    transform: translateX(-50%);
+  }
+
+  .headerInner {
+    height: auto;
+  }
+}

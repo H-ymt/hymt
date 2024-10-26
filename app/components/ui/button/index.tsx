@@ -5,7 +5,7 @@ import styles from './index.module.css'
 
 type ButtonProps = {
   size?: 'small' | 'medium' | 'large'
-  visual?: 'primary' | 'secondary' | 'tertiary'
+  visual?: 'primary' | 'secondary' | 'outline'
   children: React.ReactNode
   className?: string
   href?: string

@@ -3,6 +3,7 @@
   transition: background 0.2s;
 }
 
+/* Size */
 .small {
   padding: 0.25rem 0.75rem;
   font-size: 12px;
@@ -23,7 +24,12 @@
   border-radius: var(--rounded-full);
 }
 
+/* Visual */
 .primary {
+  display: inline-flex;
+  gap: 0.5em;
+  align-items: center;
+  justify-content: center;
   color: var(--color-button-primary-foreground);
   background-color: var(--color-button-primary);
   border: none;
@@ -44,4 +50,24 @@
 .secondary:hover,
 .secondary:focus {
   background-color: rgb(from var(--color-button-secondary) r g b / 70%);
+}
+
+.outline {
+  display: inline-flex;
+  gap: 0.5em;
+  justify-content: center;
+  color: var(--color-heading);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border 0.2s;
+}
+
+.outline:hover,
+.outline:focus {
+  color: var(--color-text-heading);
+  background: var(--color-background-soft);
+  border: 1px solid;
 }

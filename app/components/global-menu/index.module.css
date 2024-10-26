@@ -1,6 +1,6 @@
 .menu {
   padding: 0 0.75rem;
-  background-color: rgb(from var(--color-background) r g b / 85%);
+  background-color: rgb(from var(--color-background) r g b / 80%);
   backdrop-filter: blur(6px);
   border: 1px solid var(--color-border-muted);
   border-radius: var(--rounded-full);
@@ -37,4 +37,55 @@
 
 .menuItem:hover {
   color: var(--color-primary);
+}
+
+.menuMobile {
+  display: none;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.25rem 0.425rem;
+  color: inherit;
+}
+
+.icon svg {
+  display: inline-flex;
+  width: 1.5rem;
+  height: 1.5rem;
+  aspect-ratio: 1;
+}
+
+.icon.active svg {
+  color: var(--color-primary);
+}
+
+.icon.zenn svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.icon.zenn.active::after {
+  bottom: -0.267rem;
+}
+
+@media screen and (width <= 767px) {
+  .menu {
+    padding-inline: 1.5rem;
+  }
+
+  .menuDefault {
+    display: none;
+  }
+
+  .menuMobile {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .menuItem {
+    padding-block: 0.75rem;
+  }
 }
