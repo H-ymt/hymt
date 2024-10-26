@@ -46,14 +46,14 @@
 .icon {
   display: flex;
   align-items: center;
-  padding: 0.5rem 0.25rem 0.425rem;
+  padding: 0.5rem 0.3rem 0.425rem;
   color: inherit;
 }
 
 .icon svg {
   display: inline-flex;
-  width: 1.75rem;
-  height: 1.75rem;
+  width: 2rem;
+  height: 2rem;
   aspect-ratio: 1;
 }
 
@@ -62,12 +62,12 @@
 }
 
 .icon.zenn svg {
-  width: 1.1rem;
-  height: 1.1rem;
+  width: 1.3rem;
+  height: 1.3rem;
 }
 
 .icon.zenn.active::after {
-  bottom: -0.267rem;
+  bottom: -0.4rem;
 }
 
 @media screen and (width <= 767px) {
