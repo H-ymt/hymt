@@ -9,7 +9,12 @@
   transition: background 0.2s;
 }
 
-.item:hover,
+@media (any-hover: hover) {
+  .item:hover {
+    background: var(--color-background-soft);
+  }
+}
+
 .item:focus {
   background: var(--color-background-soft);
 }
