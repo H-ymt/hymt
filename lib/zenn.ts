@@ -9,6 +9,13 @@ export type ZennArticle = {
   published_at: string
 }
 
+export const getZennArticles = async () => {
+  const res = await fetch('https://zenn.dev/api/articles?username=h_ymt&order=latest', {})
+  const data = await res.json()
+
+  return data
+}
+
 export type ZennScraps = {
   id: number
   path: string
@@ -20,12 +27,14 @@ export type ZennScraps = {
     id: number
     name: string
     image_url: string
-  }
+  }[]
 }
 
-export const getZennArticles = async () => {
-  const res = await fetch('https://zenn.dev/api/articles?username=h_ymt&order=latest', {})
+export const getZennScraps = async (): Promise<ZennScraps[]> => {
+  const res = await fetch(
+    'https://zenn.dev/api/scraps?username=h_ymt&count=100&order=last_comment_created_at'
+  )
   const data = await res.json()
 
-  return data
+  return data.scraps ? data.scraps : data
 }

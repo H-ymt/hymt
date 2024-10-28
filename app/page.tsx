@@ -7,7 +7,7 @@ import Button from '@/app/components/ui/button'
 import styles from './page.module.css'
 
 const bio = [
-  { id: 1, date: '2017.04', body: '高校卒業後、公務員として従事。' },
+  { id: 1, date: '2017.04', body: '高校卒業後、行政機関に従事。' },
   {
     id: 2,
     body: 'CMSを利用したホームページ管理業務を機にWebサイト制作に興味を持ち始め、独学で学習を始める。',
@@ -147,7 +147,7 @@ export default function Home() {
           <Button
             href="https://github.com/H-ymt/hymt"
             target="_blank"
-            visual="outline"
+            visual="secondary"
             className={styles.heroButton}
           >
             View Source

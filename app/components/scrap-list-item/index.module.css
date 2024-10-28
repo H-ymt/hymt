@@ -1,0 +1,43 @@
+.item {
+  padding: 1.75rem 1.5rem;
+  font-size: 1rem;
+  border: 2px solid var(--color-border);
+  display: grid;
+  gap: 0.5rem;
+  border-radius: var(--rounded-lg);
+  transition: background 0.2s;
+}
+
+@media (any-hover: hover) {
+  .item:hover {
+    background: var(--color-background-soft);
+  }
+}
+
+.item:focus {
+  background: var(--color-background-soft);
+}
+
+.title {
+  font-size: 1em;
+}
+
+.topics {
+  display: flex;
+  font-size: 0.75rem;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.25rem;
+}
+
+.topic {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  border: 1px solid var(--color-border-muted);
+  color: rgb(from var(--color-button-primary) r g b / 100%);
+  letter-spacing: 0.01em;
+  height: 1.5rem;
+  padding-bottom: 0.05rem;
+  border-radius: var(--rounded-full);
+  padding-inline: 0.625rem;
+}
