@@ -2,12 +2,7 @@ import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
 export const config = {
-  matcher: [
-    {
-      source: '/projects/:path*',
-      missing: [{ type: 'header', key: 'next-router-prefetch' }],
-    },
-  ],
+  matcher: '/projects/:path*',
 }
 
 export function middleware(req: NextRequest) {
