@@ -1,0 +1,22 @@
+.imageWrapper {
+  overflow: hidden;
+  border-radius: var(--rounded-lg);
+  border: 1px solid var(--color-background-soft);
+}
+
+.image {
+  aspect-ratio: 3 / 2;
+  transition: transform 0.2s ease-in-out;
+  transform: scale(1);
+}
+
+.title {
+  padding: 0.5rem 0.5rem;
+  font-size: 1.25rem;
+}
+
+@media (any-hover: hover) {
+  .item:hover .image {
+    transform: scale(1.01);
+  }
+}

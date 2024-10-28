@@ -90,6 +90,12 @@ ol {
   list-style: none;
 }
 
+:where(img) {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
 ::selection {
   background-color: var(--color-background-soft);
 }

@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { HomeIcon, NoteIcon, ProjectIcon, StacksIcon, ZennIcon } from '@/app/components/icons'
+import { HomeIcon, NoteIcon, ProjectIcon, ZennIcon } from '@/app/components/icons'
 
 import styles from './index.module.css'
 
@@ -17,11 +17,6 @@ const navLink = [
     label: 'Projects',
     path: '/projects',
     icon: ProjectIcon,
-  },
-  {
-    label: 'Stack',
-    path: '/stack',
-    icon: StacksIcon,
   },
   {
     label: 'Note',

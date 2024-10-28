@@ -181,12 +181,12 @@ export default function Home() {
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>Stack</h2>
         <div className={styles.stackContainer}>
-          {stack.map((stack, stackIndex) => (
-            <div key={stackIndex} className={styles.stackCard}>
+          {stack.map((stack) => (
+            <div key={stack.category} className={styles.stackCard}>
               <h3 className={styles.stackCategory}>{stack.category}</h3>
               <div className={styles.stackList}>
-                {stack.items.map((item, index) => (
-                  <div key={index} className={styles.stackItem}>
+                {stack.items.map((item) => (
+                  <div key={item.label} className={styles.stackItem}>
                     {item.logo && (
                       <div className={styles.stackLogo}>
                         <Image src={item.logo} alt="" width="36" height="36" />
@@ -198,12 +198,6 @@ export default function Home() {
               </div>
             </div>
           ))}
-        </div>
-
-        <div className={styles.stackButton}>
-          <Button href="/stack" size="large">
-            View more
-          </Button>
         </div>
       </section>
     </Container>

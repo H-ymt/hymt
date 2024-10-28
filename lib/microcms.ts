@@ -7,7 +7,7 @@ import type {
 import { createClient } from 'microcms-js-sdk'
 import { notFound } from 'next/navigation'
 
-export type Works = {
+export type Projects = {
   thumbnail?: MicroCMSImage
   title: string
   content: string
@@ -36,7 +36,7 @@ export type Meta = {
   ogImage?: MicroCMSImage
 }
 
-export type Project = Works & Meta & MicroCMSContentId & MicroCMSDate
+export type Project = Projects & Meta & MicroCMSContentId & MicroCMSDate
 
 if (!process.env.MICROCMS_SERVICE_DOMAIN) {
   throw new Error('MICROCMS_SERVICE_DOAMIN is required')
@@ -51,9 +51,9 @@ export const client = createClient({
   apiKey: process.env.MICROCMS_API_KEY,
 })
 
-export const getWorksList = async (queries?: MicroCMSQueries) => {
+export const getProjectsList = async (queries?: MicroCMSQueries) => {
   const listData = await client
-    .getList<Works>({
+    .getList<Projects>({
       endpoint: 'works',
       queries,
     })
@@ -62,8 +62,8 @@ export const getWorksList = async (queries?: MicroCMSQueries) => {
   return listData
 }
 
-export const getWorksDetail = async (contentId: string, queries?: MicroCMSQueries) => {
-  const detailData = await client.getListDetail<Works>({
+export const getProjectsDetail = async (contentId: string, queries?: MicroCMSQueries) => {
+  const detailData = await client.getListDetail<Projects>({
     endpoint: 'works',
     contentId,
     queries,
