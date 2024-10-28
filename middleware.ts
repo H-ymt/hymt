@@ -2,10 +2,14 @@ import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
 export const config = {
-  matcher: ['/projects/:path*'],
+  matcher: ['/projects/:path*', '!/api/:path*', '!/_next/:path*'],
 }
 
 export function middleware(req: NextRequest) {
+  if (req.nextUrl.pathname === '/') {
+    return NextResponse.next()
+  }
+
   if (process.env.NODE_ENV === 'development') {
     return NextResponse.next()
   }
