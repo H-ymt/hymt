@@ -11,7 +11,7 @@ type ProjectListItemProps = {
 
 export default function ProjectListItem({ project }: ProjectListItemProps) {
   return (
-    <Link className={styles.item} href={`/project/${project.id}`}>
+    <Link className={styles.item} href={`/projects/${project.id}`}>
       {project.thumbnail ? (
         <div className={styles.imageWrapper}>
           <Image

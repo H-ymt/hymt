@@ -3,6 +3,10 @@
   transition: background 0.2s;
 }
 
+.button:focus {
+  outline-offset: 2px;
+}
+
 /* Size */
 .small {
   padding: 0.25rem 0.75rem;

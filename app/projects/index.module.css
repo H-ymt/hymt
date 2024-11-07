@@ -1,0 +1,9 @@
+.projects {
+  padding-block: 2rem;
+}
+
+.button {
+  margin-top: 2rem;
+  display: grid;
+  justify-items: center;
+}
