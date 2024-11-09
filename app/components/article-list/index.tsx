@@ -4,11 +4,11 @@ import type { ZennArticle } from '@/lib/zenn'
 import styles from './index.module.css'
 
 type ArticleProps = {
-  posts: ZennArticle
+  posts: ZennArticle[]
 }
 
 export default function ArticleList({ posts }: ArticleProps) {
-  if (!posts) {
+  if (!posts || posts.length === 0) {
     return null
   }
 
