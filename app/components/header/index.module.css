@@ -30,8 +30,7 @@
   .header {
     position: fixed;
     top: unset;
-    bottom: 0;
-    bottom: 1.25rem;
+    bottom: 1.5rem;
     left: 50%;
     height: auto;
     transform: translateX(-50%);

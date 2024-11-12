@@ -1,9 +1,9 @@
-import parse from 'html-react-parser'
 import Image from 'next/image'
 
 import Container from '@/app/components/container'
-import { formatRichText } from '@/app/lib/utils'
 import type { Project } from '@/lib/microcms'
+
+import styles from './index.module.css'
 
 type ArticleProps = {
   data: Project
@@ -11,19 +11,17 @@ type ArticleProps = {
 
 export default function ArticleComponent({ data }: ArticleProps) {
   return (
-    <Container>
-      <h1>{data.title}</h1>
+    <Container type="subpage">
+      <h1 className={styles.title}>{data.title}</h1>
       {data.thumbnail && (
         <Image
           src={data.thumbnail?.url}
           alt=""
           width={data.thumbnail?.width}
           height={data.thumbnail?.height}
-          className=""
+          className={styles.image}
         />
       )}
-
-      <div>{parse(formatRichText(data.content))}</div>
     </Container>
   )
 }

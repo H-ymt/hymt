@@ -4,12 +4,9 @@ import 'modern-css-reset'
 import clsx from 'clsx'
 import { GeistSans } from 'geist/font/sans'
 import type { Metadata } from 'next'
-import { Noto_Sans_JP } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 
 import Header from '@/app/components/header'
-
-const notoSansJP = Noto_Sans_JP({ subsets: ['latin'], variable: '--font-noto-sans' })
 
 export const metadata: Metadata = {
   title: {
@@ -26,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" suppressHydrationWarning>
-      <body className={clsx(GeistSans.variable, notoSansJP.variable)}>
+      <body className={clsx(GeistSans.variable)}>
         <ThemeProvider>
           <Header />
           <main>{children}</main>

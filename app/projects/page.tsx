@@ -3,7 +3,7 @@ import ProjectList from '@/app/components/project-list'
 import Button from '@/app/components/ui/button'
 import { getProjectsList } from '@/lib/microcms'
 
-import styles from './index.module.css'
+import styles from './page.module.css'
 
 export default async function ProjectsPage() {
   const data = await getProjectsList({

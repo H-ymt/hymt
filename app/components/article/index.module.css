@@ -1,0 +1,9 @@
+.title {
+  padding-bottom: 2rem;
+}
+
+.image {
+  aspect-ratio: 5 / 3;
+  border: 1px solid var(--color-border-muted);
+  border-radius: var(--rounded-lg);
+}

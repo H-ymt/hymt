@@ -38,6 +38,7 @@
     "eslint-config-next": "14.2.15",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
+    "framer-motion": "^11.11.11",
     "markuplint": "^4.9.4",
     "prettier": "^3.3.3",
     "stylelint": "^16.10.0",
