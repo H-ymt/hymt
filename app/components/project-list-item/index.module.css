@@ -41,7 +41,7 @@
 }
 
 .linkIcon {
-  color: var(--color-text-heading);
+  color: var(--color-background);
 }
 
 .meta {
@@ -50,6 +50,7 @@
   left: 0.75rem;
   display: inline-grid;
   gap: 0.5rem;
+  color: var(--color-background);
 }
 
 .categories {
@@ -59,7 +60,6 @@
   gap: 0.25rem;
   padding-left: 0.15rem;
   font-size: 0.75rem;
-  color: var(--color-text-heading);
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
 }

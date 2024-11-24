@@ -1,9 +1,9 @@
 .item {
-  padding: 1.75rem 1.5rem;
-  font-size: 1rem;
-  border: 2px solid var(--color-border-muted);
   display: grid;
   gap: 0.5rem;
+  padding: 1.75rem 1.5rem;
+  font-size: 1rem;
+  border: 1px solid var(--color-border-muted);
   border-radius: var(--rounded-lg);
   transition: background 0.2s;
 }
@@ -20,24 +20,24 @@
 
 .title {
   font-size: 1em;
+  font-weight: 500;
 }
 
 .topics {
   display: flex;
-  font-size: 0.75rem;
   flex-wrap: wrap;
   gap: 0.5rem 0.25rem;
+  font-size: 0.75rem;
 }
 
 .topic {
   display: grid;
-  align-items: center;
-  justify-items: center;
-  border: 1px solid var(--color-border-muted);
-  color: rgb(from var(--color-primary) r g b / 80%);
-  letter-spacing: 0.01em;
+  place-items: center center;
   height: 1.5rem;
-  padding-bottom: 0.05rem;
-  border-radius: var(--rounded-full);
   padding-inline: 0.625rem;
+  padding-bottom: 0.05rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.01em;
+  border: 1px solid var(--color-border);
+  border-radius: var(--rounded-full);
 }

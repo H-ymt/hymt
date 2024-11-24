@@ -1,5 +1,5 @@
 .menu {
-  padding: 0 0.75rem;
+  padding: 0 1rem;
   background-color: rgb(from var(--color-background) r g b / 80%);
   backdrop-filter: blur(6px);
   border: 1px solid var(--color-border-muted);
