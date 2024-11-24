@@ -11,11 +11,11 @@ export type Projects = {
   thumbnail?: MicroCMSImage
   title: string
   content: string
-  url: string
-  source: string
+  url?: string
+  source?: string
   created: string
   category: Category[]
-  meta: Meta
+  meta?: Meta
 }
 
 export type Category = {
