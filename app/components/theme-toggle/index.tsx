@@ -13,44 +13,50 @@ export default function ThemeToggle() {
     <fieldset className={styles.themeToggle}>
       <legend className="sr-only">Toggle Theme</legend>
 
-      <label className={styles.themeOption}>
+      <span className={styles.themeOption}>
+        <label htmlFor="themeSystem" className={styles.themeLabel}>
+          <MonitorIcon className={styles.icon} />
+        </label>
         <input
+          id="themeSystem"
           type="radio"
           name="theme"
           value="system"
           checked={theme === 'system'}
           onChange={() => setTheme('system')}
           aria-label="System theme"
-          className="sr-only"
         />
-        <MonitorIcon className={styles.icon} />
-      </label>
+      </span>
 
-      <label className={styles.themeOption}>
+      <span className={styles.themeOption}>
+        <label htmlFor="themeLight" className={styles.themeLabel}>
+          <SunIcon className={styles.icon} />
+        </label>
         <input
+          id="themeLight"
           type="radio"
           name="theme"
           value="light"
           checked={theme === 'light'}
           onChange={() => setTheme('light')}
           aria-label="Light theme"
-          className="sr-only"
         />
-        <SunIcon className={styles.icon} />
-      </label>
+      </span>
 
-      <label className={styles.themeOption}>
+      <span className={styles.themeOption}>
+        <label htmlFor="themeDark" className={styles.themeLabel}>
+          <MoonIcon className={styles.icon} />
+        </label>
         <input
+          id="dthemeDark"
           type="radio"
           name="theme"
           value="dark"
           checked={theme === 'dark'}
           onChange={() => setTheme('dark')}
           aria-label="Dark theme"
-          className="sr-only"
         />
-        <MoonIcon className={styles.icon} />
-      </label>
+      </span>
     </fieldset>
   )
 }

@@ -3,8 +3,8 @@
   transition: background 0.2s;
 }
 
-.button:focus {
-  outline-offset: 2px;
+.button:focus-visible {
+  outline-offset: 1px;
 }
 
 /* Size */
@@ -36,12 +36,16 @@
   justify-content: center;
   color: var(--color-button-primary-foreground);
   background-color: var(--color-button-primary);
-  border: none;
+  border: 1px solid var(--color-button-primary);
 }
 
 .primary:hover,
-.primary:focus {
-  background-color: rgb(from var(--color-button-primary) r g b / 80%);
+.primary:focus-visible {
+  background-color: rgb(from var(--color-button-primary) r g b / 90%);
+}
+
+.primary:focus-visible {
+  outline: 2px solid var(--color-focus);
 }
 
 .secondary {
@@ -55,8 +59,12 @@
 }
 
 .secondary:hover,
-.secondary:focus {
+.secondary:focus-visible {
   background: var(--color-button-secondary);
+}
+
+.secondary:focus-visible {
+  outline: 2px solid var(--color-focus);
 }
 
 .outline {
@@ -73,8 +81,12 @@
 }
 
 .outline:hover,
-.outline:focus {
+.outline:focus-visible {
   color: var(--color-text-heading);
   background: var(--color-background-soft);
   border: 1px solid;
+}
+
+.outline:focus-visible {
+  outline: 2px solid var(--color-focus);
 }

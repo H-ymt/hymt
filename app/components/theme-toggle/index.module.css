@@ -16,10 +16,11 @@
   width: 2rem;
   height: 2rem;
   cursor: pointer;
+  border-radius: var(--rounded-full);
 }
 
-.themeOption input {
-  appearance: none;
+.themeLabel {
+  display: inline-flex;
 }
 
 .icon {
@@ -32,6 +33,14 @@
 
 .themeOption:hover .icon {
   color: var(--color-text-heading);
+}
+
+.themeOption input {
+  appearance: none;
+}
+
+.themeOption:has(input:focus-visible) {
+  outline: 2px solid var(--color-focus);
 }
 
 .themeOption:has(input:checked) {

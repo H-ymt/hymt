@@ -12,6 +12,7 @@
   --color-button-primary-foreground: #fff;
   --color-button-secondary: #e9e9e9;
   --color-button-secondary-foreground: #222;
+  --color-focus: #005ff2;
 
   /* Layout */
   --header-height: 5rem;
@@ -40,6 +41,7 @@
   --color-button-primary-foreground: #ffff;
   --color-button-secondary: #1d1d20;
   --color-button-secondary-foreground: #f8f8f8;
+  --color-focus: #47a8ff;
 }
 
 * {
@@ -83,6 +85,11 @@ a {
   display: inline-block;
   color: var(--color-primary);
   text-decoration: none;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
 }
 
 ul,
