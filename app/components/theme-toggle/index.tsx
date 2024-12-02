@@ -48,7 +48,7 @@ export default function ThemeToggle() {
           <MoonIcon className={styles.icon} />
         </label>
         <input
-          id="dthemeDark"
+          id="themeDark"
           type="radio"
           name="theme"
           value="dark"
