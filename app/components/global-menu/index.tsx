@@ -56,7 +56,7 @@ export default function GlobalMenu() {
               className={`${styles.icon} ${pathname === path ? styles.active : ''} ${label === 'Zenn' ? styles.zenn : ''}`}
             >
               <Icon aria-label={label} />
-              <span className={styles.menuLabel}>{label}</span>
+              {/* <span className={styles.menuLabel}>{label}</span> */}
             </Link>
           ))}
         </div>
