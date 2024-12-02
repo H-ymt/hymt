@@ -27,21 +27,19 @@
   --rounded-full: 9999em;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-primary: #049d8e;
-    --color-text-heading: #efeff1;
-    --color-text-base: #adadb8;
-    --color-text-muted: #929292;
-    --color-background: #151517;
-    --color-background-soft: #1d1d20;
-    --color-border: #313335;
-    --color-border-muted: #313335;
-    --color-button-primary: #008377;
-    --color-button-primary-foreground: #ffff;
-    --color-button-secondary: #29292a;
-    --color-button-secondary-foreground: #f8f8f8;
-  }
+.dark:root {
+  --color-primary: #049d8e;
+  --color-text-heading: #efeff1;
+  --color-text-base: #adadb8;
+  --color-text-muted: #929292;
+  --color-background: #151517;
+  --color-background-soft: #1d1d20;
+  --color-border: #313335;
+  --color-border-muted: #313335;
+  --color-button-primary: #008377;
+  --color-button-primary-foreground: #ffff;
+  --color-button-secondary: #29292a;
+  --color-button-secondary-foreground: #f8f8f8;
 }
 
 * {
@@ -101,8 +99,14 @@ ol {
   backface-visibility: hidden;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
