@@ -10,7 +10,7 @@
   --color-border-muted: #d8d8d8;
   --color-button-primary: #14b8a6;
   --color-button-primary-foreground: #fff;
-  --color-button-secondary: #bcbcbc;
+  --color-button-secondary: #e9e9e9;
   --color-button-secondary-foreground: #222;
 
   /* Layout */
@@ -38,7 +38,7 @@
   --color-border-muted: #313335;
   --color-button-primary: #008377;
   --color-button-primary-foreground: #ffff;
-  --color-button-secondary: #29292a;
+  --color-button-secondary: #1d1d20;
   --color-button-secondary-foreground: #f8f8f8;
 }
 
