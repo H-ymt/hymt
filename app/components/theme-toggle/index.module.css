@@ -35,6 +35,10 @@
   transition: color 0.3s;
 }
 
+.icon.active {
+  stroke: var(--color-text-heading);
+}
+
 .themeOption:hover .icon {
   color: var(--color-text-heading);
 }

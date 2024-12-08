@@ -1,5 +1,6 @@
 'use client'
 
+import clsx from 'clsx'
 import { useTheme } from 'next-themes'
 
 import { MonitorIcon, MoonIcon, SunIcon } from '@/app/components/icons'
@@ -15,7 +16,7 @@ export default function ThemeToggle() {
 
       <span className={styles.themeOption}>
         <label htmlFor="themeSystem" className={styles.themeLabel}>
-          <MonitorIcon className={styles.icon} />
+          <MonitorIcon className={clsx(styles.icon, theme === 'system' && styles.active)} />
         </label>
         <input
           id="themeSystem"
@@ -30,7 +31,7 @@ export default function ThemeToggle() {
 
       <span className={styles.themeOption}>
         <label htmlFor="themeLight" className={styles.themeLabel}>
-          <SunIcon className={styles.icon} />
+          <SunIcon className={clsx(styles.icon, theme === 'light' && styles.active)} />
         </label>
         <input
           id="themeLight"
@@ -45,7 +46,7 @@ export default function ThemeToggle() {
 
       <span className={styles.themeOption}>
         <label htmlFor="themeDark" className={styles.themeLabel}>
-          <MoonIcon className={styles.icon} />
+          <MoonIcon className={clsx(styles.icon, theme === 'dark' && styles.active)} />
         </label>
         <input
           id="themeDark"
