@@ -11,7 +11,7 @@ export default async function ProjectsPage() {
 
   return (
     <Container type="subpage">
-      <h1>Projects</h1>
+      <h1 className={styles.title}>Projects</h1>
       <div className={styles.projects}>
         <ProjectList projects={data.contents} />
       </div>

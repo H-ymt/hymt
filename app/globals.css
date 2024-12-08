@@ -26,6 +26,16 @@
   --rounded-md: 0.5rem;
   --rounded-lg: 1.25rem;
   --rounded-full: 9999em;
+
+  /* Text */
+  --gradient: radial-gradient(
+    circle 300px at 30% 90%,
+    var(--color-primary) 0%,
+    var(--color-text-base) 100%
+  );
+
+  /* Shadow */
+  --shadow-md: 0 0 2px rgb(255 255 255 / 10%), 0 0 1px rgb(130 168 236 / 20%);
 }
 
 .dark:root {
@@ -36,12 +46,19 @@
   --color-background: #151517;
   --color-background-soft: #1d1d20;
   --color-border: #313335;
-  --color-border-muted: #313335;
+  --color-border-muted: #232425;
   --color-button-primary: #008377;
   --color-button-primary-foreground: #ffff;
   --color-button-secondary: #1d1d20;
   --color-button-secondary-foreground: #f8f8f8;
   --color-focus: #47a8ff;
+
+  /* Text */
+  --gradient: radial-gradient(
+    circle 300px at 30% 90%,
+    var(--color-primary) 0%,
+    var(--color-text-muted) 100%
+  );
 }
 
 * {

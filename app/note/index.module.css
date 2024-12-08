@@ -1,0 +1,6 @@
+.title {
+  text-shadow: var(--shadow-md);
+  background-image: var(--gradient);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

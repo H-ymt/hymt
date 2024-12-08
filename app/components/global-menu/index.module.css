@@ -13,7 +13,10 @@
 
 .active {
   position: relative;
-  color: var(--color-primary);
+  text-shadow: var(--shadow-md);
+  background-image: var(--gradient);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .active::after {
@@ -29,7 +32,10 @@
 }
 
 .menuItem:hover {
-  color: var(--color-primary);
+  text-shadow: var(--shadow-md);
+  background-image: var(--gradient);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .menuMobile {
