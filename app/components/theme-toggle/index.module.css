@@ -47,6 +47,7 @@
 }
 
 .themeOption input {
+  display: none;
   appearance: none;
 }
 

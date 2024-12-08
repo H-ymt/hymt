@@ -9,6 +9,10 @@
 .sectionTitle {
   padding-bottom: 1.75rem;
   font-size: 1.5rem;
+  text-shadow: var(--shadow-md);
+  background-image: var(--gradient);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 @media screen and (width <= 576px) {
@@ -27,7 +31,11 @@
 
 .heroHeading {
   padding-block: 0 1.25rem;
-  font-size: 2.25rem;
+  font-size: 2rem;
+  text-shadow: var(--shadow-md);
+  background-image: var(--gradient);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .heroText {
@@ -116,7 +124,7 @@
 .stackCard {
   padding: 1rem 1.5rem;
   font-size: 0.875rem;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-muted);
   border-radius: var(--rounded-lg);
 }
 

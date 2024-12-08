@@ -2,8 +2,15 @@
   padding-block: 2rem;
 }
 
+.title {
+  text-shadow: var(--shadow-md);
+  background-image: var(--gradient);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .button {
-  margin-top: 2rem;
   display: grid;
   justify-items: center;
+  margin-top: 2rem;
 }

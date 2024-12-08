@@ -1,3 +1,10 @@
+.title {
+  text-shadow: var(--shadow-md);
+  background-image: var(--gradient);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .contents {
   display: grid;
   gap: 4rem;
@@ -5,6 +12,10 @@
 
 .sectionTitle {
   padding-bottom: 1rem;
+  text-shadow: var(--shadow-md);
+  background-image: var(--gradient);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .articles {
