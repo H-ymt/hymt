@@ -41,7 +41,7 @@
 
 .primary:hover,
 .primary:focus-visible {
-  background-color: rgb(from var(--color-button-primary) r g b / 90%);
+  background-color: color-mix(in srgb, var(--color-button-primary) 85%, black 15%);
 }
 
 .primary:focus-visible {
