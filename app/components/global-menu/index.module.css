@@ -14,11 +14,6 @@
 .active {
   position: relative;
   color: var(--color-text-heading);
-
-  /* text-shadow: var(--shadow-md);
-  background-image: var(--gradient);
-  background-clip: text;
-  -webkit-text-fill-color: transparent; */
 }
 
 .active::after {
@@ -34,11 +29,6 @@
 }
 
 .menuItem:hover {
-  /* text-shadow: var(--shadow-md);
-  background-image: var(--gradient);
-  background-clip: text;
-  -webkit-text-fill-color: transparent; */
-
   color: var(--color-text-heading);
 }
 
