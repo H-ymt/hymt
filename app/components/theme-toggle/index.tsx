@@ -17,46 +17,46 @@ export default function ThemeToggle() {
       <span className={styles.themeOption}>
         <label htmlFor="themeSystem" className={styles.themeLabel}>
           <MonitorIcon className={clsx(styles.icon, theme === 'system' && styles.active)} />
+          <input
+            id="themeSystem"
+            type="radio"
+            name="theme"
+            value="system"
+            checked={theme === 'system'}
+            onChange={() => setTheme('system')}
+            aria-label="System theme"
+          />
         </label>
-        <input
-          id="themeSystem"
-          type="radio"
-          name="theme"
-          value="system"
-          checked={theme === 'system'}
-          onChange={() => setTheme('system')}
-          aria-label="System theme"
-        />
       </span>
 
       <span className={styles.themeOption}>
         <label htmlFor="themeLight" className={styles.themeLabel}>
           <SunIcon className={clsx(styles.icon, theme === 'light' && styles.active)} />
+          <input
+            id="themeLight"
+            type="radio"
+            name="theme"
+            value="light"
+            checked={theme === 'light'}
+            onChange={() => setTheme('light')}
+            aria-label="Light theme"
+          />
         </label>
-        <input
-          id="themeLight"
-          type="radio"
-          name="theme"
-          value="light"
-          checked={theme === 'light'}
-          onChange={() => setTheme('light')}
-          aria-label="Light theme"
-        />
       </span>
 
       <span className={styles.themeOption}>
         <label htmlFor="themeDark" className={styles.themeLabel}>
           <MoonIcon className={clsx(styles.icon, theme === 'dark' && styles.active)} />
+          <input
+            id="themeDark"
+            type="radio"
+            name="theme"
+            value="dark"
+            checked={theme === 'dark'}
+            onChange={() => setTheme('dark')}
+            aria-label="Dark theme"
+          />
         </label>
-        <input
-          id="themeDark"
-          type="radio"
-          name="theme"
-          value="dark"
-          checked={theme === 'dark'}
-          onChange={() => setTheme('dark')}
-          aria-label="Dark theme"
-        />
       </span>
     </fieldset>
   )
