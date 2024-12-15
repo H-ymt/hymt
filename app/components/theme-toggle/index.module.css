@@ -47,8 +47,9 @@
 }
 
 .themeOption input {
-  display: none;
   appearance: none;
+  visibility: hidden;
+  opacity: 0;
 }
 
 .themeOption:has(input:focus-visible) {
