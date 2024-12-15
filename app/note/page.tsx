@@ -44,7 +44,9 @@ const GistsPage = async () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <ConvertDate convertDate={gist.created_at} />
+              <span className={styles.date}>
+                <ConvertDate convertDate={gist.created_at} />
+              </span>
               {gist.description || Object.keys(gist.files)[0]}
             </Link>
           </li>

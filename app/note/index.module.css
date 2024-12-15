@@ -6,24 +6,38 @@
 }
 
 .list {
+  display: grid;
+  gap: 1rem;
   padding-block: 2rem;
 }
 
 .link {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 1rem;
+  gap: 0 1rem;
   padding: 0.5rem 0.75rem;
   color: var(--color-text-heading);
   border-radius: var(--rounded-sm);
   transition: background 0.2s;
 }
 
-.link:hover {
-  background: var(--color-background-soft);
+@media (any-hover: hover) {
+  .link:hover {
+    background: var(--color-background-soft);
+  }
 }
 
 .date {
   font-weight: 300;
-  color: var(--color-text-muted);
+  color: var(--color-text-base);
+}
+
+@media (width <= 640px) {
+  .link {
+    grid-template-columns: 1fr;
+  }
+
+  .date {
+    font-size: 0.8125rem;
+  }
 }

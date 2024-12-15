@@ -39,7 +39,7 @@
 }
 
 .dark:root {
-  --color-primary: #0446ac;
+  --color-primary: #1760d0;
   --color-text-heading: #efeff1;
   --color-text-base: #c1c1c3;
   --color-text-muted: #929292;
@@ -47,7 +47,7 @@
   --color-background-soft: #1d1d20;
   --color-border: #313335;
   --color-border-muted: #232425;
-  --color-button-primary: #183b71;
+  --color-button-primary: #1a51a6;
   --color-button-primary-foreground: #ffff;
   --color-button-secondary: #1d1d20;
   --color-button-secondary-foreground: #f8f8f8;
