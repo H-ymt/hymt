@@ -26,10 +26,10 @@ To get started with this project, follow these steps:
 
 ```bash
 # Install dependencies
-pnpm install
+bun install
 
 # Run the development server
-pnpm dev
+bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
