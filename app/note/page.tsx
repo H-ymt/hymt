@@ -2,9 +2,9 @@ import Link from 'next/link'
 import React from 'react'
 
 import Container from '@/app/components/container'
+import ConvertDate from '@/lib/convert-date'
 
 import styles from './index.module.css'
-import ConvertDate from '@/lib/convert-date'
 
 type Gist = {
   id: string
@@ -34,7 +34,7 @@ const GistsPage = async () => {
 
   return (
     <Container type="subpage">
-      <h1>Gist List</h1>
+      <h1 className={styles.title}>Gist List</h1>
       <ul className={styles.list}>
         {gists.map((gist) => (
           <li key={gist.id}>
