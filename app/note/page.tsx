@@ -1,10 +1,10 @@
-// app/gists/page.tsx
 import Link from 'next/link'
 import React from 'react'
 
 import Container from '@/app/components/container'
 
 import styles from './index.module.css'
+import ConvertDate from '@/lib/convert-date'
 
 type Gist = {
   id: string
@@ -44,7 +44,7 @@ const GistsPage = async () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span className={styles.date}>{gist.created_at}</span>
+              <ConvertDate convertDate={gist.created_at} />
               {gist.description || Object.keys(gist.files)[0]}
             </Link>
           </li>
