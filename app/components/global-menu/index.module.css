@@ -13,10 +13,7 @@
 
 .active {
   position: relative;
-  text-shadow: var(--shadow-md);
-  background-image: var(--gradient);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--color-text-heading);
 }
 
 .active::after {
@@ -27,15 +24,12 @@
   width: 50%;
   height: 1px;
   content: '';
-  background: var(--color-primary);
+  background: currentcolor;
   transform: translate(-50%);
 }
 
 .menuItem:hover {
-  text-shadow: var(--shadow-md);
-  background-image: var(--gradient);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--color-text-heading);
 }
 
 .menuMobile {
