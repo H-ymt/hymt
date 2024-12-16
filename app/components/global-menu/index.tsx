@@ -41,8 +41,16 @@ export default function GlobalMenu() {
             <Link
               key={path}
               href={path}
-              className={`${styles.menuItem} ${pathname === path ? styles.active : ''}`}
-              aria-current={pathname === path ? 'page' : undefined}
+              className={`${styles.menuItem} ${
+                pathname === path || (path === '/projects' && pathname.startsWith('/projects/'))
+                  ? styles.active
+                  : ''
+              }`}
+              aria-current={
+                pathname === path || (path === '/projects' && pathname.startsWith('/projects/'))
+                  ? 'page'
+                  : undefined
+              }
             >
               {label}
             </Link>
@@ -56,7 +64,6 @@ export default function GlobalMenu() {
               className={`${styles.icon} ${pathname === path ? styles.active : ''} ${label === 'Zenn' ? styles.zenn : ''}`}
             >
               <Icon aria-label={label} />
-              {/* <span className={styles.menuLabel}>{label}</span> */}
             </Link>
           ))}
         </div>

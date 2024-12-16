@@ -22,6 +22,8 @@ export default function ArticleComponent({ data }: ArticleProps) {
           className={styles.image}
         />
       )}
+
+      <div className={styles.content} dangerouslySetInnerHTML={{ __html: data.content }} />
     </Container>
   )
 }

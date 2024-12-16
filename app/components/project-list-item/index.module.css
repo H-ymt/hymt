@@ -59,7 +59,7 @@
   grid-template-columns: 1fr auto;
   gap: 0.25rem;
   padding-left: 0.15rem;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: #fff;
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
