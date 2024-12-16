@@ -15,14 +15,15 @@
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 0 1rem;
-  padding: 0.5rem 0.75rem;
-  color: var(--color-text-heading);
+  padding: 0.5rem;
+  color: var(--color-text-base);
   border-radius: var(--rounded-sm);
   transition: background 0.2s;
 }
 
 @media (any-hover: hover) {
   .link:hover {
+    color: var(--color-text-heading);
     background: var(--color-background-soft);
   }
 }
@@ -30,6 +31,12 @@
 .date {
   font-weight: 300;
   color: var(--color-text-base);
+}
+
+@media (any-hover: hover) {
+  .link:hover .date {
+    color: var(--color-text-heading);
+  }
 }
 
 @media (width <= 640px) {
