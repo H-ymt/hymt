@@ -20,6 +20,7 @@
 }
 
 .themeLabel {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -28,6 +29,9 @@
 }
 
 .icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   display: inline-grid;
   place-items: center;
   justify-self: center;
@@ -36,6 +40,7 @@
   color: var(--color-text-muted);
   cursor: pointer;
   transition: color 0.3s;
+  transform: translate(-50%, -50%);
 }
 
 .icon.active {
