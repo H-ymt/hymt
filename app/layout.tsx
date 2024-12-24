@@ -2,11 +2,18 @@ import './globals.css'
 import 'modern-css-reset'
 
 import clsx from 'clsx'
-import { GeistSans } from 'geist/font/sans'
 import type { Metadata } from 'next'
+import { M_PLUS_Rounded_1c } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 
 import Header from '@/app/components/header'
+
+const mplus = M_PLUS_Rounded_1c({
+  variable: '--font-mplus',
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400', '500', '700'],
+})
 
 export const metadata: Metadata = {
   title: {
@@ -23,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" suppressHydrationWarning>
-      <body className={clsx(GeistSans.variable)}>
+      <body className={clsx(mplus.variable)}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <Header />
           <main>{children}</main>
