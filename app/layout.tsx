@@ -3,16 +3,15 @@ import 'modern-css-reset'
 
 import clsx from 'clsx'
 import type { Metadata } from 'next'
-import { M_PLUS_Rounded_1c } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 
 import Header from '@/app/components/header'
 
-const mplus = M_PLUS_Rounded_1c({
-  variable: '--font-mplus',
+const inter = Inter({
   subsets: ['latin'],
+  variable: '--font-inter',
   display: 'swap',
-  weight: ['400', '500', '700'],
 })
 
 export const metadata: Metadata = {
@@ -30,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" suppressHydrationWarning>
-      <body className={clsx(mplus.variable)}>
+      <body className={clsx(inter.variable)}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <Header />
           <main>{children}</main>
