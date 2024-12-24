@@ -33,6 +33,10 @@
   transition: opacity 0.2s ease-in-out;
 }
 
+.link:focus-visible {
+  opacity: 1;
+}
+
 @media (any-hover: hover) {
   .container:hover .link,
   .container:has(.item:hover) .link {
@@ -72,13 +76,14 @@
 }
 
 .title {
-  display: inline-flex;
-  width: fit-content;
-  padding: 0.3rem 0.5rem 0.25rem;
-  font-size: 0.65rem;
-  font-weight: 400;
-  background: rgb(from var(--color-background) r g b / 80%);
-  backdrop-filter: blur(4px);
-  border: 1px solid var(--color-border-muted);
-  border-radius: var(--rounded-md);
+  display: grid;
+  justify-items: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.description {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
 }

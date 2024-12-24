@@ -77,10 +77,18 @@ body {
 
 body {
   position: relative;
-  font-family: var(--font-geist-sans), 'Hiragino Sans', 'ヒラギノ角ゴシック Pro',
-    'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic',
-    sans-serif;
+  font-family:
+    var(--font-inter),
+    -apple-system,
+    'Segoe UI',
+    Helvetica,
+    Arial,
+    sans-serif,
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol';
   color: var(--color-text-base);
+  letter-spacing: 0.05em;
 }
 
 h1,
