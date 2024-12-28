@@ -7,7 +7,7 @@
 }
 
 .image {
-  aspect-ratio: 2 / 1;
+  aspect-ratio: 5 / 3;
   border: 1px solid var(--color-border-muted);
   border-radius: var(--rounded-lg);
 }
