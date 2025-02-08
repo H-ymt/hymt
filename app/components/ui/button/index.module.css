@@ -54,7 +54,7 @@
   justify-content: center;
   color: var(--color-button-secondary-foreground);
   background: transparent;
-  border: 1px solid var(--color-border-muted);
+  border: 1px solid var(--color-border);
   transition: background 0.2s;
 }
 

@@ -62,7 +62,7 @@
   flex-wrap: wrap;
   grid-template-columns: 1fr auto;
   gap: 0.25rem;
-  padding-left: 0.15rem;
+  padding-inline: 0.15rem;
   font-size: 0.8rem;
   color: #fff;
   opacity: 0;
