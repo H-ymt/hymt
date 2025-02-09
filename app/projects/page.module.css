@@ -2,13 +2,6 @@
   padding-block: 2rem;
 }
 
-.title {
-  text-shadow: var(--shadow-md);
-  background-image: var(--gradient);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
 .button {
   display: grid;
   justify-items: center;

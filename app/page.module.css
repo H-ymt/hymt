@@ -9,10 +9,6 @@
 .sectionTitle {
   padding-bottom: 1.75rem;
   font-size: 1.5rem;
-  text-shadow: var(--shadow-md);
-  background-image: var(--gradient);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 @media screen and (width <= 576px) {
@@ -32,10 +28,6 @@
 .heroHeading {
   padding-block: 0 1.25rem;
   font-size: 2rem;
-  text-shadow: var(--shadow-md);
-  background-image: var(--gradient);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .heroText {

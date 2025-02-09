@@ -1,9 +1,5 @@
 .title {
   padding-bottom: 2rem;
-  text-shadow: var(--shadow-md);
-  background-image: var(--gradient);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .image {

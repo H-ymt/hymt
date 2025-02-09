@@ -8,6 +8,7 @@
   padding: 0.25rem 0.75rem 0;
   font-size: 0.875rem;
   color: var(--color-text-base);
+  letter-spacing: 0;
   transition: color 0.3s;
 }
 
