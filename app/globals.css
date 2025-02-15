@@ -69,16 +69,10 @@ body {
 
 body {
   position: relative;
-  font-family:
-    var(--font-inter),
-    -apple-system,
-    'Segoe UI',
-    Helvetica,
-    Arial,
-    sans-serif,
-    'Apple Color Emoji',
-    'Segoe UI Emoji',
-    'Segoe UI Symbol';
+  font-weight: 500;
+  font-family: var(--font-inter), 'YuGothic', 'Yu Gothic', '游ゴシック', 'Hiragino Kaku Gothic ProN',
+    'ヒラギノ角ゴ Pro W3', 'Hiragino Sans', 'Noto Sans JP', 'Noto Sans CJK', 'メイリオ', 'Meiryo',
+    sans-serif;
   color: var(--color-text-base);
   letter-spacing: 0.01em;
 }
