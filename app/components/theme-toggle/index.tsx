@@ -2,6 +2,7 @@
 
 import clsx from 'clsx'
 import { useTheme } from 'next-themes'
+import { useEffect, useState } from 'react'
 
 import { MonitorIcon, MoonIcon, SunIcon } from '@/app/components/icons'
 
@@ -9,6 +10,19 @@ import styles from './index.module.css'
 
 export default function ThemeToggle() {
   const { setTheme, theme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return (
+      <fieldset className={styles.themeToggle}>
+        <legend className="sr-only">Toggle Theme</legend>
+      </fieldset>
+    )
+  }
 
   return (
     <fieldset className={styles.themeToggle}>
