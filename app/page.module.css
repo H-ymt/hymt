@@ -31,7 +31,7 @@
 }
 
 .heroText {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
 }
 
 .heroButtonContainer {
@@ -70,7 +70,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.25rem;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
 }
 
 .bioItem[data-current='true']::after {
