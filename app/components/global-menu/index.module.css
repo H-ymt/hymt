@@ -5,7 +5,7 @@
 
 .menuItem {
   position: relative;
-  padding: 0.2rem 0.75rem;
+  padding: 0.15rem 0.75rem 0.2rem;
   font-size: 0.875rem;
   color: var(--color-text-base);
   letter-spacing: 0;
