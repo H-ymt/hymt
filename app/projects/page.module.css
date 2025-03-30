@@ -7,3 +7,27 @@
   justify-items: center;
   margin-top: 2rem;
 }
+
+.category {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.categoryItem {
+  font-weight: 400;
+}
+
+.categoryItem a {
+  padding: 0.25rem 0.825rem 0.0625rem;
+  font-size: 0.75rem;
+  color: var(--color-text-base);
+  border: 1px solid var(--color-border);
+  border-radius: var(--rounded-lg);
+  transition: background-color 0.2s;
+}
+
+.categoryItem a:hover {
+  background-color: var(--color-border);
+}

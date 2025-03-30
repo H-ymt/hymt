@@ -15,10 +15,10 @@ export default async function ProjectsPage() {
   return (
     <Container type="subpage">
       <h1 className={styles.title}>Projects</h1>
-      <ul>
+      <ul className={styles.category}>
         {categories &&
           categories.contents.map((category) => (
-            <li key={category.id}>
+            <li key={category.id} className={styles.categoryItem}>
               <Link href={`/projects/category/${category.id}`}>{category.name}</Link>
             </li>
           ))}

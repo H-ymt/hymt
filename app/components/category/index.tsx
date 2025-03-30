@@ -1,13 +1,15 @@
-import type { Category } from '@/lib/microcms'
+import { type Category } from '@/lib/microcms'
+
+import styles from './index.module.css'
 
 type Props = {
   category?: Category
 }
 
-export default function Category({ category }: Props) {
+export default async function Category({ category }: Props) {
   if (!category) {
     return null
   }
 
-  return <span>{category.name}</span>
+  return <span className={styles.category}>{category.name}</span>
 }
