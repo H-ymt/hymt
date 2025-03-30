@@ -26,6 +26,9 @@
 }
 
 .heroHeading {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
   padding-block: 0 1rem;
   font-size: 1rem;
 }

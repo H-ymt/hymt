@@ -134,7 +134,12 @@ export default function Home() {
   return (
     <Container className={styles.container}>
       <div className={styles.hero}>
-        <h1 className={styles.heroHeading}>Yamato Handai</h1>
+        <h1 className={styles.heroHeading}>
+          <span>
+            <Image src="/logo.png" alt="" width="28" height="28" />
+          </span>
+          Yamato Handai
+        </h1>
         <p className={styles.heroText}>
           現在、フロントエンドエンジニアとしてWebサイト制作に携わっています。
           <br />
