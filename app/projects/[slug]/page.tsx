@@ -4,15 +4,13 @@ import Article from '@/app/components/article'
 import { getProjectsDetail } from '@/lib/microcms'
 
 type Props = {
-  params: {
-    slug: string
-  }
-  searchParams: {
-    dk: string
-  }
+  params: Promise<{ slug: string }>
+  searchParams: Promise<{ dk: string }>
 }
 
-export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const searchParams = await props.searchParams
+  const params = await props.params
   const data = await getProjectsDetail(params.slug, {
     draftKey: searchParams.dk,
   })
@@ -27,7 +25,9 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   }
 }
 
-export default async function Page({ params, searchParams }: Props) {
+export default async function Page(props: Props) {
+  const searchParams = await props.searchParams
+  const params = await props.params
   const data = await getProjectsDetail(params.slug, {
     draftKey: searchParams.dk,
   })

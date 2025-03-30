@@ -20,10 +20,6 @@ export type Projects = {
 
 export type Category = {
   id: string
-  createdAt: string
-  updateAt: string
-  publishedAt: string
-  revisedAt: string
   name: string
 } & MicroCMSContentId &
   MicroCMSDate
