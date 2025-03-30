@@ -1,5 +1,6 @@
 import clsx from 'clsx'
-import Link from 'next/link'
+
+import TransitionLink from '@/app/components/transition-link'
 
 import styles from './index.module.css'
 
@@ -24,9 +25,9 @@ export default function Button({
 
   if (href) {
     return (
-      <Link href={href} className={classNames} {...props}>
+      <TransitionLink href={href} className={classNames} {...props}>
         {children}
-      </Link>
+      </TransitionLink>
     )
   }
 

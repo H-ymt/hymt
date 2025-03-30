@@ -1,7 +1,7 @@
 import Image from 'next/image'
-import Link from 'next/link'
 
 import { LinkOutIcon } from '@/app/components/icons'
+import TransitionLink from '@/app/components/transition-link'
 import type { Project } from '@/lib/microcms'
 
 import styles from './index.module.css'
@@ -14,7 +14,7 @@ export default function ProjectListItem({ project }: ProjectListItemProps) {
   return (
     <div>
       <div className={styles.container}>
-        <Link className={styles.item} href={`/projects/${project.id}`}>
+        <TransitionLink className={styles.item} href={`/projects/${project.id}`}>
           <div className={styles.imageWrapper}>
             <Image
               src={`${project.thumbnail?.url}?w=1200&h=900&format=webp`}
@@ -30,12 +30,12 @@ export default function ProjectListItem({ project }: ProjectListItemProps) {
               </div>
             </div>
           </div>
-        </Link>
+        </TransitionLink>
 
         {project.url ? (
-          <Link href={project.url} target="_blank" className={styles.link}>
+          <TransitionLink href={project.url} target="_blank" className={styles.link}>
             <LinkOutIcon aria-label="Webサイトをみる" className={styles.linkIcon} />
-          </Link>
+          </TransitionLink>
         ) : null}
       </div>
       <h2 className={styles.title}>{project.title}</h2>
