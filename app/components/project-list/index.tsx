@@ -13,7 +13,7 @@ export default function ProjectList({ projects }: ProjectListProps) {
   }
 
   if (projects.length === 0) {
-    return <p>準備中です</p>
+    return <p></p>
   }
 
   return (

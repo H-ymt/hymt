@@ -3,7 +3,7 @@
   gap: 0.5rem;
   padding: 1.75rem 1.5rem;
   font-size: 1rem;
-  border: 1px solid var(--color-border-muted);
+  border: 0.0625rem solid var(--color-border-muted);
   border-radius: var(--rounded-lg);
   transition: background 0.2s;
 }
@@ -34,10 +34,9 @@
   display: grid;
   place-items: center center;
   height: 1.5rem;
-  padding-inline: 0.625rem;
-  padding-bottom: 0.05rem;
+  padding: 0.125rem 0.875rem 0.0625rem;
   color: var(--color-text-muted);
   letter-spacing: 0.01em;
-  border: 1px solid var(--color-border);
+  border: 0.0625rem solid var(--color-border);
   border-radius: var(--rounded-full);
 }

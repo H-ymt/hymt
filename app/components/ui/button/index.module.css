@@ -10,20 +10,20 @@
 /* Size */
 .small {
   padding: 0.25rem 0.75rem;
-  font-size: 12px;
+  font-size: 0.75rem;
   border-radius: 4px;
 }
 
 .medium {
   min-width: 10rem;
-  padding: 0.75rem 1rem 0.7rem;
+  padding: 0.55rem 2rem 0.5rem;
   font-size: 0.875rem;
   border-radius: var(--rounded-full);
 }
 
 .large {
   min-width: 16rem;
-  padding: 1rem 2rem;
+  padding: 1rem 2.5rem;
   font-size: 0.875rem;
   border-radius: var(--rounded-full);
 }
