@@ -5,21 +5,25 @@
 
 .menuItem {
   position: relative;
-  padding: 0.25rem 0.75rem 0;
+  padding: 0.2rem 0.75rem;
   font-size: 0.875rem;
   color: var(--color-text-base);
   letter-spacing: 0;
-  transition: color 0.3s;
+  border-radius: var(--rounded-sm);
+  transition:
+    color 0.3s,
+    background-color 0.3s;
 }
 
 .active {
   position: relative;
   color: var(--color-text-heading);
+  background-color: transparent;
 }
 
 .active::after {
   position: absolute;
-  bottom: -0.067rem;
+  bottom: 0.3rem;
   left: 50%;
   display: block;
   width: 50%;
@@ -29,8 +33,9 @@
   transform: translate(-50%);
 }
 
-.menuItem:hover {
+:where(.menuItem:hover) {
   color: var(--color-text-heading);
+  background-color: var(--color-background-soft);
 }
 
 .menuMobile {

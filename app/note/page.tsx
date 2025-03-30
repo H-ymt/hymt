@@ -4,7 +4,7 @@ import React from 'react'
 import Container from '@/app/components/container'
 import ConvertDate from '@/lib/convert-date'
 
-import styles from './index.module.css'
+import styles from './page.module.css'
 
 type Gist = {
   id: string
@@ -44,10 +44,10 @@ const GistsPage = async () => {
               target="_blank"
               rel="noopener noreferrer"
             >
+              {gist.description || Object.keys(gist.files)[0]}
               <span className={styles.date}>
                 <ConvertDate convertDate={gist.created_at} />
               </span>
-              {gist.description || Object.keys(gist.files)[0]}
             </Link>
           </li>
         ))}

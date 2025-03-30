@@ -1,5 +1,5 @@
 .container {
-  padding-block: 2rem 4rem;
+  padding-block: 3.5rem 4rem;
 }
 
 .section {
@@ -8,7 +8,7 @@
 
 .sectionTitle {
   padding-bottom: 1.75rem;
-  font-size: 1.825rem;
+  font-size: 1rem;
 }
 
 @media screen and (width <= 576px) {
@@ -27,11 +27,11 @@
 
 .heroHeading {
   padding-block: 0 1.25rem;
-  font-size: 2rem;
+  font-size: 1rem;
 }
 
 .heroText {
-  font-size: 1.125rem;
+  font-size: 0.875rem;
 }
 
 .heroButtonContainer {
@@ -52,8 +52,13 @@
     padding-bottom: 0.75rem;
   }
 
-  .heroText {
-    font-size: 1rem;
+  .heroButtonContainer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .heroButtonContainer a {
+    width: 100%;
   }
 }
 
@@ -70,7 +75,11 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.25rem;
-  font-size: 1.125rem;
+  font-size: 0.875rem;
+}
+
+.bioItem[data-current='true'] {
+  color: var(--color-text-heading);
 }
 
 .bioItem[data-current='true']::after {
@@ -98,10 +107,6 @@
     padding-left: 0.75rem;
   }
 
-  .bioItem {
-    font-size: 1em;
-  }
-
   .bioItem[data-current='true']::after {
     left: -0.9rem;
   }
@@ -122,6 +127,7 @@
 
 .stackCategory {
   padding-bottom: 0.75rem;
+  font-size: 1rem;
 }
 
 .stackList {

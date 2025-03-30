@@ -1,10 +1,11 @@
 .title {
-  padding-bottom: 2rem;
+  padding-bottom: 1em;
+  font-size: 1.25rem;
 }
 
 .image {
   aspect-ratio: 5 / 3;
-  border: 1px solid var(--color-border-muted);
+  border: 0.0625rem solid var(--color-border-muted);
   border-radius: var(--rounded-lg);
 }
 
@@ -15,20 +16,21 @@
 
 .content :global(h2) {
   margin-bottom: 0.75em;
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   font-weight: bold;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 0.0625rem solid var(--color-border);
 }
 
 .content :global(h3) {
   margin-bottom: 0.75em;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: bold;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 0.0625rem solid var(--color-border);
 }
 
 .content :global(p) {
   margin-bottom: 1em;
+  font-size: 0.875rem;
   line-height: 1.8;
 }
 
@@ -51,10 +53,10 @@
   }
 
   .content :global(h2) {
-    font-size: 1.45rem;
+    font-size: 1.125rem;
   }
 
   .content :global(h3) {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
 }

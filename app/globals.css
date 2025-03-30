@@ -16,7 +16,7 @@
 
   /* Layout */
   --header-height: 4rem;
-  --container-width: 62.5rem;
+  --container-width: 50rem;
 
   /* Overlap */
   --z-index-header: 90;
@@ -33,10 +33,10 @@
 
 .dark:root {
   --color-primary: #1760d0;
-  --color-text-heading: #efeff1;
-  --color-text-base: #c1c1c3;
+  --color-text-heading: #e4e4e7;
+  --color-text-base: #a1a1aa;
   --color-text-muted: #929292;
-  --color-background: #151517;
+  --color-background: #18181b;
   --color-background-soft: #252529;
   --color-border: #313335;
   --color-border-muted: #232425;
@@ -64,15 +64,13 @@ body {
   max-width: 100vw;
   overflow-x: clip;
   font-size: medium;
-  font-weight: 500;
+  font-weight: 400;
   background-color: var(--color-background);
 }
 
 body {
   position: relative;
-  font-family: var(--font-inter), YuGothic, 'Yu Gothic', '游ゴシック', 'Hiragino Kaku Gothic ProN',
-    'ヒラギノ角ゴ Pro W3', 'Hiragino Sans', 'Noto Sans JP', 'Noto Sans CJK', 'メイリオ', Meiryo,
-    sans-serif;
+  font-family: var(--font-inter);
   color: var(--color-text-base);
   letter-spacing: 0.01em;
 }
@@ -85,6 +83,10 @@ h5,
 h6 {
   font-weight: 600;
   color: var(--color-text-heading);
+}
+
+h1 {
+  font-size: 1.25rem;
 }
 
 p,
