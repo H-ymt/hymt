@@ -72,7 +72,7 @@ body {
   position: relative;
   font-family: var(--font-inter);
   color: var(--color-text-base);
-  letter-spacing: 0.01em;
+  letter-spacing: 0.025em;
 }
 
 h1,
