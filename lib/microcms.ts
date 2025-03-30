@@ -72,7 +72,7 @@ export const getCategoryList = async (queries?: MicroCMSQueries, limit = 100) =>
   const listData = await client
     .getList<Category>({
       endpoint: 'categories',
-      queries: { limit },
+      queries: { ...queries, limit },
     })
     .catch(notFound)
 
