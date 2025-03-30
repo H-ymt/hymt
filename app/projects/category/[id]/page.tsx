@@ -2,19 +2,27 @@ import Link from 'next/link'
 
 import Container from '@/app/components/container'
 import ProjectList from '@/app/components/project-list'
-import { getCategoryList, getProjectsList } from '@/lib/microcms'
+import { getCategoryDetail, getCategoryList, getProjectsList } from '@/lib/microcms'
 
 import styles from './page.module.css'
 
-export default async function ProjectsPage() {
-  const data = await getProjectsList({
-    limit: 10,
+type Props = {
+  params: Promise<{
+    id: string
+  }>
+}
+
+export default async function Page(props: Props) {
+  const params = await props.params
+  const { contents: project } = await getProjectsList({
+    filters: `category[contains]${params.id}`,
   })
   const categories = await getCategoryList()
+  const category = await getCategoryDetail(params.id)
 
   return (
     <Container type="subpage">
-      <h1 className={styles.title}>Projects</h1>
+      <p>Tag: {category.name}</p>
       <ul className={styles.category}>
         {categories &&
           categories.contents.map((category) => (
@@ -24,7 +32,7 @@ export default async function ProjectsPage() {
           ))}
       </ul>
       <div className={styles.projects}>
-        <ProjectList projects={data.contents} />
+        <ProjectList projects={project} />
       </div>
     </Container>
   )

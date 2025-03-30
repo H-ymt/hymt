@@ -20,10 +20,6 @@ export type Projects = {
 
 export type Category = {
   id: string
-  createdAt: string
-  updateAt: string
-  publishedAt: string
-  revisedAt: string
   name: string
 } & MicroCMSContentId &
   MicroCMSDate
@@ -72,11 +68,11 @@ export const getProjectsDetail = async (contentId: string, queries?: MicroCMSQue
   return detailData
 }
 
-export const getCategoryList = async (queries?: MicroCMSQueries) => {
+export const getCategoryList = async (queries?: MicroCMSQueries, limit = 100) => {
   const listData = await client
     .getList<Category>({
       endpoint: 'categories',
-      queries,
+      queries: { ...queries, limit },
     })
     .catch(notFound)
 

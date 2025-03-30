@@ -2,12 +2,6 @@
   padding-block: 2rem;
 }
 
-.button {
-  display: grid;
-  justify-items: center;
-  margin-top: 2rem;
-}
-
 .category {
   display: flex;
   flex-wrap: wrap;
