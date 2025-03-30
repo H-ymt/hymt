@@ -1,7 +1,6 @@
-import Link from 'next/link'
-
 import Container from '@/app/components/container'
 import ProjectList from '@/app/components/project-list'
+import TransitionLink from '@/app/components/transition-link'
 import { getCategoryDetail, getCategoryList, getProjectsList } from '@/lib/microcms'
 
 import styles from './page.module.css'
@@ -27,7 +26,9 @@ export default async function Page(props: Props) {
         {categories &&
           categories.contents.map((category) => (
             <li key={category.id} className={styles.categoryItem}>
-              <Link href={`/projects/category/${category.id}`}>{category.name}</Link>
+              <TransitionLink href={`/projects/category/${category.id}`}>
+                {category.name}
+              </TransitionLink>
             </li>
           ))}
       </ul>

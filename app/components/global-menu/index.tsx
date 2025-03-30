@@ -1,9 +1,9 @@
 'use client'
 
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import { HomeIcon, NoteIcon, ProjectIcon, ZennIcon } from '@/app/components/icons'
+import TransitionLink from '@/app/components/transition-link'
 
 import styles from './index.module.css'
 
@@ -38,7 +38,7 @@ export default function GlobalMenu() {
       <div className={styles.menuList}>
         <div className={styles.menuDefault}>
           {navLink.map(({ label, path }) => (
-            <Link
+            <TransitionLink
               key={path}
               href={path}
               className={`${styles.menuItem} ${
@@ -53,18 +53,18 @@ export default function GlobalMenu() {
               }
             >
               {label}
-            </Link>
+            </TransitionLink>
           ))}
         </div>
         <div className={styles.menuMobile}>
           {navLink.map(({ icon: Icon, path, label }) => (
-            <Link
+            <TransitionLink
               key={path}
               href={path}
               className={`${styles.icon} ${pathname === path ? styles.active : ''} ${label === 'Zenn' ? styles.zenn : ''}`}
             >
               <Icon aria-label={label} />
-            </Link>
+            </TransitionLink>
           ))}
         </div>
       </div>

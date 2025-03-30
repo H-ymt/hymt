@@ -1,6 +1,5 @@
-import Link from 'next/link'
-
 import ConvertDate from '@/app/components/convert-date'
+import TransitionLink from '@/app/components/transition-link'
 import type { ZennArticle } from '@/lib/zenn'
 
 import styles from './index.module.css'
@@ -11,7 +10,7 @@ type ArticleListItemProps = {
 
 export default function ArticleListItem({ posts }: ArticleListItemProps) {
   return (
-    <Link
+    <TransitionLink
       key={posts?.id}
       href={`https://zenn.dev/${posts?.path}`}
       target="_blank"
@@ -26,6 +25,6 @@ export default function ArticleListItem({ posts }: ArticleListItemProps) {
         </span>
       </div>
       <span className={styles.emoji}>{posts?.emoji}</span>
-    </Link>
+    </TransitionLink>
   )
 }
