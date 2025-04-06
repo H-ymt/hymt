@@ -4,7 +4,7 @@
 }
 
 .image {
-  aspect-ratio: 5 / 3;
+  aspect-ratio: 3 / 1.85;
   border: 0.0625rem solid var(--color-border-muted);
   border-radius: var(--rounded-lg);
 }
@@ -43,8 +43,19 @@
 }
 
 .content :global(a) {
-  color: var(--color-primary);
+  color: var(--color-text-base);
   text-decoration: underline;
+  text-decoration-color: color-mix(
+    in srgb,
+    var(--color-text-base) 50%,
+    var(--color-background) 50%
+  );
+  text-underline-offset: 0.125em;
+}
+
+.content :global(a:hover) {
+  color: var(--color-text-base);
+  text-decoration-color: var(--color-text-base);
 }
 
 @media (width <= 640px) {
