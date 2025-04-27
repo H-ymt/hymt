@@ -70,7 +70,7 @@ body {
 
 body {
   position: relative;
-  font-family: var(--font-inter);
+  font-family: var(--font-geist-sans);
   color: var(--color-text-base);
   letter-spacing: 0.025em;
 }
