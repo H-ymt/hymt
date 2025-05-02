@@ -1,6 +1,6 @@
-# hymt
-
 A personal portfolio website built with Next.js and TypeScript.
+
+DeepWiki: https://deepwiki.com/H-ymt/hymt
 
 ## Features
 
