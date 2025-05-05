@@ -14,13 +14,7 @@ export function GithubIcon(props: SVGProps<SVGSVGElement>) {
 export function HomeIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg width="1em" height="1em" viewBox="0 0 24 24" {...props}>
-      <g
-        fill="none"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.5}
-      >
+      <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}>
         <path d="M6.133 21C4.955 21 4 20.02 4 18.81v-8.802c0-.665.295-1.295.8-1.71l5.867-4.818a2.09 2.09 0 0 1 2.666 0l5.866 4.818c.506.415.801 1.045.801 1.71v8.802c0 1.21-.955 2.19-2.133 2.19z" />
         <path d="M9.5 21v-5.5a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2V21" />
       </g>
@@ -164,6 +158,28 @@ export function TagIcon(props: SVGProps<SVGSVGElement>) {
     <svg width="24" height="24" viewBox="0 0 24 24" {...props}>
       <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z" />
       <circle cx="7.5" cy="7.5" r=".5" fill="currentColor" />
+    </svg>
+  )
+}
+
+export function TimelineIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      strokeWidth="1.5"
+      stroke="currentColor"
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <circle cx="12" cy="18" r="2" />
+      <path d="M10 18h-6" />
+      <path d="M14 18h6" />
+      <path d="M12 13l-2 -2h-3a1 1 0 0 1 -1 -1v-5a1 1 0 0 1 1 -1h10a1 1 0 0 1 1 1v5a1 1 0 0 1 -1 1h-3l-2 2z" />
     </svg>
   )
 }

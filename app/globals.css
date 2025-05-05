@@ -70,9 +70,9 @@ body {
 
 body {
   position: relative;
-  font-family: var(--font-geist-sans);
+  font-family: var(--font-montserrat), sans-serif;
   color: var(--color-text-base);
-  letter-spacing: 0.025em;
+  letter-spacing: 0;
 }
 
 h1,
@@ -86,7 +86,7 @@ h6 {
 }
 
 h1 {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
 }
 
 p,
