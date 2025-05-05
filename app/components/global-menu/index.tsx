@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 
-import { HomeIcon, NoteIcon, ProjectIcon, ZennIcon } from '@/app/components/icons'
+import { HomeIcon, NoteIcon, ProjectIcon, TimelineIcon, ZennIcon } from '@/app/components/icons'
 import TransitionLink from '@/app/components/transition-link'
 
 import styles from './index.module.css'
@@ -17,6 +17,11 @@ const navLink = [
     label: 'Projects',
     path: '/projects',
     icon: ProjectIcon,
+  },
+  {
+    label: 'Timeline',
+    path: '/timeline',
+    icon: TimelineIcon,
   },
   {
     label: 'Note',
@@ -42,14 +47,10 @@ export default function GlobalMenu() {
               key={path}
               href={path}
               className={`${styles.menuItem} ${
-                pathname === path || (path === '/projects' && pathname.startsWith('/projects/'))
-                  ? styles.active
-                  : ''
+                pathname === path || (path === '/projects' && pathname.startsWith('/projects/')) ? styles.active : ''
               }`}
               aria-current={
-                pathname === path || (path === '/projects' && pathname.startsWith('/projects/'))
-                  ? 'page'
-                  : undefined
+                pathname === path || (path === '/projects' && pathname.startsWith('/projects/')) ? 'page' : undefined
               }
             >
               {label}

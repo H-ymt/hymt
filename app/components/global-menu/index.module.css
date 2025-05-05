@@ -5,7 +5,7 @@
 
 .menuItem {
   position: relative;
-  padding: 0.15rem 0.75rem 0.2rem;
+  padding: 0.15rem 0.75rem;
   font-size: 0.875rem;
   color: var(--color-text-base);
   letter-spacing: 0;
@@ -23,7 +23,7 @@
 
 .active::after {
   position: absolute;
-  bottom: 0.3rem;
+  bottom: 0.25rem;
   left: 50%;
   display: block;
   width: 50%;

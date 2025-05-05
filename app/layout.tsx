@@ -3,10 +3,16 @@ import 'modern-css-reset'
 
 import clsx from 'clsx'
 import type { Metadata } from 'next'
+import { Montserrat } from 'next/font/google'
 import localFont from 'next/font/local'
 import { ThemeProvider } from 'next-themes'
 
 import Header from '@/app/components/header'
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+})
 
 const geist = localFont({
   src: './fonts/GeistVF.woff',
@@ -29,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" suppressHydrationWarning>
-      <body className={clsx(geist.variable)} suppressHydrationWarning>
+      <body className={clsx(geist.variable, montserrat.variable)} suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <Header />
           <main>{children}</main>
