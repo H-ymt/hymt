@@ -83,7 +83,15 @@ export async function fetchCommitsFromGraphQL(token: string): Promise<Commit[]> 
   const commits: Commit[] = json.data.viewer.repositories.nodes.flatMap(
     (repo) =>
       repo.defaultBranchRef?.target?.history.edges.map(({ node }) => ({
-        oid: node.url.split('/').pop() || '',
+        oid: (() => {
+          try {
+            const url = new URL(node.url)
+            const segments = url.pathname.split('/')
+            return segments.pop() || ''
+          } catch {
+            return ''
+          }
+        })(),
         messageHeadline: node.messageHeadline,
         committedDate: node.committedDate,
         url: node.url,
