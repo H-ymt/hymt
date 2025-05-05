@@ -136,7 +136,7 @@ export default function Home() {
       <div className={styles.hero}>
         <h1 className={styles.heroHeading}>
           <span>
-            <Image src="/logo.png" alt="" width="28" height="28" />
+            <Image src="/logo.png" alt="" width="28" height="28" loading="eager" />
           </span>
           Yamato Handai
         </h1>
@@ -149,12 +149,7 @@ export default function Home() {
           <Button href="/projects" visual="primary" className={styles.heroButton}>
             Projects
           </Button>
-          <Button
-            href="https://github.com/H-ymt/hymt"
-            target="_blank"
-            visual="secondary"
-            className={styles.heroButton}
-          >
+          <Button href="https://github.com/H-ymt/hymt" target="_blank" visual="secondary" className={styles.heroButton}>
             View Source
             <span className={styles.heroButtonIcon}>
               <GithubIcon />
@@ -167,11 +162,7 @@ export default function Home() {
         <h2 className={styles.sectionTitle}>Biography</h2>
         <ul className={styles.bioList}>
           {bio.map(({ id, date, body }, index) => (
-            <li
-              key={id}
-              className={styles.bioItem}
-              data-current={index === bio.length - 1 ? 'true' : 'false'}
-            >
+            <li key={id} className={styles.bioItem} data-current={index === bio.length - 1 ? 'true' : 'false'}>
               {date && (
                 <time className={styles.bioDate} dateTime={`${date.replace('.', '-')}-01`}>
                   {date}

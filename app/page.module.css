@@ -8,7 +8,7 @@
 
 .sectionTitle {
   padding-bottom: 1rem;
-  font-size: 1rem;
+  font-size: 1.125rem;
 }
 
 @media screen and (width <= 576px) {
@@ -30,11 +30,11 @@
   gap: 0.5rem;
   align-items: center;
   padding-block: 0 1rem;
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 
 .heroText {
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 
 .heroButtonContainer {
@@ -78,7 +78,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.25rem;
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 
 .bioItem[data-current='true'] {
