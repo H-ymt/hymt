@@ -7,20 +7,21 @@ import Button from '@/app/components/ui/button'
 import styles from './page.module.css'
 
 const bio = [
-  { id: 1, date: '2017.04', body: '高校卒業後、行政機関に従事。' },
+  {
+    id: 1,
+    date: '2017.04',
+    body: 'I started my career at a government agency, where I was in charge of managing websites through a CMS. This experience sparked my interest in web development and motivated me to begin learning independently.',
+  },
+
   {
     id: 2,
-    body: 'CMSを利用したホームページ管理業務を機にWebサイト制作に興味を持ち始め、独学で学習を始める。',
+    date: '2022.04',
+    body: 'I transitioned to a role as a web developer at an e-commerce consulting company, where I became involved in website production.',
   },
   {
     id: 3,
-    date: '2022.04',
-    body: 'ECコンサル会社のコーダーとして転職し、Web制作業務に携わる。',
-  },
-  {
-    id: 4,
     date: '2024.06',
-    body: 'システム開発・Web制作会社のフロントエンドエンジニアとして、Web制作業務に携わる。',
+    body: 'I joined a system development and web production company as a front-end engineer, continuing to work on website development projects.',
   },
 ]
 
@@ -136,25 +137,20 @@ export default function Home() {
       <div className={styles.hero}>
         <h1 className={styles.heroHeading}>
           <span>
-            <Image src="/logo.png" alt="" width="28" height="28" />
+            <Image src="/logo.png" alt="" width="28" height="28" loading="eager" />
           </span>
           Yamato Handai
         </h1>
         <p className={styles.heroText}>
-          現在、フロントエンドエンジニアとしてWebサイト制作に携わっています。
-          <br />
-          業務の案件ではWordPressを使用したWebサイト制作が多いですが、Next.jsやAstroなどのJSフレームワークとmicroCMSなどのヘッドレスCMSを用いたアーキテクチャが好きです。
+          I’m a front-end engineer currently working on website development. Most of my work involves building websites
+          with WordPress, but I enjoy working with modern architectures using JavaScript frameworks like Next.js and
+          Astro, combined with headless CMSs such as microCMS.
         </p>
         <div className={styles.heroButtonContainer}>
           <Button href="/projects" visual="primary" className={styles.heroButton}>
             Projects
           </Button>
-          <Button
-            href="https://github.com/H-ymt/hymt"
-            target="_blank"
-            visual="secondary"
-            className={styles.heroButton}
-          >
+          <Button href="https://github.com/H-ymt/hymt" target="_blank" visual="secondary" className={styles.heroButton}>
             View Source
             <span className={styles.heroButtonIcon}>
               <GithubIcon />
@@ -167,11 +163,7 @@ export default function Home() {
         <h2 className={styles.sectionTitle}>Biography</h2>
         <ul className={styles.bioList}>
           {bio.map(({ id, date, body }, index) => (
-            <li
-              key={id}
-              className={styles.bioItem}
-              data-current={index === bio.length - 1 ? 'true' : 'false'}
-            >
+            <li key={id} className={styles.bioItem} data-current={index === bio.length - 1 ? 'true' : 'false'}>
               {date && (
                 <time className={styles.bioDate} dateTime={`${date.replace('.', '-')}-01`}>
                   {date}

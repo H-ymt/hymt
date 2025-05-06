@@ -30,7 +30,7 @@
 
 .content :global(p) {
   margin-bottom: 1em;
-  font-size: 0.875rem;
+  font-size: 1rem;
   line-height: 1.8;
 }
 
@@ -45,11 +45,7 @@
 .content :global(a) {
   color: var(--color-text-base);
   text-decoration: underline;
-  text-decoration-color: color-mix(
-    in srgb,
-    var(--color-text-base) 50%,
-    var(--color-background) 50%
-  );
+  text-decoration-color: color-mix(in srgb, var(--color-text-base) 50%, var(--color-background) 50%);
   text-underline-offset: 0.125em;
 }
 

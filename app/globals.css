@@ -15,7 +15,7 @@
   --color-focus: #005ff2;
 
   /* Layout */
-  --header-height: 4rem;
+  --header-height: 5rem;
   --container-width: 50rem;
 
   /* Overlap */
@@ -81,12 +81,20 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 600;
   color: var(--color-text-heading);
 }
 
 h1 {
   font-size: 1.75rem;
+  font-weight: 600;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
 }
 
 p,
