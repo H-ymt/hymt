@@ -39,7 +39,8 @@ export default async function CommitsPage() {
 
   return (
     <Container type="subpage" className={styles.container}>
-      <h1 className="text-3xl font-bold mb-8">Timeline</h1>
+      <h1>Timeline</h1>
+      <p>Here is a timeline of commits made to this repository, organized by month.</p>
       <div className={styles.timeline}>
         {Object.entries(grouped).map(([month, monthCommits]) => (
           <div key={month} className={styles.timelineGroup}>

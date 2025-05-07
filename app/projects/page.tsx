@@ -14,13 +14,12 @@ export default async function ProjectsPage() {
   return (
     <Container type="subpage">
       <h1 className={styles.title}>Projects</h1>
+      <p>A showcase of my projects.</p>
       <ul className={styles.category}>
         {categories &&
           categories.contents.map((category) => (
             <li key={category.id} className={styles.categoryItem}>
-              <TransitionLink href={`/projects/category/${category.id}`}>
-                {category.name}
-              </TransitionLink>
+              <TransitionLink href={`/projects/category/${category.id}`}>{category.name}</TransitionLink>
             </li>
           ))}
       </ul>

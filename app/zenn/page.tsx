@@ -12,6 +12,7 @@ export default async function ZennPage() {
   return (
     <Container type="subpage">
       <h1 className={styles.title}>Zenn Contents</h1>
+      <p>Articles and scraps from Zenn.</p>
       <div className={styles.contents}>
         <section className={styles.articles}>
           <h2 className={styles.sectionTitle}>Articles</h2>

@@ -34,7 +34,9 @@ export default async function GistsPage() {
 
   return (
     <Container type="subpage">
-      <h1 className={styles.title}>Gist List</h1>
+      <h1 className={styles.title}>Note</h1>
+      <p>A collection of code snippets and resources to keep track of.</p>
+
       <ul className={styles.list}>
         {gists.map((gist) => (
           <li key={gist.id}>
