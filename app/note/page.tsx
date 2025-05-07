@@ -29,7 +29,7 @@ async function fetchGists(): Promise<Gist[]> {
   return response.json()
 }
 
-const GistsPage = async () => {
+export default async function GistsPage() {
   const gists = await fetchGists()
 
   return (
@@ -38,12 +38,7 @@ const GistsPage = async () => {
       <ul className={styles.list}>
         {gists.map((gist) => (
           <li key={gist.id}>
-            <Link
-              className={styles.link}
-              href={gist.html_url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <Link className={styles.link} href={gist.html_url} target="_blank" rel="noopener noreferrer">
               {gist.description || Object.keys(gist.files)[0]}
               <span className={styles.date}>
                 <ConvertDate convertDate={gist.created_at} />
@@ -55,5 +50,3 @@ const GistsPage = async () => {
     </Container>
   )
 }
-
-export default GistsPage
