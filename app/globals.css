@@ -85,6 +85,7 @@ h6 {
 }
 
 h1 {
+  padding-bottom: 0.25rem;
   font-size: 1.75rem;
   font-weight: 600;
 }
