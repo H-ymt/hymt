@@ -135,11 +135,9 @@ export default function Home() {
   return (
     <Container className={styles.container}>
       <div className={styles.hero}>
-        <h1 className={styles.heroHeading}>
-          <span>
-            <Image src="/logo.png" alt="" width="28" height="28" loading="eager" />
-          </span>
-          Yamato Handai
+        <h1>
+          <span>👋</span>
+          <p className="sr-only">My Homepage</p>
         </h1>
         <p className={styles.heroText}>
           I’m a front-end engineer currently working on website development. Most of my work involves building websites
