@@ -10,8 +10,8 @@ export type Commit = {
 }
 
 type GraphQLResponse = {
-  data: {
-    viewer: {
+  data?: {
+    viewer?: {
       repositories: {
         nodes: {
           name: string
@@ -35,9 +35,21 @@ type GraphQLResponse = {
       }
     }
   }
+  errors?: Array<{
+    message: string
+    locations?: Array<{
+      line: number
+      column: number
+    }>
+    path?: string[]
+  }>
 }
 
 export async function fetchCommitsFromGraphQL(token: string): Promise<Commit[]> {
+  if (!token) {
+    throw new Error('GitHub token is required')
+  }
+
   const query = `
     query {
       viewer {
@@ -78,7 +90,26 @@ export async function fetchCommitsFromGraphQL(token: string): Promise<Commit[]> 
     next: { revalidate: 60 * 30 },
   })
 
+  if (!res.ok) {
+    throw new Error(`GitHub API request failed: ${res.status} ${res.statusText}`)
+  }
+
   const json: GraphQLResponse = await res.json()
+
+  if (json.errors) {
+    console.error('GitHub GraphQL errors:', json.errors)
+    throw new Error(`GitHub GraphQL errors: ${json.errors.map((e) => e.message).join(', ')}`)
+  }
+
+  if (!json.data || !json.data.viewer) {
+    console.error('Invalid response structure:', json)
+    throw new Error('Invalid response structure: missing data.viewer')
+  }
+
+  if (!json.data.viewer.repositories || !json.data.viewer.repositories.nodes) {
+    console.error('Invalid response structure: missing repositories.nodes')
+    return []
+  }
 
   const commits: Commit[] = json.data.viewer.repositories.nodes.flatMap(
     (repo) =>
