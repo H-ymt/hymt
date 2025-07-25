@@ -135,15 +135,17 @@ export default function Home() {
   return (
     <Container className={styles.container}>
       <div className={styles.hero}>
-        <h1>
-          <span>👋</span>
-          <p className="sr-only">My Homepage</p>
-        </h1>
-        <p className={styles.heroText}>
-          I’m a front-end engineer currently working on website development. Most of my work involves building websites
-          with WordPress, but I enjoy working with modern architectures using JavaScript frameworks like Next.js and
-          Astro, combined with headless CMSs such as microCMS.
-        </p>
+        <div className={styles.heroContent}>
+          <div className={styles.heroHeading}>
+            <span>👋</span>
+            <p className="sr-only">My Homepage</p>
+          </div>
+          <p className={styles.heroText}>
+            I’m a front-end engineer currently working on website development. Most of my work involves building
+            websites with WordPress, but I enjoy working with modern architectures using JavaScript frameworks like
+            Next.js and Astro, combined with headless CMSs such as microCMS.
+          </p>
+        </div>
         <div className={styles.heroButtonContainer}>
           <Button href="/projects" visual="primary" className={styles.heroButton}>
             Projects
