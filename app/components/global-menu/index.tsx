@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 
-import { ContactIcon, HomeIcon, NoteIcon, ProjectIcon, TimelineIcon, ZennIcon } from '@/app/components/icons'
+import { ContactIcon, HomeIcon, NoteIcon, ProjectIcon, ZennIcon } from '@/app/components/icons'
 import TransitionLink from '@/app/components/transition-link'
 
 import styles from './index.module.css'
@@ -18,11 +18,7 @@ const navLink = [
     path: '/projects',
     icon: ProjectIcon,
   },
-  {
-    label: 'Timeline',
-    path: '/timeline',
-    icon: TimelineIcon,
-  },
+
   {
     label: 'Note',
     path: '/note',
