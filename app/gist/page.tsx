@@ -34,8 +34,8 @@ export default async function GistsPage() {
 
   return (
     <Container type="subpage">
-      <h1 className={styles.title}>Note</h1>
-      <p>A collection of code snippets and resources to keep track of.</p>
+      <h1 className={styles.title}>Gist</h1>
+      <p>This page displays a list of public GitHub Gists</p>
 
       <ul className={styles.list}>
         {gists.map((gist) => (

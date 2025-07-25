@@ -20,8 +20,8 @@ const navLink = [
   },
 
   {
-    label: 'Note',
-    path: '/note',
+    label: 'Gist',
+    path: '/gist',
     icon: NoteIcon,
   },
   {
