@@ -1,9 +1,4 @@
-import type {
-  MicroCMSContentId,
-  MicroCMSDate,
-  MicroCMSImage,
-  MicroCMSQueries,
-} from 'microcms-js-sdk'
+import type { MicroCMSContentId, MicroCMSDate, MicroCMSImage, MicroCMSQueries } from 'microcms-js-sdk'
 import { createClient } from 'microcms-js-sdk'
 import { notFound } from 'next/navigation'
 
@@ -69,6 +64,17 @@ export const getProjectsDetail = async (contentId: string, queries?: MicroCMSQue
 }
 
 export const getCategoryList = async (queries?: MicroCMSQueries, limit = 100) => {
+  const projects = await client
+    .getList<Projects>({
+      endpoint: 'works',
+      queries: { limit: 1000 },
+    })
+    .catch(notFound)
+
+  const usedCategoryIds = Array.from(
+    new Set((projects?.contents || []).flatMap((p) => p.category?.map((c) => c.id) || []))
+  )
+
   const listData = await client
     .getList<Category>({
       endpoint: 'categories',
@@ -76,7 +82,10 @@ export const getCategoryList = async (queries?: MicroCMSQueries, limit = 100) =>
     })
     .catch(notFound)
 
-  return listData
+  return {
+    ...listData,
+    contents: (listData?.contents || []).filter((cat) => usedCategoryIds.includes(cat.id)),
+  }
 }
 
 export const getCategoryDetail = async (contentId: string, queries?: MicroCMSQueries) => {
