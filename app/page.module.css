@@ -27,7 +27,8 @@
 
 .heroHeading {
   float: left;
-  margin-right: 0.75rem;
+  margin-right: 0.5rem;
+  font-size: 1.125rem;
 }
 
 .heroText {

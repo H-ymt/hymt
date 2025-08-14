@@ -141,9 +141,8 @@ export default function Home() {
             <p className="sr-only">My Homepage</p>
           </div>
           <p className={styles.heroText}>
-            I’m a front-end engineer currently working on website development. Most of my work involves building
-            websites with WordPress, but I enjoy working with modern architectures using JavaScript frameworks like
-            Next.js and Astro, combined with headless CMSs such as microCMS.
+            I’m a front-end engineer currently working on website development. I enjoy working with modern architectures
+            using JavaScript frameworks like Next.js and Astro. I also have experience in WordPress development.
           </p>
         </div>
         <div className={styles.heroButtonContainer}>
