@@ -140,3 +140,51 @@ ol {
   white-space: nowrap;
   border: 0;
 }
+
+/* GitHub Markdown */
+.markdown-body {
+  color: var(--color-text-base);
+  background-color: var(--color-background) !important;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--color-text-heading);
+  }
+
+  :where(ul) {
+    list-style: disc;
+  }
+
+  :where(ol) {
+    list-style: decimal;
+  }
+
+  figure {
+    margin-inline: 0 !important;
+  }
+
+  /* Code block title injected by rehype-pretty-code */
+  figure > figcaption[data-rehype-pretty-code-title] {
+    position: relative;
+    top: 0;
+    display: block;
+    padding: 1rem;
+    margin: 0;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Helvetica Neue', monospace;
+    font-size: 0.75rem;
+    line-height: 1;
+    color: var(--color-text-base);
+    background-color: #24292e;
+    border-bottom: solid 1px #2d3033;
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
+
+  figure > figcaption + pre {
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+  }
+}
