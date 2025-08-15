@@ -18,7 +18,11 @@ const navLink = [
     path: '/projects',
     icon: ProjectIcon,
   },
-
+  {
+    label: 'Note',
+    path: '/note',
+    icon: ProjectIcon,
+  },
   {
     label: 'Gist',
     path: '/gist',

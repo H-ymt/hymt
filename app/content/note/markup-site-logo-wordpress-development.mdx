@@ -1,0 +1,29 @@
+---
+title: 'Site logo markup in WordPress development'
+publishedAt: '2025-07-21'
+description: 'Tips for Marking Up Site Logos in WordPress'
+tags: ['wordpress', 'tips']
+---
+
+- If a logo is set in the WordPress admin panel, display it using the_custom_logo().
+- Use an h1 tag on the top page, and a div tag on other pages.
+
+```php
+<?php
+$logo_tag = ((is_home() || is_front_page()) ? "h1" : "div");
+?>
+
+<header class="header">
+        <?php if (has_custom_logo()) : ?>
+            <?php echo $logo_tag; ?> class="header__logo">
+            <?php the_custom_logo(); ?>
+            </<?php echo $logo_tag; ?>>
+        <?php else : ?>
+            <<?php echo $logo_tag; ?> class="header__logo">
+                <a href="<?php echo esc_url(home_url('/')); ?>">
+                 <img src="<?php echo get_template_directory_uri(); ?>/image/logo.png" alt="Logo" width="120" height="50" loading="eager">
+                </a>
+            </<?php echo $logo_tag; ?>>
+        <?php endif; ?>
+</header>
+```
