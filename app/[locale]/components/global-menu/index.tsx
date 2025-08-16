@@ -4,9 +4,9 @@ import { usePathname } from 'next/navigation'
 
 import {
   ContactIcon,
+  GistIcon,
   HomeIcon,
   NotebookPenIcon,
-  NoteIcon,
   ProjectIcon,
   ZennIcon,
 } from '@/app/[locale]/components/icons'
@@ -33,7 +33,7 @@ const navLink = [
   {
     label: 'Gist',
     path: '/gist',
-    icon: NoteIcon,
+    icon: GistIcon,
   },
   {
     label: 'Zenn',
