@@ -1,0 +1,5 @@
+.date {
+  font-size: 0.875rem;
+  color: var(--color-text-base);
+  letter-spacing: 0.05em;
+}

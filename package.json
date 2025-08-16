@@ -25,6 +25,7 @@
     "microcms-js-sdk": "^3.1.2",
     "modern-css-reset": "^1.4.0",
     "next": "14.2.15",
+    "next-intl": "^4.3.4",
     "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18",

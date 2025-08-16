@@ -2,6 +2,8 @@ import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
 
+import { routing } from '@/i18n/routing'
+
 export function walkDir(dir: string, base = ''): string[] {
   const entries = fs.readdirSync(dir)
   let results: string[] = []
@@ -20,16 +22,58 @@ export function walkDir(dir: string, base = ''): string[] {
   return results
 }
 
-export function listContentSlugs(): string[] {
-  const dir = path.join(process.cwd(), 'app', 'content')
-  if (!fs.existsSync(dir)) return []
+export function listContentSlugs(locale?: string): string[] {
+  const tryBase = (loc?: string) => (loc ? path.join('app', loc, 'content') : path.join('app', 'content'))
+  // candidate bases in order: app/<locale>/content, app/[locale]/content, app/content
+  const candidates = []
+  if (locale) candidates.push(path.join('app', locale, 'content'))
+  candidates.push(path.join('app', '[locale]', 'content'))
+  candidates.push(path.join('app', 'content'))
+
+  let dir = ''
+  for (const c of candidates) {
+    const p = path.join(process.cwd(), c)
+    if (fs.existsSync(p)) {
+      dir = p
+      break
+    }
+  }
+
+  // fallback to default locale if still not found and locale was requested
+  if (!dir && locale) {
+    const def = path.join(process.cwd(), tryBase(routing.defaultLocale))
+    if (fs.existsSync(def)) dir = def
+  }
+
+  if (!dir) return []
   return walkDir(dir)
 }
 
-export function readContentBySlug(slugParts: string[]): { data: Record<string, unknown>; content: string } | null {
+export function readContentBySlug(
+  slugParts: string[],
+  locale?: string
+): { data: Record<string, unknown>; content: string } | null {
   const slugPath = slugParts.join('/') || 'note'
-  const filePath = path.join(process.cwd(), 'app', 'content', `${slugPath}.mdx`)
-  if (!fs.existsSync(filePath)) return null
+  const candidates = []
+  if (locale) candidates.push(path.join('app', locale, 'content'))
+  candidates.push(path.join('app', '[locale]', 'content'))
+  candidates.push(path.join('app', 'content'))
+
+  let filePath = ''
+  for (const c of candidates) {
+    const p = path.join(process.cwd(), c, `${slugPath}.mdx`)
+    if (fs.existsSync(p)) {
+      filePath = p
+      break
+    }
+  }
+
+  if (!filePath && locale) {
+    const def = path.join(process.cwd(), path.join('app', routing.defaultLocale, 'content'), `${slugPath}.mdx`)
+    if (fs.existsSync(def)) filePath = def
+  }
+
+  if (!filePath) return null
   const raw = fs.readFileSync(filePath, 'utf8')
   const { data, content } = matter(raw)
   // ensure data is an object
@@ -37,9 +81,28 @@ export function readContentBySlug(slugParts: string[]): { data: Record<string, u
   return { data: safeData, content }
 }
 
-export function listContentMeta(): Array<{ slug: string; data: Record<string, unknown> }> {
-  const dir = path.join(process.cwd(), 'app', 'content')
-  if (!fs.existsSync(dir)) return []
+export function listContentMeta(locale?: string): Array<{ slug: string; data: Record<string, unknown> }> {
+  // candidate bases in order
+  const candidates = []
+  if (locale) candidates.push(path.join('app', locale, 'content'))
+  candidates.push(path.join('app', '[locale]', 'content'))
+  candidates.push(path.join('app', 'content'))
+
+  let dir = ''
+  for (const c of candidates) {
+    const p = path.join(process.cwd(), c)
+    if (fs.existsSync(p)) {
+      dir = p
+      break
+    }
+  }
+
+  if (!dir && locale) {
+    const def = path.join(process.cwd(), path.join('app', routing.defaultLocale, 'content'))
+    if (fs.existsSync(def)) dir = def
+  }
+
+  if (!dir) return []
   const slugs = walkDir(dir)
   return slugs
     .map((slug) => {
