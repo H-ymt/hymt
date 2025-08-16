@@ -1,4 +1,5 @@
 import GlobalMenu from '@/app/[locale]/components/global-menu'
+import LanguageSwitcher from '@/app/[locale]/components/language-switcher'
 import ThemeToggle from '@/app/[locale]/components/theme-toggle'
 
 import styles from './index.module.css'
@@ -11,6 +12,7 @@ export default function Header() {
           <div className={styles.menuWrapper}>
             <GlobalMenu />
             <ThemeToggle />
+            <LanguageSwitcher />
           </div>
         </div>
       </header>
