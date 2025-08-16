@@ -24,9 +24,35 @@ export function walkDir(dir: string, base = ''): string[] {
 
 export function listContentSlugs(locale?: string): string[] {
   const tryBase = (loc?: string) => (loc ? path.join('app', loc, 'content') : path.join('app', 'content'))
-  // candidate bases in order: app/<locale>/content, app/[locale]/content, app/content
-  const candidates = []
-  if (locale) candidates.push(path.join('app', locale, 'content'))
+  // candidate bases in order: app/<locale>/content, app/content/<locale>, app/[locale]/content, app/content
+  const candidates: string[] = []
+  if (locale) {
+    // prefer app/<locale>/content, then app/content/<locale>
+    candidates.push(path.join('app', locale, 'content'))
+    // also check for sectioned content like app/content/<section>/<locale> (e.g. app/content/note/en)
+    try {
+      const contentRoot = path.join(process.cwd(), 'app', 'content')
+      if (fs.existsSync(contentRoot)) {
+        for (const child of fs.readdirSync(contentRoot)) {
+          const p = path.join('app', 'content', child, locale)
+          candidates.push(p)
+        }
+      }
+    } catch {
+      // ignore filesystem errors
+    }
+    candidates.push(path.join('app', 'content', locale))
+  } else {
+    // when locale not provided, also try app/content/<locale> for all configured locales
+    try {
+      for (const loc of routing.locales) {
+        candidates.push(path.join('app', 'content', loc))
+      }
+    } catch {
+      // ignore if routing not available for some reason
+    }
+  }
+  // then check app/[locale]/content and finally app/content
   candidates.push(path.join('app', '[locale]', 'content'))
   candidates.push(path.join('app', 'content'))
 
@@ -38,6 +64,14 @@ export function listContentSlugs(locale?: string): string[] {
       break
     }
   }
+
+  // DEBUG: log which directory is selected for content listing
+  try {
+    // eslint-disable-next-line no-console
+    console.log('[content] candidates:', candidates)
+    // eslint-disable-next-line no-console
+    console.log('[content] selected dir:', dir)
+  } catch {}
 
   // fallback to default locale if still not found and locale was requested
   if (!dir && locale) {
@@ -54,8 +88,24 @@ export function readContentBySlug(
   locale?: string
 ): { data: Record<string, unknown>; content: string } | null {
   const slugPath = slugParts.join('/') || 'note'
+  // candidate bases in order: app/<locale>/content, app/content/<locale>, app/[locale]/content, app/content
   const candidates = []
-  if (locale) candidates.push(path.join('app', locale, 'content'))
+  if (locale) {
+    // prefer app/<locale>/content, then app/content/<locale>
+    candidates.push(path.join('app', locale, 'content'))
+    // check for app/content/<section>/<locale>
+    try {
+      const contentRoot = path.join(process.cwd(), 'app', 'content')
+      if (fs.existsSync(contentRoot)) {
+        for (const child of fs.readdirSync(contentRoot)) {
+          const p = path.join('app', 'content', child, locale)
+          candidates.push(p)
+        }
+      }
+    } catch {}
+    candidates.push(path.join('app', 'content', locale))
+  }
+  // then check app/[locale]/content and finally app/content
   candidates.push(path.join('app', '[locale]', 'content'))
   candidates.push(path.join('app', 'content'))
 
@@ -82,9 +132,24 @@ export function readContentBySlug(
 }
 
 export function listContentMeta(locale?: string): Array<{ slug: string; data: Record<string, unknown> }> {
-  // candidate bases in order
+  // candidate bases in order: app/<locale>/content, app/content/<locale>, app/[locale]/content, app/content
   const candidates = []
-  if (locale) candidates.push(path.join('app', locale, 'content'))
+  if (locale) {
+    // prefer app/<locale>/content, then app/content/<locale>
+    candidates.push(path.join('app', locale, 'content'))
+    // check for app/content/<section>/<locale>
+    try {
+      const contentRoot = path.join(process.cwd(), 'app', 'content')
+      if (fs.existsSync(contentRoot)) {
+        for (const child of fs.readdirSync(contentRoot)) {
+          const p = path.join('app', 'content', child, locale)
+          candidates.push(p)
+        }
+      }
+    } catch {}
+    candidates.push(path.join('app', 'content', locale))
+  }
+  // then check app/[locale]/content and finally app/content
   candidates.push(path.join('app', '[locale]', 'content'))
   candidates.push(path.join('app', 'content'))
 

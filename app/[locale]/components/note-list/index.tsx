@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { useParams } from 'next/navigation'
 
 import ConvertDate from '@/lib/convert-date'
 
@@ -14,6 +17,8 @@ type Props = {
 }
 
 export default function NoteList({ items }: Props) {
+  const params = useParams() as { locale?: string }
+  const locale = params?.locale
   return (
     <ul className={styles.list}>
       {items.map(({ slug, data }) => {
@@ -26,14 +31,14 @@ export default function NoteList({ items }: Props) {
         return (
           <li key={slug} className={styles.item}>
             <span className={styles.itemContent}>
-              <Link className={styles.title} href={`/note/${slug}`}>
+              <Link className={styles.title} href={`/${locale ?? ''}/note/${slug}`}>
                 {name}
               </Link>
               {tagList && (
                 <div className={styles.tags}>
                   {tagList.map((t, i) => (
                     <span key={t} className={styles.tag}>
-                      <Link href={`/note/tag/${encodeURIComponent(t)}`} className={styles.tagLink}>
+                      <Link href={`/${locale ?? ''}/note/tag/${encodeURIComponent(t)}`} className={styles.tagLink}>
                         {t}
                       </Link>
                       {i < tagList.length - 1 && ', '}

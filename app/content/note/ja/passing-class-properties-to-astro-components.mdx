@@ -1,0 +1,42 @@
+---
+title: Astro コンポーネントに class プロパティを渡す方法
+publishedAt: '2025-07-13'
+description: 'class プロパティを使って再利用可能な Astro コンポーネントを作る方法'
+tags: ['astro', 'tips']
+---
+
+Astro の `class:list` を使って `class` プロパティを子コンポーネントに渡し、コンポーネントをより再利用しやすくする方法。  
+親から子へクラスを渡すことで、スタイルを拡張可能。
+
+## Component
+
+```astro title="components/Container.astro"
+---
+const { class: className, ...props } = Astro.props;
+---
+
+<div class:list={["container", className]} {...props}><slot /></div>
+
+<style>
+  .container {
+    width: 100%;
+    max-width: 1032px;
+    padding-inlinbe: 1em;
+    margin-inline: auto;
+  }
+</style>
+```
+
+## 使用例
+
+```astro title="pages/index.astro"
+<Container class="px-4">
+  <p>横方向の余白を追加した Container</p>
+</Container>
+```
+
+## 要点
+
+- `Astro.props` から `class` を受け取り、`class:list` で追加する
+- デフォルトクラスと外部から渡されたクラスの両方を適用する
+- Tailwind CSS やカスタムクラスに対応する
