@@ -5,6 +5,8 @@ import { getZennArticles, getZennScraps } from '@/lib/zenn'
 
 import styles from './page.module.css'
 
+export const revalidate = 60
+
 export default async function ZennPage() {
   const articleData = await getZennArticles()
   const scrapData = await getZennScraps()

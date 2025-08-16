@@ -8,6 +8,14 @@ type Props = {
   searchParams: Promise<{ dk: string }>
 }
 
+export const revalidate = 60
+
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
+  const list = (await getProjectsDetail) ? await (await import('@/lib/microcms')).getProjectsList() : null
+  const contents = list?.contents || []
+  return contents.map((c) => ({ slug: c.id as string }))
+}
+
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const searchParams = await props.searchParams
   const params = await props.params
