@@ -18,8 +18,29 @@ export default function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <fieldset className={styles.themeToggle}>
+      <fieldset className={styles.themeToggle} aria-hidden="true">
         <legend className="sr-only">Toggle Theme</legend>
+
+        <span className={styles.themeOption}>
+          <label className={styles.themeLabel}>
+            <MonitorIcon className={clsx(styles.icon)} style={{ visibility: 'hidden' }} />
+            <input type="radio" name="theme" value="system" disabled tabIndex={-1} aria-hidden="true" />
+          </label>
+        </span>
+
+        <span className={styles.themeOption}>
+          <label className={styles.themeLabel}>
+            <SunIcon className={clsx(styles.icon)} style={{ visibility: 'hidden' }} />
+            <input type="radio" name="theme" value="light" disabled tabIndex={-1} aria-hidden="true" />
+          </label>
+        </span>
+
+        <span className={styles.themeOption}>
+          <label className={styles.themeLabel}>
+            <MoonIcon className={clsx(styles.icon)} style={{ visibility: 'hidden' }} />
+            <input type="radio" name="theme" value="dark" disabled tabIndex={-1} aria-hidden="true" />
+          </label>
+        </span>
       </fieldset>
     )
   }
