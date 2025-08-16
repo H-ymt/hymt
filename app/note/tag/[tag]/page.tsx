@@ -7,6 +7,13 @@ import { listAllTags, listContentMeta } from '@/lib/content'
 
 import styles from './page.module.css'
 
+export const revalidate = 60
+
+export async function generateStaticParams(): Promise<{ tag: string }[]> {
+  const map = listAllTags()
+  return Object.keys(map).map((tag) => ({ tag }))
+}
+
 export async function generateMetadata({ params }: { params: { tag: string } }): Promise<Metadata> {
   const tag = params.tag
   return { title: `Tag: ${tag}` }

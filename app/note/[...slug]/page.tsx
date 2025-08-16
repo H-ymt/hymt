@@ -2,11 +2,18 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 import Container from '@/app/components/container'
-import { readContentBySlug } from '@/lib/content'
+import { listContentMeta, readContentBySlug } from '@/lib/content'
 import ConvertDate from '@/lib/convert-date'
 
 import { CustomMDX } from '../../mdx-remote'
 import styles from './page.module.css'
+
+export const revalidate = 60
+
+export async function generateStaticParams(): Promise<{ slug: string[] }[]> {
+  const meta = listContentMeta()
+  return meta.map(({ slug }) => ({ slug: slug.split('/') }))
+}
 
 export async function generateMetadata({ params }: { params: { slug: string[] } }): Promise<Metadata | undefined> {
   const slugParts = params.slug || []

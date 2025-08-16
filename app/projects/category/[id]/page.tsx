@@ -11,6 +11,14 @@ type Props = {
   }>
 }
 
+export const revalidate = 60
+
+export async function generateStaticParams(): Promise<{ id: string }[]> {
+  const list = await getCategoryList()
+  const ids = (list?.contents || []).map((c) => ({ id: c.id }))
+  return ids
+}
+
 export default async function Page(props: Props) {
   const params = await props.params
   const { contents: project } = await getProjectsList({
@@ -26,9 +34,7 @@ export default async function Page(props: Props) {
         {categories &&
           categories.contents.map((category) => (
             <li key={category.id} className={styles.categoryItem}>
-              <TransitionLink href={`/projects/category/${category.id}`}>
-                {category.name}
-              </TransitionLink>
+              <TransitionLink href={`/projects/category/${category.id}`}>{category.name}</TransitionLink>
             </li>
           ))}
       </ul>
