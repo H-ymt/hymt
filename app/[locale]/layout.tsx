@@ -44,7 +44,7 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang="ja" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <NextIntlClientProvider>
         <body className={clsx(geist.variable, montserrat.variable)} suppressHydrationWarning>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
