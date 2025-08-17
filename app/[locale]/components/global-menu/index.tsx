@@ -1,7 +1,5 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
-
 import {
   ContactIcon,
   GistIcon,
@@ -11,6 +9,7 @@ import {
   ZennIcon,
 } from '@/app/[locale]/components/icons'
 import TransitionLink from '@/app/[locale]/components/transition-link'
+import { usePathname } from '@/i18n/navigation'
 
 import styles from './index.module.css'
 

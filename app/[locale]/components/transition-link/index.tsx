@@ -21,13 +21,7 @@ export default function Link({ children, href, className, target, ...props }: Li
   }
 
   return (
-    <NextLink
-      className={className}
-      href={href}
-      target={target}
-      onClick={handleLinkClick}
-      {...props}
-    >
+    <NextLink className={className} href={href} target={target} onClick={handleLinkClick} {...props}>
       {children}
     </NextLink>
   )

@@ -1,8 +1,7 @@
 'use client'
 
-import { usePathname, useRouter } from 'next/navigation'
-
 import { LanguageIcon } from '@/app/[locale]/components/icons'
+import { usePathname, useRouter } from '@/i18n/navigation'
 import { routing } from '@/i18n/routing'
 
 import styles from './index.module.css'
@@ -16,16 +15,47 @@ export default function LanguageSwitcher() {
   const segTyped = maybeSeg as unknown as (typeof routing.locales)[number]
   const current = maybeSeg && locales.includes(segTyped) ? segTyped : routing.defaultLocale
 
-  const switchLocale = (loc: (typeof routing.locales)[number]) => {
-    let segments = pathname.split('/')
-    const seg = segments[1] as unknown as (typeof routing.locales)[number]
-    if (locales.includes(seg)) {
-      segments[1] = loc as string
-    } else {
-      segments = ['', loc as string, ...segments.slice(1)]
+  const switchLocale = async (loc: (typeof routing.locales)[number]) => {
+    // Normalize and split pathname into segments without empty entries
+    const parts = (pathname || '/').split('/').filter(Boolean) // e.g. ['en', 'projects'] or ['projects']
+
+    if (parts.length === 0) {
+      router.push(`/${loc}`)
+      return
     }
-    const to = segments.join('/') || '/'
-    router.push(to)
+
+    // If the first segment is a locale, replace it. Otherwise, insert locale at the front.
+    if (locales.includes(parts[0] as (typeof routing.locales)[number])) {
+      parts[0] = loc as string
+    } else {
+      parts.unshift(loc as string)
+    }
+
+    const to = `/${parts.join('/')}`
+
+    // Use absolute URL to avoid relative-navigation issues, and fallback to full reload
+    if (typeof window === 'undefined') {
+      router.push(to)
+      return
+    }
+
+    const absolute = new URL(to, window.location.origin).toString()
+    // router.push may accept absolute URLs; if it rejects, fall back to full navigation
+    try {
+      // Some router implementations return a Promise
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore-next-line: router.push overloads
+      const res = router.push(absolute)
+      // router.push might return void or a Promise
+      if (typeof res === 'object' && res !== null) {
+        const maybePromise = res as PromiseLike<unknown>
+        if (typeof (maybePromise as PromiseLike<unknown>).then === 'function') {
+          await maybePromise
+        }
+      }
+    } catch {
+      window.location.assign(absolute)
+    }
   }
 
   return (
