@@ -24,7 +24,9 @@
   font-size: 0.875rem;
   color: inherit;
   cursor: pointer;
+  -webkit-background: none;
   background: transparent;
+  -webkit-border: none;
   border: none;
 }
 
