@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint --fix",
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}'",
-  "prepare": "echo 'skip husky install during bun'",
+    "prepare": "husky install",
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
