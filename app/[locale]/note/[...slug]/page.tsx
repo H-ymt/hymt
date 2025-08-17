@@ -9,14 +9,6 @@ import ConvertDate from '@/lib/convert-date'
 import { CustomMDX } from '../../mdx-remote'
 import styles from './page.module.css'
 
-// export const revalidate = 60
-
-// export async function generateStaticParams({ params }: { params: { locale?: string } }): Promise<{ slug: string[] }[]> {
-//   const locale = params.locale
-//   const meta = listContentMeta(locale)
-//   return meta.map(({ slug }) => ({ slug: slug.split('/') }))
-// }
-
 export async function generateMetadata({
   params,
 }: {
@@ -39,7 +31,7 @@ export async function generateMetadata({
 }
 
 export default async function Page({ params }: { params: { slug: string[]; locale?: string } }) {
-  const t = await getTranslations()
+  const t = await getTranslations('Note')
   const slugParts = params.slug || []
   const locale = params.locale
   const result = readContentBySlug(slugParts, locale)
