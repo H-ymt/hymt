@@ -1,17 +1,11 @@
 import 'github-markdown-css/github-markdown.css'
 
 import type { MDXComponents } from 'mdx/types'
-import { useTranslations } from 'next-intl'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import rehypePrettyCode from 'rehype-pretty-code'
 import remarkGfm from 'remark-gfm'
 
 const components: MDXComponents = {}
-
-export function Translate({ id }: { id: string }) {
-  const t = useTranslations()
-  return <>{t(id)}</>
-}
 
 export function useMDXComponents(): MDXComponents {
   return components
