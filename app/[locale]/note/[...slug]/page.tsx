@@ -3,19 +3,19 @@ import Link from 'next/link'
 import { getTranslations } from 'next-intl/server'
 
 import Container from '@/app/[locale]/components/container'
-import { listContentMeta, readContentBySlug } from '@/lib/content'
+import { readContentBySlug } from '@/lib/content'
 import ConvertDate from '@/lib/convert-date'
 
 import { CustomMDX } from '../../mdx-remote'
 import styles from './page.module.css'
 
-export const revalidate = 60
+// export const revalidate = 60
 
-export async function generateStaticParams({ params }: { params: { locale?: string } }): Promise<{ slug: string[] }[]> {
-  const locale = params.locale
-  const meta = listContentMeta(locale)
-  return meta.map(({ slug }) => ({ slug: slug.split('/') }))
-}
+// export async function generateStaticParams({ params }: { params: { locale?: string } }): Promise<{ slug: string[] }[]> {
+//   const locale = params.locale
+//   const meta = listContentMeta(locale)
+//   return meta.map(({ slug }) => ({ slug: slug.split('/') }))
+// }
 
 export async function generateMetadata({
   params,
