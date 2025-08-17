@@ -23,6 +23,9 @@ export function walkDir(dir: string, base = ''): string[] {
 }
 
 export function listContentSlugs(locale?: string): string[] {
+  // Temporary override: allow forcing only English content via env var
+  const forceOnlyEn = process.env.FORCE_ONLY_EN === '1'
+  if (forceOnlyEn) locale = 'en'
   const tryBase = (loc?: string) => (loc ? path.join('app', loc, 'content') : path.join('app', 'content'))
   // candidate bases in order: app/<locale>/content, app/content/<locale>, app/[locale]/content, app/content
   const candidates: string[] = []
@@ -87,6 +90,9 @@ export function readContentBySlug(
   slugParts: string[],
   locale?: string
 ): { data: Record<string, unknown>; content: string } | null {
+  // Temporary override: allow forcing only English content via env var
+  const forceOnlyEn = process.env.FORCE_ONLY_EN === '1'
+  if (forceOnlyEn) locale = 'en'
   const slugPath = slugParts.join('/') || 'note'
   // candidate bases in order: app/<locale>/content, app/content/<locale>, app/[locale]/content, app/content
   const candidates = []
@@ -132,6 +138,9 @@ export function readContentBySlug(
 }
 
 export function listContentMeta(locale?: string): Array<{ slug: string; data: Record<string, unknown> }> {
+  // Temporary override: allow forcing only English content via env var
+  const forceOnlyEn = process.env.FORCE_ONLY_EN === '1'
+  if (forceOnlyEn) locale = 'en'
   // candidate bases in order: app/<locale>/content, app/content/<locale>, app/[locale]/content, app/content
   const candidates = []
   if (locale) {
