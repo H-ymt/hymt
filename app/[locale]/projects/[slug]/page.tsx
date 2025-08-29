@@ -1,19 +1,33 @@
 import type { Metadata } from 'next'
 
 import Article from '@/app/[locale]/components/article'
-import { getProjectsDetail } from '@/lib/microcms'
+import { routing } from '@/i18n/routing'
+import { getProjectsDetail, getProjectsList } from '@/lib/microcms'
 
 type Props = {
-  params: Promise<{ slug: string }>
+  params: Promise<{ locale: string; slug: string }>
   searchParams: Promise<{ dk: string }>
 }
 
 export const revalidate = 60
 
-export async function generateStaticParams(): Promise<{ slug: string }[]> {
-  const list = (await getProjectsDetail) ? await (await import('@/lib/microcms')).getProjectsList() : null
+export async function generateStaticParams(): Promise<{ locale: string; slug: string }[]> {
+  const list = await getProjectsList()
   const contents = list?.contents || []
-  return contents.map((c) => ({ slug: c.id as string }))
+
+  // Generate params for each locale and each project slug
+  const params: { locale: string; slug: string }[] = []
+
+  for (const locale of routing.locales) {
+    for (const project of contents) {
+      params.push({
+        locale,
+        slug: project.id as string,
+      })
+    }
+  }
+
+  return params
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {

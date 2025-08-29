@@ -1,22 +1,37 @@
 import Container from '@/app/[locale]/components/container'
 import ProjectList from '@/app/[locale]/components/project-list'
 import TransitionLink from '@/app/[locale]/components/transition-link'
+import { routing } from '@/i18n/routing'
 import { getCategoryDetail, getCategoryList, getProjectsList } from '@/lib/microcms'
 
 import styles from './page.module.css'
 
 type Props = {
   params: Promise<{
+    locale: string
     id: string
   }>
 }
 
 export const revalidate = 60
 
-export async function generateStaticParams(): Promise<{ id: string }[]> {
+export async function generateStaticParams(): Promise<{ locale: string; id: string }[]> {
   const list = await getCategoryList()
-  const ids = (list?.contents || []).map((c) => ({ id: c.id }))
-  return ids
+  const categories = list?.contents || []
+
+  // Generate params for each locale and each category id
+  const params: { locale: string; id: string }[] = []
+
+  for (const locale of routing.locales) {
+    for (const category of categories) {
+      params.push({
+        locale,
+        id: category.id,
+      })
+    }
+  }
+
+  return params
 }
 
 export default async function Page(props: Props) {
