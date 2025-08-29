@@ -16,7 +16,7 @@ export default function LanguageSwitcher() {
   const switchLocale = (newLocale: string) => {
     const pathSegments = window.location.pathname.split('/').filter(Boolean)
 
-    if (pathSegments.length > 0 && locales.includes(pathSegments[0] as any)) {
+    if (pathSegments.length > 0 && locales.includes(pathSegments[0] as (typeof routing.locales)[number])) {
       pathSegments[0] = newLocale
     } else {
       pathSegments.unshift(newLocale)
