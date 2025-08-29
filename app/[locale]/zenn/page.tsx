@@ -3,11 +3,18 @@ import { getTranslations } from 'next-intl/server'
 import ArticleList from '@/app/[locale]/components/article-list'
 import Container from '@/app/[locale]/components/container'
 import ScrapList from '@/app/[locale]/components/scrap-list'
+import { routing } from '@/i18n/routing'
 import { getZennArticles, getZennScraps } from '@/lib/zenn'
 
 import styles from './page.module.css'
 
 export const revalidate = 60
+
+export async function generateStaticParams() {
+  return routing.locales.map((locale) => ({
+    locale,
+  }))
+}
 
 export default async function ZennPage() {
   const t = await getTranslations('Zenn')

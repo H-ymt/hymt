@@ -3,9 +3,16 @@ import { getTranslations } from 'next-intl/server'
 import Container from '@/app/[locale]/components/container'
 import ProjectList from '@/app/[locale]/components/project-list'
 import TransitionLink from '@/app/[locale]/components/transition-link'
+import { routing } from '@/i18n/routing'
 import { getCategoryList, getProjectsList } from '@/lib/microcms'
 
 import styles from './page.module.css'
+
+export async function generateStaticParams() {
+  return routing.locales.map((locale) => ({
+    locale,
+  }))
+}
 
 export default async function ProjectsPage() {
   const t = await getTranslations('Project')

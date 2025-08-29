@@ -3,11 +3,28 @@ import Link from 'next/link'
 import { getTranslations } from 'next-intl/server'
 
 import Container from '@/app/[locale]/components/container'
-import { readContentBySlug } from '@/lib/content'
+import { routing } from '@/i18n/routing'
+import { listContentSlugs, readContentBySlug } from '@/lib/content'
 import ConvertDate from '@/lib/convert-date'
 
 import { CustomMDX } from '../../mdx-remote'
 import styles from './page.module.css'
+
+export async function generateStaticParams() {
+  const allParams = []
+
+  for (const locale of routing.locales) {
+    const slugs = listContentSlugs(locale)
+    for (const slug of slugs) {
+      allParams.push({
+        locale,
+        slug: slug.split('/'),
+      })
+    }
+  }
+
+  return allParams
+}
 
 export async function generateMetadata({
   params,

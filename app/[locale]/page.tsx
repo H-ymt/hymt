@@ -4,8 +4,15 @@ import { useTranslations } from 'next-intl'
 import Container from '@/app/[locale]/components/container'
 import { GithubIcon } from '@/app/[locale]/components/icons'
 import Button from '@/app/[locale]/components/ui/button'
+import { routing } from '@/i18n/routing'
 
 import styles from './page.module.css'
+
+export async function generateStaticParams() {
+  return routing.locales.map((locale) => ({
+    locale,
+  }))
+}
 
 const stack = [
   {

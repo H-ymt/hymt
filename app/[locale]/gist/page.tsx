@@ -3,9 +3,16 @@ import { getTranslations } from 'next-intl/server'
 import React from 'react'
 
 import Container from '@/app/[locale]/components/container'
+import { routing } from '@/i18n/routing'
 import ConvertDate from '@/lib/convert-date'
 
 import styles from './page.module.css'
+
+export async function generateStaticParams() {
+  return routing.locales.map((locale) => ({
+    locale,
+  }))
+}
 
 type Gist = {
   id: string
