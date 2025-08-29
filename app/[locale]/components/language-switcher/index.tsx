@@ -1,61 +1,30 @@
 'use client'
 
+import { useParams } from 'next/navigation'
+
 import { LanguageIcon } from '@/app/[locale]/components/icons'
-import { usePathname, useRouter } from '@/i18n/navigation'
 import { routing } from '@/i18n/routing'
 
 import styles from './index.module.css'
 
 export default function LanguageSwitcher() {
-  const pathname = usePathname() || '/'
-  const router = useRouter()
+  const params = useParams()
 
   const locales = routing.locales
-  const maybeSeg = pathname.split('/')[1]
-  const segTyped = maybeSeg as unknown as (typeof routing.locales)[number]
-  const current = maybeSeg && locales.includes(segTyped) ? segTyped : routing.defaultLocale
+  const current = (params?.locale as string) || routing.defaultLocale
 
-  const switchLocale = async (loc: (typeof routing.locales)[number]) => {
-    // Normalize and split pathname into segments without empty entries
-    const parts = (pathname || '/').split('/').filter(Boolean) // e.g. ['en', 'projects'] or ['projects']
+  const switchLocale = (newLocale: string) => {
+    const pathSegments = window.location.pathname.split('/').filter(Boolean)
 
-    if (parts.length === 0) {
-      router.push(`/${loc}`)
-      return
-    }
-
-    // If the first segment is a locale, replace it. Otherwise, insert locale at the front.
-    if (locales.includes(parts[0] as (typeof routing.locales)[number])) {
-      parts[0] = loc as string
+    if (pathSegments.length > 0 && locales.includes(pathSegments[0] as any)) {
+      pathSegments[0] = newLocale
     } else {
-      parts.unshift(loc as string)
+      pathSegments.unshift(newLocale)
     }
 
-    const to = `/${parts.join('/')}`
+    const newPath = '/' + pathSegments.join('/')
 
-    // Use absolute URL to avoid relative-navigation issues, and fallback to full reload
-    if (typeof window === 'undefined') {
-      router.push(to)
-      return
-    }
-
-    const absolute = new URL(to, window.location.origin).toString()
-    // router.push may accept absolute URLs; if it rejects, fall back to full navigation
-    try {
-      // Some router implementations return a Promise
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore-next-line: router.push overloads
-      const res = router.push(absolute)
-      // router.push might return void or a Promise
-      if (typeof res === 'object' && res !== null) {
-        const maybePromise = res as PromiseLike<unknown>
-        if (typeof (maybePromise as PromiseLike<unknown>).then === 'function') {
-          await maybePromise
-        }
-      }
-    } catch {
-      window.location.assign(absolute)
-    }
+    window.location.href = newPath
   }
 
   return (
@@ -66,8 +35,8 @@ export default function LanguageSwitcher() {
       <select
         aria-label="Language selector"
         className={styles.select}
-        defaultValue={current}
-        onChange={(e) => switchLocale(e.target.value as (typeof routing.locales)[number])}
+        value={current}
+        onChange={(e) => switchLocale(e.target.value)}
       >
         {locales.map((loc) => (
           <option key={loc} value={loc}>
