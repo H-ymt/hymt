@@ -16,6 +16,6 @@
 
 @media screen and (width <= 40rem) {
   .page {
-    padding-block: 2.5rem 2rem;
+    padding-block: 4rem 2rem;
   }
 }
