@@ -1,0 +1,34 @@
+.list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.link {
+  padding-inline: 0.755rem;
+  padding-block: 0.25rem;
+  font-size: 0.875rem;
+}
+.link {
+  display: inline-block;
+}
+
+.link::after {
+  content: "";
+  display: block;
+  width: 85%;
+  height: 0.0625rem;
+  margin-inline: auto;
+  background: var(--foreground);
+  scale: 0;
+  transform-origin: center;
+  transition: scale 0.2s;
+}
+
+.link:hover::after {
+  scale: 1;
+}
+
+.link.active::after {
+  scale: 1;
+}
