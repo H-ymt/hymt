@@ -40,6 +40,7 @@
 
 .bioDate {
   font-size: 0.95em;
+  margin-block-end: 0.125rem;
 }
 
 .bioItem[data-current="true"] {
@@ -65,8 +66,8 @@
 
 .stackItems {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  gap: 2rem;
 }
 
 .stackItem {
@@ -78,6 +79,7 @@
 }
 
 .stackLabel {
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   color: var(--foreground);
+  line-height: 1.5;
 }
