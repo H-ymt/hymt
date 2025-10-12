@@ -37,6 +37,7 @@ body {
   color: var(--foreground);
   background: var(--background);
   letter-spacing: 0.02em;
+  line-height: 1.5;
   font-family: Inter, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
