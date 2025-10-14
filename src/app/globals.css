@@ -4,6 +4,15 @@
   --foreground-muted: #6c6c70;
   --border: #e7e3e4;
   --container-width: 48rem;
+
+  --color-primary-lighter: #5ebeff;
+  --color-primary-light: #3ea0ff;
+  --color-primary: #2c94fc;
+  --color-primary-dark: #1e8cfa;
+  --color-primary-darker: #0f7af7;
+
+  --font-base: Inter, Arial, Hiragino Kaku Gothic ProN, Hiragino Sans, Noto Sans JP, sans-serif, Segoe UI Emoji, Segoe UI Symbol;
+  --font-inter: var(--font-inter);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -12,6 +21,12 @@
     --foreground: #e4e4e7;
     --foreground-muted: #a1a1aa;
     --border: #3f3f47;
+
+    --color-primary-lighter: #0f7af7;
+    --color-primary-light: #1e8cfa;
+    --color-primary: #2c94fc;
+    --color-primary-dark: #3ea0ff;
+    --color-primary-darker: #5ebeff;
   }
 }
 
@@ -36,9 +51,9 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   line-height: 1.5;
-  font-family: Inter, sans-serif;
+  font-family: var(--font-base);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
