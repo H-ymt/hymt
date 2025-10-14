@@ -4,7 +4,9 @@ import styles from "./index.module.css";
 export default function Header() {
   return (
     <header className={styles.header}>
-      <Menu />
+      <div className={styles.headerInner}>
+        <Menu />
+      </div>
     </header>
   );
 }
