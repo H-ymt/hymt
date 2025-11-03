@@ -9,6 +9,7 @@
   padding-block: 0.25rem;
   font-size: 0.875rem;
 }
+
 .link {
   display: inline-block;
 }
@@ -23,6 +24,7 @@
   scale: 0;
   transform-origin: center;
   transition: scale 0.2s;
+  translate: 0 -0.125rem;
 }
 
 .link:hover::after {

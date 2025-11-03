@@ -9,7 +9,7 @@ export default function Menu() {
 
   const item = [
     { name: "Home", link: "/" },
-    { name: "Note", link: "https://knowledge-base-1pg.pages.dev/" },
+    { name: "Note", link: "/note" },
     { name: "Projects", link: "/projects" },
     { name: "Resume", link: "/resume" },
   ];
@@ -38,9 +38,9 @@ export default function Menu() {
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     className={styles.externalIcon}
                   >
                     <path d="M13 5H19V11" />
