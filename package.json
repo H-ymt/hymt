@@ -6,11 +6,12 @@
   "scripts": {
     "dev": "next dev",
     "prebuild": "pnpm fetch-knowledge || echo 'Warning: fetch-knowledge failed, continuing with existing entries.json'",
-    "build": "next build",
+    "build": "pnpm fetch-knowledge || echo 'Warning: fetch-knowledge failed, continuing with existing entries.json' && next build",
+    "build:cloudflare": "pnpm fetch-knowledge || echo 'Warning: fetch-knowledge failed, continuing with existing entries.json' && opennextjs-cloudflare build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
-    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "pnpm build:cloudflare && opennextjs-cloudflare deploy",
+    "preview": "pnpm build:cloudflare && opennextjs-cloudflare preview",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv ./cloudflare-env.d.ts",
     "fetch-knowledge": "tsx scripts/fetch-knowledge.ts"
   },
