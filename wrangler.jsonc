@@ -17,6 +17,15 @@
 	},
 	"observability": {
 		"enabled": true
+	},
+	"kv_namespaces": [
+		{
+			"binding": "KNOWLEDGE_KV",
+			"id": "cfe3bfbb717248738dce1190e5bd2337"
+		}
+	],
+	"triggers": {
+		"crons": ["0 */6 * * *"]
 	}
 	/**
 	 * Smart Placement

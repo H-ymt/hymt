@@ -8,7 +8,11 @@ export async function GET(request: NextRequest) {
   const page = parseInt(searchParams.get("page") || "1", 10);
   const limit = parseInt(searchParams.get("limit") || String(ITEMS_PER_PAGE), 10);
 
-  const allEntries = await getEntries();
+  // Cloudflare環境からKVを取得
+  const cloudflareEnv = (globalThis as unknown as { env?: CloudflareEnv }).env;
+  const env = cloudflareEnv?.KNOWLEDGE_KV ? { KNOWLEDGE_KV: cloudflareEnv.KNOWLEDGE_KV } : undefined;
+
+  const allEntries = await getEntries(env);
   const startIndex = (page - 1) * limit;
   const endIndex = startIndex + limit;
   const entries = allEntries.slice(startIndex, endIndex);

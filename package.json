@@ -5,9 +5,8 @@
   "packageManager": "pnpm@10.18.3",
   "scripts": {
     "dev": "next dev",
-    "prebuild": "pnpm fetch-knowledge || echo 'Warning: fetch-knowledge failed, continuing with existing entries.json'",
-    "build": "pnpm fetch-knowledge || echo 'Warning: fetch-knowledge failed, continuing with existing entries.json' && next build",
-    "build:cloudflare": "pnpm fetch-knowledge || echo 'Warning: fetch-knowledge failed, continuing with existing entries.json' && opennextjs-cloudflare build",
+    "build": "next build",
+    "build:cloudflare": "opennextjs-cloudflare build",
     "start": "next start",
     "lint": "next lint",
     "deploy": "pnpm build:cloudflare && opennextjs-cloudflare deploy",
