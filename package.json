@@ -5,8 +5,8 @@
   "packageManager": "pnpm@10.18.3",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "build:cloudflare": "opennextjs-cloudflare build",
+    "build": "pnpm fetch-knowledge && next build",
+    "build:cloudflare": "pnpm fetch-knowledge && opennextjs-cloudflare build",
     "start": "next start",
     "lint": "next lint",
     "deploy": "pnpm build:cloudflare && opennextjs-cloudflare deploy",
