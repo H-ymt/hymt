@@ -11,7 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio",
+  title: "Hymt Portfolio",
   description: "A personal portfolio website showcasing projects and skills.",
 };
 
