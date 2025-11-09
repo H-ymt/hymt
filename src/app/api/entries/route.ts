@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getEntries } from "../../../lib/data/entries";
 
+// ISR: 1時間ごとに再生成
+export const revalidate = 3600;
+
 const ITEMS_PER_PAGE = 10;
 
 export async function GET(request: NextRequest) {

@@ -3,6 +3,9 @@ import { getEntries } from "../../lib/data/entries";
 import styles from "./page.module.css";
 import NoteList from "./components/note-list";
 
+// ISR: 1時間ごとに再生成（Cronトリガーが6時間ごとにKVを更新するため、1時間間隔で十分）
+export const revalidate = 3600;
+
 export default async function NotePage() {
   // Cloudflare環境からKVを取得（サーバーサイド）
   const cloudflareEnv = (globalThis as unknown as { env?: CloudflareEnv }).env;
