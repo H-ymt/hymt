@@ -1,5 +1,6 @@
 import Container from "../components/container";
 import { getEntries } from "../../lib/data/entries";
+import { getKnowledgeKV } from "../../lib/utils/cloudflare";
 import styles from "./page.module.css";
 import NoteList from "./components/note-list";
 
@@ -7,9 +8,8 @@ import NoteList from "./components/note-list";
 export const revalidate = 3600;
 
 export default async function NotePage() {
-  // Cloudflare環境からKVを取得（サーバーサイド）
-  const cloudflareEnv = (globalThis as unknown as { env?: CloudflareEnv }).env;
-  const env = cloudflareEnv?.KNOWLEDGE_KV ? { KNOWLEDGE_KV: cloudflareEnv.KNOWLEDGE_KV } : undefined;
+  const kv = getKnowledgeKV();
+  const env = kv ? { KNOWLEDGE_KV: kv } : undefined;
   const entries = await getEntries(env);
 
   return (

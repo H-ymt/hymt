@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getEntries } from "../../../lib/data/entries";
+import { getKnowledgeKV } from "../../../lib/utils/cloudflare";
 
 // ISR: 1時間ごとに再生成
 export const revalidate = 3600;
@@ -11,10 +12,8 @@ export async function GET(request: NextRequest) {
   const page = parseInt(searchParams.get("page") || "1", 10);
   const limit = parseInt(searchParams.get("limit") || String(ITEMS_PER_PAGE), 10);
 
-  // Cloudflare環境からKVを取得
-  const cloudflareEnv = (globalThis as unknown as { env?: CloudflareEnv }).env;
-  const env = cloudflareEnv?.KNOWLEDGE_KV ? { KNOWLEDGE_KV: cloudflareEnv.KNOWLEDGE_KV } : undefined;
-
+  const kv = getKnowledgeKV();
+  const env = kv ? { KNOWLEDGE_KV: kv } : undefined;
   const allEntries = await getEntries(env);
   const startIndex = (page - 1) * limit;
   const endIndex = startIndex + limit;

@@ -16,17 +16,17 @@ export async function scheduled(event: ScheduledEvent, env: CloudflareEnv, ctx: 
     (async () => {
       try {
         console.log("[Cron] Fetching knowledge entries...");
-        
-        const fetchEnv = {
-          GITHUB_USERNAME: env.GITHUB_USERNAME,
-          GITHUB_TOKEN: env.GITHUB_TOKEN,
-          ZENN_USER: env.ZENN_USER,
-        };
 
         if (!env.KNOWLEDGE_KV) {
           console.error("[Cron] KNOWLEDGE_KV not available");
           return;
         }
+
+        const fetchEnv = {
+          GITHUB_USERNAME: env.GITHUB_USERNAME,
+          GITHUB_TOKEN: env.GITHUB_TOKEN,
+          ZENN_USER: env.ZENN_USER,
+        };
 
         const entries = await fetchKnowledgeEntries(fetchEnv, { source: "all" });
         await saveEntries(entries, { KNOWLEDGE_KV: env.KNOWLEDGE_KV });
@@ -38,4 +38,3 @@ export async function scheduled(event: ScheduledEvent, env: CloudflareEnv, ctx: 
     })()
   );
 }
-
