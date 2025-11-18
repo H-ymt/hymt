@@ -4,7 +4,7 @@ import { getKnowledgeKV } from "../../lib/utils/cloudflare";
 import styles from "./page.module.css";
 import NoteList from "./components/note-list";
 
-// ISR: 1時間ごとに再生成（Cronトリガーが6時間ごとにKVを更新するため、1時間間隔で十分）
+// ISR: 1時間ごとに再生成（Cronトリガーが6時間ごとにKVを更新するため、1時間間隔）
 export const revalidate = 3600;
 
 export default async function NotePage() {

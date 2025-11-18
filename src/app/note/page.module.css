@@ -61,11 +61,11 @@
 }
 
 .entryDate {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
 }
 
 .entryTitle {
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 500;
   margin: 0;
   display: flex;
@@ -115,7 +115,7 @@
 
 .entrySummary {
   color: var(--foreground-muted);
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   line-height: 1.6;
   margin: 0;
 }

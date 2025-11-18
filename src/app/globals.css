@@ -11,7 +11,7 @@
   --color-primary-dark: #1e8cfa;
   --color-primary-darker: #0f7af7;
 
-  --font-base: Inter, Arial, Hiragino Kaku Gothic ProN, Hiragino Sans, Noto Sans JP, sans-serif, Segoe UI Emoji, Segoe UI Symbol;
+  --font-base: Montserrat, Arial, Hiragino Kaku Gothic ProN, Hiragino Sans, Noto Sans JP, sans-serif, Segoe UI Emoji, Segoe UI Symbol;
   --font-inter: var(--font-inter);
 }
 
