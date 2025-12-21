@@ -4,7 +4,7 @@
  */
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "hymt",
+  "name": "personal-web-site",
   "main": ".open-next/worker.js",
   "compatibility_date": "2025-03-01",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
@@ -28,6 +28,16 @@
     {
       "binding": "ASSETS_BUCKET",
       "bucket_name": "hymt-assets"
+    },
+    {
+      "binding": "NEXT_INC_CACHE_R2_BUCKET",
+      "bucket_name": "hymt-cache"
+    }
+  ],
+  "routes": [
+    {
+      "pattern": "h-ymt.dev",
+      "custom_domain": true
     }
   ]
   /**

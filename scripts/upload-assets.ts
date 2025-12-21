@@ -4,7 +4,6 @@ import { execSync } from "child_process";
 
 const PUBLIC_DIR = join(process.cwd(), "public");
 const BUCKET_NAME = "hymt-assets";
-const ACCOUNT_ID = "06908d43a5be3581635f875e0293a770";
 
 // アップロード対象の拡張子
 const TARGET_EXTENSIONS = [".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp", ".avif"];
@@ -39,7 +38,7 @@ async function main() {
 
       console.log(`[upload-assets] Uploading ${relativePath} to R2 bucket ${BUCKET_NAME}...`);
 
-      const command = `CLOUDFLARE_ACCOUNT_ID=${ACCOUNT_ID} pnpm wrangler r2 object put "${BUCKET_NAME}/${key}" --file="${file}"`;
+      const command = `pnpm wrangler r2 object put "${BUCKET_NAME}/${key}" --file="${file}" --remote`;
 
       try {
         execSync(command, { stdio: "inherit" });
