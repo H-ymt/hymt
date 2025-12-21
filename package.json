@@ -6,14 +6,15 @@
   "scripts": {
     "dev": "next dev",
     "build": "pnpm fetch-knowledge && next build",
-    "build:cloudflare": "pnpm fetch-knowledge && opennextjs-cloudflare build",
+    "build:cloudflare": "pnpm fetch-knowledge && npx @opennextjs/cloudflare build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "pnpm fetch-knowledge && pnpm build:cloudflare && opennextjs-cloudflare deploy && pnpm sync-kv",
-    "preview": "pnpm build:cloudflare && opennextjs-cloudflare preview",
+    "deploy": "pnpm fetch-knowledge && pnpm build:cloudflare && npx @opennextjs/cloudflare deploy && pnpm sync-kv",
+    "preview": "pnpm build:cloudflare && npx @opennextjs/cloudflare preview",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv ./cloudflare-env.d.ts",
     "fetch-knowledge": "tsx scripts/fetch-knowledge.ts",
-    "sync-kv": "tsx scripts/sync-kv.ts"
+    "sync-kv": "tsx scripts/sync-kv.ts",
+    "upload-assets": "tsx scripts/upload-assets.ts"
   },
   "dependencies": {
     "@opennextjs/cloudflare": "^1.3.0",
