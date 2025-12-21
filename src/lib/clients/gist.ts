@@ -33,11 +33,7 @@ export interface FetchOptions {
 /**
  * リトライ付きfetch
  */
-async function fetchWithRetry(
-  input: URL | string,
-  headers: Record<string, string>,
-  maxAttempts = 3
-): Promise<Response> {
+async function fetchWithRetry(input: URL | string, headers: Record<string, string>, maxAttempts = 3): Promise<Response> {
   let attempt = 0;
   const now = Math.floor(Date.now() / 1000);
 
@@ -50,10 +46,7 @@ async function fetchWithRetry(
 
     // レート制限の場合はリセット時刻まで待機
     const reset = res.headers.get("x-ratelimit-reset");
-    const waitMs =
-      res.status === 429 && reset
-        ? Math.max(0, (parseInt(reset, 10) - now) * 1000)
-        : 300 * Math.pow(2, attempt - 1);
+    const waitMs = res.status === 429 && reset ? Math.max(0, (parseInt(reset, 10) - now) * 1000) : 300 * Math.pow(2, attempt - 1);
 
     await new Promise((r) => setTimeout(r, waitMs));
   }
@@ -123,4 +116,3 @@ export function createGistClient(options: GistClientOptions) {
     },
   };
 }
-

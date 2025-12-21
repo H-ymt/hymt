@@ -81,60 +81,75 @@ async function main() {
   console.log(`[fetch-knowledge] GITHUB_USERNAME: ${env.GITHUB_USERNAME ? "設定済み" : "未設定"}`);
   console.log(`[fetch-knowledge] ZENN_USER: ${env.ZENN_USER ? "設定済み" : "未設定"}`);
 
+  // 既存データの読み込み（マージ用）
+  let prevEntries: KnowledgeEntry[] = [];
+  try {
+    const prevRaw = await readFile(entriesJsonPath, "utf-8");
+    prevEntries = JSON.parse(prevRaw) as KnowledgeEntry[];
+  } catch {
+    // 既存が無ければ空
+  }
+
   // 並列データ取得
-  const tasks: Promise<KnowledgeEntry[]>[] = [];
+  const gistTask =
+    env.GITHUB_USERNAME && (source === "all" || source === "gist")
+      ? timeIt("gist", async () => {
+          const gist = createGistClient({
+            username: env.GITHUB_USERNAME!,
+            token: env.GITHUB_TOKEN,
+          });
+          const items = await gist.fetchUserGists({ force: args.force });
+          const normalized = normalizeGist(items);
+          return normalized.length > 0 || args.force
+            ? { source: "gist", items: normalized, updated: true }
+            : { source: "gist" as const, items: [] as KnowledgeEntry[], updated: false };
+        }).catch((e) => {
+          console.warn("[fetch-knowledge] gist skipped: %s", String(e));
+          return { source: "gist" as const, items: [] as KnowledgeEntry[], updated: false };
+        })
+      : Promise.resolve({ source: "gist" as const, items: [] as KnowledgeEntry[], updated: false });
 
-  // Gist取得タスク
-  if (env.GITHUB_USERNAME && (source === "all" || source === "gist")) {
-    tasks.push(
-      timeIt("gist", async () => {
-        const gist = createGistClient({
-          username: env.GITHUB_USERNAME!,
-          token: env.GITHUB_TOKEN,
-        });
-        const items = await gist.fetchUserGists({ force: args.force });
-        return normalizeGist(items);
-      }).catch((e) => {
-        console.warn("[fetch-knowledge] gist skipped: %s", String(e));
-        return [] as KnowledgeEntry[];
-      })
-    );
+  const zennTask =
+    env.ZENN_USER && (source === "all" || source === "zenn")
+      ? timeIt("zenn", async () => {
+          const zenn = createZennClient({
+            user: env.ZENN_USER!,
+            includeScraps: true,
+          });
+          const feed = await zenn.fetchFeed({ force: args.force });
+          const normalized = normalizeZenn(feed);
+          return normalized.length > 0 || args.force
+            ? { source: "zenn", items: normalized, updated: true }
+            : { source: "zenn" as const, items: [] as KnowledgeEntry[], updated: false };
+        }).catch((e) => {
+          console.warn("[fetch-knowledge] zenn skipped: %s", String(e));
+          return { source: "zenn" as const, items: [] as KnowledgeEntry[], updated: false };
+        })
+      : Promise.resolve({ source: "zenn" as const, items: [] as KnowledgeEntry[], updated: false });
+
+  // 結果の取得
+  const [gistResult, zennResult] = await Promise.all([gistTask, zennTask]);
+
+  let entries: KnowledgeEntry[] = [];
+
+  // Gistのマージ
+  if (gistResult.updated) {
+    entries.push(...gistResult.items);
+  } else {
+    entries.push(...prevEntries.filter((e) => e.source === "gist"));
   }
 
-  // Zenn取得タスク
-  if (env.ZENN_USER && (source === "all" || source === "zenn")) {
-    tasks.push(
-      timeIt("zenn", async () => {
-        const zenn = createZennClient({
-          user: env.ZENN_USER!,
-          includeScraps: true,
-        });
-        const feed = await zenn.fetchFeed({ force: args.force });
-        return normalizeZenn(feed);
-      }).catch((e) => {
-        console.warn("[fetch-knowledge] zenn skipped: %s", String(e));
-        return [] as KnowledgeEntry[];
-      })
-    );
+  // Zennのマージ
+  if (zennResult.updated) {
+    entries.push(...zennResult.items);
+  } else {
+    entries.push(...prevEntries.filter((e) => e.source === "zenn"));
   }
 
-  // 結果の統合
-  const lists = await Promise.all(tasks);
-  let entries = lists.flat();
-
-  // 304処理（更新なしの場合は既存データを保持）
+  // 全くデータが取れず、かつ既存もない場合は終了
   if (entries.length === 0) {
-    try {
-      const prevRaw = await readFile(entriesJsonPath, "utf-8");
-      const prev: unknown = JSON.parse(prevRaw);
-      if (Array.isArray(prev) && prev.length > 0) {
-        entries = prev as KnowledgeEntry[];
-        console.log("[fetch-knowledge] No updates, using existing entries.json");
-        return;
-      }
-    } catch {
-      // 既存が無ければそのまま空で進む
-    }
+    console.log("[fetch-knowledge] No entries found and no existing data.");
+    return;
   }
 
   // フィルタリング
@@ -171,4 +186,3 @@ main().catch((error) => {
   console.error("[fetch-knowledge] Fatal error:", error);
   process.exit(1);
 });
-
