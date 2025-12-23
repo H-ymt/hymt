@@ -11,8 +11,8 @@
   --color-primary-dark: #1e8cfa;
   --color-primary-darker: #0f7af7;
 
-  --font-base: Inter, Arial, Hiragino Kaku Gothic ProN, Hiragino Sans, Noto Sans JP, sans-serif, Segoe UI Emoji, Segoe UI Symbol;
-  --font-inter: var(--font-inter);
+  --font-base: 'Inter', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --font-inter: 'Inter', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
