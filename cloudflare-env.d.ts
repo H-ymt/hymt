@@ -6,6 +6,7 @@ declare namespace Cloudflare {
 		NEXTJS_ENV: string;
 		ASSETS: Fetcher;
 		KNOWLEDGE_KV?: KVNamespace;
+		ASSETS_BUCKET?: R2Bucket;
 		GITHUB_USERNAME?: string;
 		GITHUB_TOKEN?: string;
 		ZENN_USER?: string;
