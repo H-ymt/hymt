@@ -23,5 +23,6 @@ export default function cloudflareLoader({ src, width, quality }: CloudflareLoad
     return src;
   }
 
-  return `/cdn-cgi/image/${params}/${cleanSrc}`;
+  // API Route経由でR2の画像を取得するように変更
+  return `/cdn-cgi/image/${params}/api/assets/${cleanSrc}`;
 }
