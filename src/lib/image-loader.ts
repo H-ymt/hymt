@@ -6,7 +6,7 @@ interface CloudflareLoaderProps {
   quality?: number;
 }
 
-export default function cloudflareLoader({ src }: CloudflareLoaderProps) {
+export default function cloudflareLoader({ src, width: _width, quality: _quality }: CloudflareLoaderProps) {
   // src は "/logo-nextjs.svg" のような形式を想定
   // 先頭のスラッシュを削除
   const cleanSrc = src.startsWith("/") ? src.slice(1) : src;
