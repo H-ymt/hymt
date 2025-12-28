@@ -12,8 +12,9 @@
     "deploy": "pnpm build:worker && npx @opennextjs/cloudflare deploy && pnpm sync-kv",
     "preview": "pnpm build:worker && npx @opennextjs/cloudflare preview",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv ./cloudflare-env.d.ts",
-    "fetch-knowledge": "tsx scripts/fetch-knowledge.ts",
+    "fetch-knowledge": "tsx scripts/fetch-knowledge.ts && tsx scripts/sync-local-kv.ts",
     "sync-kv": "tsx scripts/sync-kv.ts",
+    "sync-local-kv": "tsx scripts/sync-local-kv.ts",
     "upload-assets": "tsx scripts/upload-assets.ts"
   },
   "dependencies": {

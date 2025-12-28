@@ -1,5 +1,20 @@
 [
   {
+    "id": "706b16aaa8ac1641c41812915f7a35a3",
+    "source": "gist",
+    "slug": "web-706b16aa",
+    "title": "日本語Webフォントを使用しない、パフォーマンスを考慮したフォント構成",
+    "summary": "日本語Webフォントを使用しない、パフォーマンスを考慮したフォント構成",
+    "url": "https://gist.github.com/H-ymt/706b16aaa8ac1641c41812915f7a35a3",
+    "tags": [
+      "gist",
+      "css"
+    ],
+    "publishedAt": "2025-10-15T13:22:22.000Z",
+    "updatedAt": "2025-12-28T01:15:33.000Z",
+    "author": "H-ymt"
+  },
+  {
     "id": "6405c20df939f89c058efcf5ed2cf7ff",
     "source": "gist",
     "slug": "agentsmd-6405c20d",
