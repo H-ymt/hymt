@@ -27,7 +27,30 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
   headers.set("etag", object.httpEtag);
   headers.set("Cache-Control", "public, max-age=31536000, immutable");
 
+  if (!headers.has("content-type")) {
+    const ext = key.split(".").pop()?.toLowerCase();
+    const contentType = getContentType(ext);
+    if (contentType) {
+      headers.set("Content-Type", contentType);
+    }
+  }
+
   return new NextResponse(object.body, {
     headers,
   });
+}
+
+function getContentType(ext?: string): string | undefined {
+  if (!ext) return undefined;
+  const map: Record<string, string> = {
+    png: "image/png",
+    jpg: "image/jpeg",
+    jpeg: "image/jpeg",
+    gif: "image/gif",
+    svg: "image/svg+xml",
+    webp: "image/webp",
+    avif: "image/avif",
+    ico: "image/x-icon",
+  };
+  return map[ext];
 }
