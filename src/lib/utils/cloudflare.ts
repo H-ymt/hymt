@@ -37,4 +37,3 @@ export function getFetchKnowledgeEnv(): {
     ZENN_USER: cloudflareEnv?.ZENN_USER || process.env.ZENN_USER,
   };
 }
-

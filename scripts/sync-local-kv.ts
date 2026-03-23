@@ -1,5 +1,5 @@
-import { readFile, writeFile, mkdir } from "fs/promises";
-import { join } from "path";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { join } from "node:path";
 
 const entriesJsonPath = join(process.cwd(), "src/data/entries.json");
 const KV_KEY = "knowledge:entries";

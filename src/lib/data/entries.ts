@@ -1,4 +1,4 @@
-import { KnowledgeEntry } from "../types";
+import type { KnowledgeEntry } from "../types";
 
 const KV_KEY = "knowledge:entries";
 
@@ -22,8 +22,8 @@ export async function getEntries(env?: { KNOWLEDGE_KV?: KVNamespace }): Promise<
   // フォールバック: ファイルシステムから読み込み（ビルド時など）
   if (typeof process !== "undefined" && typeof process.cwd === "function") {
     try {
-      const { readFile } = await import("fs/promises");
-      const { join } = await import("path");
+      const { readFile } = await import("node:fs/promises");
+      const { join } = await import("node:path");
       const entriesJsonPath = join(process.cwd(), "src/data/entries.json");
       const fileContents = await readFile(entriesJsonPath, "utf-8");
       const entries: unknown = JSON.parse(fileContents);
@@ -41,6 +41,9 @@ export async function getEntries(env?: { KNOWLEDGE_KV?: KVNamespace }): Promise<
 /**
  * KVストレージに記事データを保存
  */
-export async function saveEntries(entries: KnowledgeEntry[], env: { KNOWLEDGE_KV: KVNamespace }): Promise<void> {
+export async function saveEntries(
+  entries: KnowledgeEntry[],
+  env: { KNOWLEDGE_KV: KVNamespace },
+): Promise<void> {
   await env.KNOWLEDGE_KV.put(KV_KEY, JSON.stringify(entries));
 }

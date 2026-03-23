@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 import { getEntries } from "../../../lib/data/entries";
 import { getKnowledgeKV } from "../../../lib/utils/cloudflare";
 

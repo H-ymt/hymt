@@ -4,14 +4,18 @@
  * または、open-next.config.tsで設定できます
  */
 
-import { fetchKnowledgeEntries } from "../src/lib/fetch-knowledge-worker";
 import { saveEntries } from "../src/lib/data/entries";
+import { fetchKnowledgeEntries } from "../src/lib/fetch-knowledge-worker";
 
 /**
  * Cronトリガーで実行される関数
  * 6時間ごとに記事データを更新
  */
-export async function scheduled(event: ScheduledEvent, env: CloudflareEnv, ctx: ExecutionContext): Promise<void> {
+export async function scheduled(
+  _event: ScheduledEvent,
+  env: CloudflareEnv,
+  ctx: ExecutionContext,
+): Promise<void> {
   ctx.waitUntil(
     (async () => {
       try {
@@ -35,6 +39,6 @@ export async function scheduled(event: ScheduledEvent, env: CloudflareEnv, ctx: 
       } catch (error) {
         console.error("[Cron] Error fetching knowledge entries:", error);
       }
-    })()
+    })(),
   );
 }

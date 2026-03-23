@@ -1,7 +1,7 @@
-import { readFile, writeFile, unlink } from "fs/promises";
-import { join } from "path";
-import { execSync } from "child_process";
-import { tmpdir } from "os";
+import { execSync } from "node:child_process";
+import { readFile, unlink, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 
 const entriesJsonPath = join(process.cwd(), "src/data/entries.json");
 const KV_KEY = "knowledge:entries";

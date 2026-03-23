@@ -1,8 +1,8 @@
-import Container from "../components/container";
 import { getEntries } from "../../lib/data/entries";
 import { getKnowledgeKV } from "../../lib/utils/cloudflare";
-import styles from "./page.module.css";
+import Container from "../components/container";
 import NoteList from "./components/note-list";
+import styles from "./page.module.css";
 
 // ISR: 1時間ごとに再生成（Cronトリガーが6時間ごとにKVを更新するため、1時間間隔）
 export const revalidate = 3600;

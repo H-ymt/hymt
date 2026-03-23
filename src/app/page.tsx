@@ -1,6 +1,6 @@
 import Image from "next/image";
-import styles from "./page.module.css";
 import Container from "./components/container";
+import styles from "./page.module.css";
 
 type BioItem = { id: number; date?: string; body: React.ReactNode };
 
@@ -135,7 +135,8 @@ export default function Home() {
         <h1 className={styles.headingPosition}>Frontend Engineer</h1>
 
         <p className={styles.headingText}>
-          I often create webs using Word Press, but I like developing using Java Script frameworks such as Next.js and Astro.
+          I often create webs using Word Press, but I like developing using Java Script frameworks
+          such as Next.js and Astro.
         </p>
       </div>
 
@@ -143,7 +144,11 @@ export default function Home() {
         <h2 className={styles.sectionHeading}>Biography</h2>
         <ol className={styles.bioList}>
           {bio.map(({ id, date, body }, index) => (
-            <li key={id} className={styles.bioItem} data-current={index === bio.length - 1 ? "true" : "false"}>
+            <li
+              key={id}
+              className={styles.bioItem}
+              data-current={index === bio.length - 1 ? "true" : "false"}
+            >
               {date && (
                 <time className={styles.bioDate} dateTime={`${date.replace(".", "-")}-01`}>
                   {date}
@@ -164,7 +169,15 @@ export default function Home() {
               <div className={styles.stackItems}>
                 {stack.items.map((item) => (
                   <div key={item.label} className={styles.stackItem}>
-                    {item.logo && <Image className={styles.stackLogo} src={item.logo} alt="" width="30" height="30" />}
+                    {item.logo && (
+                      <Image
+                        className={styles.stackLogo}
+                        src={item.logo}
+                        alt=""
+                        width="30"
+                        height="30"
+                      />
+                    )}
                     <p className={styles.stackLabel}>{item.label}</p>
                   </div>
                 ))}

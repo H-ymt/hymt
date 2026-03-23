@@ -1,7 +1,7 @@
-import { KnowledgeEntry } from "../types";
-import { GistApiItem } from "../clients/gist";
-import { ZennFeed } from "../clients/zenn";
-import { toSlugWithHint, buildTags, toISODateString } from "../utils";
+import type { GistApiItem } from "../clients/gist";
+import type { ZennFeed } from "../clients/zenn";
+import type { KnowledgeEntry } from "../types";
+import { buildTags, toISODateString, toSlugWithHint } from "../utils";
 
 /**
  * Gist APIのレスポンスをKnowledgeEntry形式に正規化する
@@ -54,4 +54,3 @@ export function normalizeZenn(feed: ZennFeed): KnowledgeEntry[] {
     };
   });
 }
-

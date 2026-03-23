@@ -29,8 +29,9 @@ export interface FetchOptions {
 function parseTag(xml: string, tagName: string): string[] {
   const regex = new RegExp(`<${tagName}[^>]*>(.*?)</${tagName}>`, "gs");
   const matches: string[] = [];
-  let match;
+  let match: RegExpExecArray | null = null;
 
+  // biome-ignore lint/suspicious/noAssignInExpressions: standard RegExp iteration pattern
   while ((match = regex.exec(xml)) !== null) {
     matches.push(match[1]);
   }
@@ -81,8 +82,11 @@ function parseZennXml(xml: string, link: string): ZennFeed {
     const linkText = parseTag(block, "link")[0] || parseLinkHref(block);
     const linkUrl = linkText.trim() || link;
 
-    const descriptionText = parseTag(block, "description")[0] || parseTag(block, "content")[0] || "";
-    const description = descriptionText ? unescapeHtml(removeCdata(descriptionText)).trim() : undefined;
+    const descriptionText =
+      parseTag(block, "description")[0] || parseTag(block, "content")[0] || "";
+    const description = descriptionText
+      ? unescapeHtml(removeCdata(descriptionText)).trim()
+      : undefined;
 
     const pubDateText = parseTag(block, "pubDate")[0] || parseTag(block, "published")[0] || "";
     const pubDate = pubDateText.trim() || undefined;
@@ -113,7 +117,10 @@ export function createZennClient(options: ZennClientOptions) {
   const { user, includeScraps = true } = options;
 
   async function fetchOne(kind: "articles" | "scraps", options?: FetchOptions): Promise<ZennFeed> {
-    const url = kind === "articles" ? `https://zenn.dev/${user}/feed` : `https://zenn.dev/${user}/scraps/feed`;
+    const url =
+      kind === "articles"
+        ? `https://zenn.dev/${user}/feed`
+        : `https://zenn.dev/${user}/scraps/feed`;
     const etagKey = `zenn:${user}:${kind}`;
     const prevEtag = options?.force ? undefined : await getETag(etagKey);
 
@@ -166,4 +173,3 @@ export function createZennClient(options: ZennClientOptions) {
     },
   };
 }
-
