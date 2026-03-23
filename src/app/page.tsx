@@ -131,13 +131,10 @@ const stack = [
 export default function Home() {
   return (
     <Container type="page">
-      <div className={styles.heading}>
-        <h1 className={styles.headingPosition}>Frontend Engineer</h1>
-
-        <p className={styles.headingText}>
-          I often create webs using Word Press, but I like developing using Java Script frameworks
-          such as Next.js and Astro.
-        </p>
+      <h1 className="sr-only">Yamato Handai Personal Website</h1>
+      <div className={styles.intro}>
+        <p className={styles.introHeading}>A frontend engineer focused on building fast, accessible experiences for the modern web.</p>
+        <p className={styles.introBody}>I build websites and web applications using WordPress, React, and modern frontend tools, with a strong focus on performance, accessibility, and clean, maintainable code.</p>
       </div>
 
       <section className={styles.section}>

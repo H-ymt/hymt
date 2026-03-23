@@ -52,3 +52,6 @@ next-env.d.ts
 bun.lock
 package-lock.json
 yarn.lock
+
+# AI
+.claude/settings.local.json
