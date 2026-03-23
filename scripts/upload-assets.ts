@@ -1,6 +1,6 @@
-import { readdir } from "fs/promises";
-import { join, relative } from "path";
-import { execSync } from "child_process";
+import { execSync } from "node:child_process";
+import { readdir } from "node:fs/promises";
+import { join, relative } from "node:path";
 
 const PUBLIC_DIR = join(process.cwd(), "public");
 const BUCKET_NAME = "hymt-assets";
@@ -14,7 +14,7 @@ async function getFiles(dir: string): Promise<string[]> {
     dirents.map((dirent) => {
       const res = join(dir, dirent.name);
       return dirent.isDirectory() ? getFiles(res) : res;
-    })
+    }),
   );
   return files.flat();
 }

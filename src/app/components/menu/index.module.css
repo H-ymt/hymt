@@ -5,8 +5,8 @@
 }
 
 .link {
-  padding-inline: 0.755rem;
   padding-block: 0.25rem;
+  padding-inline: 0.755rem;
   font-size: 0.875rem;
 }
 
@@ -15,16 +15,16 @@
 }
 
 .link::after {
-  content: "";
   display: block;
   width: 85%;
   height: 0.0625rem;
   margin-inline: auto;
+  content: "";
   background: var(--foreground);
-  scale: 0;
   transform-origin: center;
-  transition: scale 0.2s;
+  scale: 0;
   translate: 0 -0.125rem;
+  transition: scale 0.2s;
 }
 
 .link:hover::after {

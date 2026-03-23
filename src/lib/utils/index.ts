@@ -1,6 +1,6 @@
-import { mkdir, readFile, writeFile } from "fs/promises";
-import { join } from "path";
-import { ISODateString, Tag, Slug } from "../types";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { join } from "node:path";
+import type { ISODateString, Slug, Tag } from "../types";
 
 const cacheDir = join(process.cwd(), ".cache");
 const etagJsonPath = join(cacheDir, "etag.json");
@@ -41,7 +41,12 @@ export async function setETag(key: string, etag: string): Promise<void> {
 /**
  * Linkヘッダーをパースする
  */
-export function parseLinkHeader(linkHeader: string | null): { next?: string; prev?: string; first?: string; last?: string } {
+export function parseLinkHeader(linkHeader: string | null): {
+  next?: string;
+  prev?: string;
+  first?: string;
+  last?: string;
+} {
   const links: Record<string, string> = {};
   if (!linkHeader) return links;
 
@@ -63,7 +68,7 @@ export function parseLinkHeader(linkHeader: string | null): { next?: string; pre
 export function toISODateString(date: string | number | Date): ISODateString | null {
   try {
     const d = typeof date === "string" || typeof date === "number" ? new Date(date) : date;
-    if (isNaN(d.getTime())) return null;
+    if (Number.isNaN(d.getTime())) return null;
     return d.toISOString() as ISODateString;
   } catch {
     return null;
@@ -82,7 +87,10 @@ export function toSlugWithHint(title: string, hint: string): Slug {
     .replace(/-+/g, "-")
     .replace(/^-+|-+$/g, "");
 
-  const hintPart = hint.slice(0, 8).toLowerCase().replace(/[^\w-]/g, "");
+  const hintPart = hint
+    .slice(0, 8)
+    .toLowerCase()
+    .replace(/[^\w-]/g, "");
   return `${slug}-${hintPart}` as Slug;
 }
 
@@ -103,7 +111,7 @@ export function ensureUniqueSlugs<T extends { slug: Slug }>(entries: T[]): T[] {
     const n = counter.get(s) ?? 0;
     counter.set(s, n + 1);
     if (n === 0) return e;
-    const newSlug = (`${s}-${n}` as string) as Slug;
+    const newSlug = `${s}-${n}` as string as Slug;
     return { ...e, slug: newSlug };
   });
 }
@@ -115,7 +123,7 @@ export function toSinceIso(since: string): string | null {
   try {
     // YYYY-MM-DD形式を想定
     const date = new Date(since);
-    if (isNaN(date.getTime())) return null;
+    if (Number.isNaN(date.getTime())) return null;
     return date.toISOString();
   } catch {
     return null;
@@ -138,4 +146,3 @@ export async function timeIt<T>(label: string, fn: () => Promise<T>): Promise<T>
     throw error;
   }
 }
-

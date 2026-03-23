@@ -1,8 +1,8 @@
+import { normalizeGist, normalizeZenn } from "./adapters/normalize";
 import { createGistClient } from "./clients/gist";
 import { createZennClient } from "./clients/zenn";
-import { normalizeGist, normalizeZenn } from "./adapters/normalize";
-import { KnowledgeEntry } from "./types";
-import { ensureUniqueSlugs, toSinceIso, timeIt } from "./utils";
+import type { KnowledgeEntry } from "./types";
+import { ensureUniqueSlugs, timeIt, toSinceIso } from "./utils";
 
 export interface FetchKnowledgeEnv {
   GITHUB_USERNAME?: string;
@@ -22,7 +22,7 @@ export interface FetchKnowledgeOptions {
  */
 export async function fetchKnowledgeEntries(
   env: FetchKnowledgeEnv,
-  options: FetchKnowledgeOptions = {}
+  options: FetchKnowledgeOptions = {},
 ): Promise<KnowledgeEntry[]> {
   const source = options.source || "all";
 
@@ -46,7 +46,7 @@ export async function fetchKnowledgeEntries(
       }).catch((e) => {
         console.warn("[fetch-knowledge-worker] gist skipped: %s", String(e));
         return [] as KnowledgeEntry[];
-      })
+      }),
     );
   }
 
@@ -63,7 +63,7 @@ export async function fetchKnowledgeEntries(
       }).catch((e) => {
         console.warn("[fetch-knowledge-worker] zenn skipped: %s", String(e));
         return [] as KnowledgeEntry[];
-      })
+      }),
     );
   }
 
@@ -97,4 +97,3 @@ export async function fetchKnowledgeEntries(
   console.log(`[fetch-knowledge-worker] Completed! ${entries.length} entries fetched`);
   return entries;
 }
-

@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
-import { fetchKnowledgeEntries } from "../../../lib/fetch-knowledge-worker";
+import { type NextRequest, NextResponse } from "next/server";
 import { saveEntries } from "../../../lib/data/entries";
+import { fetchKnowledgeEntries } from "../../../lib/fetch-knowledge-worker";
 import { getFetchKnowledgeEnv, getKnowledgeKV } from "../../../lib/utils/cloudflare";
 
 /**
@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
         error: "Failed to fetch knowledge entries",
         message: error instanceof Error ? error.message : String(error),
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

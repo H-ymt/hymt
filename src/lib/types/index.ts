@@ -16,4 +16,3 @@ export interface KnowledgeEntry {
   readonly author?: string;
   readonly image?: string;
 }
-

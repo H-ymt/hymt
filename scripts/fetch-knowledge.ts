@@ -1,11 +1,11 @@
-import { readFile, writeFile, mkdir } from "fs/promises";
-import { join } from "path";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { join } from "node:path";
 import { config } from "dotenv";
+import { normalizeGist, normalizeZenn } from "../src/lib/adapters/normalize";
 import { createGistClient } from "../src/lib/clients/gist";
 import { createZennClient } from "../src/lib/clients/zenn";
-import { normalizeGist, normalizeZenn } from "../src/lib/adapters/normalize";
-import { KnowledgeEntry } from "../src/lib/types";
-import { ensureUniqueSlugs, toSinceIso, timeIt } from "../src/lib/utils";
+import type { KnowledgeEntry } from "../src/lib/types";
+import { ensureUniqueSlugs, timeIt, toSinceIso } from "../src/lib/utils";
 
 // 環境変数を読み込む
 const envLocalPath = join(process.cwd(), ".env.local");
@@ -55,7 +55,7 @@ function parseArgs(args: string[]): Args {
       result.force = true;
     } else if (arg === "--limit" && i + 1 < args.length) {
       const value = parseInt(args[i + 1], 10);
-      if (!isNaN(value)) {
+      if (!Number.isNaN(value)) {
         result.limit = value;
       }
       i++;

@@ -1,4 +1,4 @@
-import { getETag, setETag, parseLinkHeader } from "../utils";
+import { getETag, parseLinkHeader, setETag } from "../utils";
 
 export interface GistApiFileInfo {
   readonly filename: string;
@@ -33,7 +33,11 @@ export interface FetchOptions {
 /**
  * リトライ付きfetch
  */
-async function fetchWithRetry(input: URL | string, headers: Record<string, string>, maxAttempts = 3): Promise<Response> {
+async function fetchWithRetry(
+  input: URL | string,
+  headers: Record<string, string>,
+  maxAttempts = 3,
+): Promise<Response> {
   let attempt = 0;
   const now = Math.floor(Date.now() / 1000);
 
@@ -46,7 +50,10 @@ async function fetchWithRetry(input: URL | string, headers: Record<string, strin
 
     // レート制限の場合はリセット時刻まで待機
     const reset = res.headers.get("x-ratelimit-reset");
-    const waitMs = res.status === 429 && reset ? Math.max(0, (parseInt(reset, 10) - now) * 1000) : 300 * Math.pow(2, attempt - 1);
+    const waitMs =
+      res.status === 429 && reset
+        ? Math.max(0, (parseInt(reset, 10) - now) * 1000)
+        : 300 * 2 ** (attempt - 1);
 
     await new Promise((r) => setTimeout(r, waitMs));
   }
@@ -81,7 +88,9 @@ export function createGistClient(options: GistClientOptions) {
 
       const collected: GistApiItem[] = [];
       let page = 1;
-      let nextUrl: URL | null = new URL(`https://api.github.com/users/${username}/gists?per_page=100&page=${page}`);
+      let nextUrl: URL | null = new URL(
+        `https://api.github.com/users/${username}/gists?per_page=100&page=${page}`,
+      );
 
       while (nextUrl) {
         const res = await fetchWithRetry(nextUrl, headers);

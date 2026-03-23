@@ -11,8 +11,10 @@
   --color-primary-dark: #1e8cfa;
   --color-primary-darker: #0f7af7;
 
-  --font-base: 'Inter', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
-  --font-inter: 'Inter', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+  --font-base:
+    "Inter", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif,
+    "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-inter: "Inter", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -49,13 +51,13 @@ body {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  letter-spacing: 0.01em;
-  line-height: 1.5;
   font-family: var(--font-base);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+  color: var(--foreground);
+  letter-spacing: 0.01em;
+  background: var(--background);
 }
 
 h2,
@@ -68,15 +70,15 @@ h6 {
 }
 
 h2 {
-  font-size: 1.25em;
   margin-block-end: 0.75em;
+  font-size: 1.5em;
 }
 
 h3,
 h4,
 h5,
 h6 {
-  font-size: 1em;
+  font-size: 1.25em;
 }
 
 p {
@@ -96,7 +98,7 @@ a {
   padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0 0 0 0);
   white-space: nowrap;
   border: 0;
+  clip: rect(0 0 0 0);
 }

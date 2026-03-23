@@ -1,10 +1,10 @@
 "use client";
 
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { useEffect, useRef } from "react";
-import { KnowledgeEntry, Tag } from "../../../lib/types";
-import styles from "../page.module.css";
 import Link from "next/link";
+import { useEffect, useRef } from "react";
+import type { KnowledgeEntry, Tag } from "../../../lib/types";
+import styles from "../page.module.css";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -30,8 +30,18 @@ function LoadingSpinner() {
       aria-hidden="true"
     >
       <circle cx="12" cy="12" r="10" opacity="0.25" />
-      <path d="M12 2a10 10 0 0 1 10 10" opacity="0.75" strokeDasharray="31.416" strokeDashoffset="31.416">
-        <animate attributeName="stroke-dashoffset" dur="1.5s" values="31.416;0" repeatCount="indefinite" />
+      <path
+        d="M12 2a10 10 0 0 1 10 10"
+        opacity="0.75"
+        strokeDasharray="31.416"
+        strokeDashoffset="31.416"
+      >
+        <animate
+          attributeName="stroke-dashoffset"
+          dur="1.5s"
+          values="31.416;0"
+          repeatCount="indefinite"
+        />
       </path>
     </svg>
   );
@@ -47,13 +57,21 @@ function SourceIcon({ source }: { source: "gist" | "zenn" }) {
   }
 
   return (
-    <svg className={styles.sourceIcon} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      className={styles.sourceIcon}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path d="M.264 23.771h4.984c.264 0 .498-.147.645-.352L19.614.874c.176-.293-.029-.645-.381-.645h-4.72c-.235 0-.44.117-.557.323L.03 23.361c-.088.176.029.41.234.41zM17.445 23.419l6.479-10.408c.205-.323-.029-.733-.41-.733h-4.691c-.176 0-.352.088-.44.235l-6.655 10.643c-.176.264.029.616.352.616h4.779c.234-.001.468-.118.586-.353z" />
     </svg>
   );
 }
 
-async function fetchEntries(page: number): Promise<{ entries: KnowledgeEntry[]; hasMore: boolean }> {
+async function fetchEntries(
+  page: number,
+): Promise<{ entries: KnowledgeEntry[]; hasMore: boolean }> {
   const res = await fetch(`/api/entries?page=${page}&limit=${ITEMS_PER_PAGE}`);
   if (!res.ok) {
     throw new Error("Failed to fetch entries");
@@ -97,7 +115,7 @@ export default function NoteList({ initialEntries }: { initialEntries: Knowledge
         threshold: 0.8, // 要素の80%が見えるまで待つ
         // 読み込み開始を遅らせるため、要素がほぼ完全に画面に入ってから読み込む
         rootMargin: "0px",
-      }
+      },
     );
 
     const currentTarget = observerTarget.current;
@@ -126,7 +144,9 @@ export default function NoteList({ initialEntries }: { initialEntries: Knowledge
     return (
       <div className={styles.empty}>
         <p>記事がありません。</p>
-        <p className={styles.emptySub}>entries.jsonを生成するには、fetch-knowledgeスクリプトを実行してください。</p>
+        <p className={styles.emptySub}>
+          entries.jsonを生成するには、fetch-knowledgeスクリプトを実行してください。
+        </p>
       </div>
     );
   }
@@ -147,7 +167,12 @@ export default function NoteList({ initialEntries }: { initialEntries: Knowledge
                   <span className={styles.entrySource}>
                     <SourceIcon source={entry.source} />
                   </span>
-                  <Link href={entry.url} target="_blank" rel="noopener noreferrer" className={styles.entryLink}>
+                  <Link
+                    href={entry.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.entryLink}
+                  >
                     {entry.title}
                     <svg
                       className={styles.externalIcon}

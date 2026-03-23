@@ -1,8 +1,8 @@
 "use client";
 
 import clsx from "clsx";
-import styles from "./index.module.css";
 import { usePathname } from "next/navigation";
+import styles from "./index.module.css";
 
 export default function Menu() {
   const pathname = usePathname();
@@ -10,7 +10,7 @@ export default function Menu() {
   const item = [
     { name: "Home", link: "/" },
     { name: "Note", link: "/note" },
-    { name: "Projects", link: "/projects" },
+    { name: "Projects", link: "https://project-showcase.h-ymt.dev/" },
     { name: "Resume", link: "/resume" },
   ];
 
@@ -42,6 +42,7 @@ export default function Menu() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     className={styles.externalIcon}
+                    aria-hidden="true"
                   >
                     <path d="M13 5H19V11" />
                     <path d="M19 5L5 19" />
