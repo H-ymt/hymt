@@ -6,9 +6,16 @@ import { getFetchKnowledgeEnv, getKnowledgeKV } from "../../../lib/utils/cloudfl
 /**
  * Workersエッジでfetch-knowledgeを実行するAPIルート
  * POST /api/fetch-knowledge
- * Cronトリガーからも呼び出し可能
+ * GitHub Actions cronから定期実行される
  */
 export async function POST(request: NextRequest) {
+  const authHeader = request.headers.get("authorization");
+  const cronSecret = process.env.CRON_SECRET;
+
+  if (!cronSecret || authHeader !== `Bearer ${cronSecret}`) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const env = getFetchKnowledgeEnv();
     const kv = getKnowledgeKV();
@@ -61,7 +68,3 @@ export async function POST(request: NextRequest) {
   }
 }
 
-/**
- * Cronトリガー用のハンドラー
- * OpenNextJSでは、scheduled関数をworker.tsで定義する必要があります
- */

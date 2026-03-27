@@ -4,7 +4,7 @@ import Header from "./components/header";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {
-  title: "Hymt Portfolio",
+  title: "Yamato Handai - Frontend Engineer",
   description: "A personal portfolio website showcasing projects and skills.",
 };
 

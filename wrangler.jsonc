@@ -21,9 +21,6 @@
       "id": "cfe3bfbb717248738dce1190e5bd2337"
     }
   ],
-  "triggers": {
-    "crons": ["0 */6 * * *"]
-  },
   "r2_buckets": [
     {
       "binding": "ASSETS_BUCKET",
