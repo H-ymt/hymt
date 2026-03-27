@@ -133,8 +133,13 @@ export default function Home() {
     <Container type="page">
       <h1 className="sr-only">Yamato Handai Personal Website</h1>
       <div className={styles.intro}>
-        <p className={styles.introHeading}>A frontend engineer focused on building fast, accessible experiences for the modern web.</p>
-        <p className={styles.introBody}>I build websites and web applications using WordPress, React, and modern frontend tools, with a strong focus on performance, accessibility, and clean, maintainable code.</p>
+        <p className={styles.introHeading}>
+          A frontend engineer focused on building fast, accessible experiences for the modern web.
+        </p>
+        <p className={styles.introBody}>
+          I build websites and web applications using WordPress, React, and modern frontend tools,
+          with a strong focus on performance, accessibility, and clean, maintainable code.
+        </p>
       </div>
 
       <section className={styles.section}>

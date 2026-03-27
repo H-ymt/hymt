@@ -65,9 +65,10 @@
 }
 
 .entryTitle {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr;
   gap: 0.5rem;
-  align-items: center;
+  align-items: start;
   margin: 0;
   font-size: 0.9375rem;
   font-weight: 500;
@@ -76,13 +77,12 @@
 .entrySource {
   display: inline-flex;
   align-items: center;
-  margin-bottom: 0.125rem;
 }
 
 .sourceIcon {
-  flex-shrink: 0;
   width: 1rem;
   height: 1rem;
+  margin-block: calc((1lh - 1rem) / 2);
   color: var(--foreground-muted);
 }
 
