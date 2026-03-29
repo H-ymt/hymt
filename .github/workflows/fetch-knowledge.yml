@@ -14,12 +14,6 @@ jobs:
           SITE_URL: ${{ secrets.SITE_URL }}
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
         run: |
-          HTTP_CODE=$(curl -s -o /tmp/response.txt -w '%{http_code}' -X POST "${SITE_URL}/api/fetch-knowledge" \
+          curl -sf -X POST "${SITE_URL}/api/fetch-knowledge" \
             -H "Authorization: Bearer ${CRON_SECRET}" \
-            -H "Content-Type: application/json")
-          cat /tmp/response.txt
-          echo ""
-          echo "HTTP Status: ${HTTP_CODE}"
-          if [ "$HTTP_CODE" -ge 400 ]; then
-            exit 1
-          fi
+            -H "Content-Type: application/json"
