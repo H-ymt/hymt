@@ -5,6 +5,15 @@ const nextConfig: NextConfig = {
     loader: "custom",
     loaderFile: "./src/lib/image-loader.ts",
   },
+  async redirects() {
+    return [
+      {
+        source: "/resume",
+        destination: "https://resume-showcase.h-ymt.dev/",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
