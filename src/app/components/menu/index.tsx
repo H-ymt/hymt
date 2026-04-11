@@ -11,7 +11,7 @@ export default function Menu() {
     { name: "Home", link: "/" },
     { name: "Note", link: "/note" },
     { name: "Projects", link: "https://project-showcase.h-ymt.dev/" },
-    { name: "Resume", link: "https://resume-showcase.h-ymt.dev/" },
+    { name: "Resume", link: "https://project-showcase.h-ymt.dev/resume" },
   ];
 
   return (
