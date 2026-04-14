@@ -10,8 +10,8 @@ export default function Menu() {
   const item = [
     { name: "Home", link: "/" },
     { name: "Note", link: "/note" },
-    { name: "Projects", link: "https://project-showcase.h-ymt.dev/" },
-    { name: "Resume", link: "https://project-showcase.h-ymt.dev/resume" },
+    { name: "Projects", link: "https://portfolio.h-ymt.dev/" },
+    { name: "Resume", link: "https://portfolio.h-ymt.dev/resume" },
   ];
 
   return (
