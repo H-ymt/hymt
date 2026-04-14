@@ -65,31 +65,23 @@
 }
 
 .entryTitle {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.5rem;
-  align-items: start;
   margin: 0;
   font-size: 0.9375rem;
   font-weight: 500;
 }
 
 .entrySource {
-  display: inline-flex;
-  align-items: center;
+  margin-inline-end: 0.375rem;
+  vertical-align: middle;
 }
 
 .sourceIcon {
   width: 1rem;
   height: 1rem;
-  margin-block: calc((1lh - 1rem) / 2);
   color: var(--foreground-muted);
 }
 
 .entryLink {
-  display: inline-flex;
-  gap: 0.375rem;
-  align-items: center;
   color: var(--foreground);
   text-decoration: none;
   transition: text-decoration 0.2s;
@@ -102,9 +94,10 @@
 }
 
 .externalIcon {
-  flex-shrink: 0;
   width: 0.6875rem;
   height: 0.6875rem;
+  margin-inline-start: 0.375rem;
+  vertical-align: middle;
   opacity: 0.6;
   transition: opacity 0.2s;
 }
