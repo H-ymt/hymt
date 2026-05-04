@@ -60,6 +60,19 @@
   border-inline-start-color: var(--foreground);
 }
 
+.dotfilesBody {
+  margin-block: 0.875rem 0.75rem;
+  font-size: 0.9375rem;
+  color: var(--foreground-muted);
+}
+
+.dotfilesLink {
+  font-size: 0.9375rem;
+  color: var(--foreground);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
 .stackContainer {
   display: grid;
   gap: 3rem;

@@ -163,6 +163,22 @@ export default function Home() {
       </section>
 
       <section className={styles.section}>
+        <h2 className={styles.sectionHeading}>Dotfiles</h2>
+        <p className={styles.dotfilesBody}>
+          My personal development environment configuration, including shell, editor, and CLI
+          tooling setup.
+        </p>
+        <a
+          className={styles.dotfilesLink}
+          href="https://github.com/H-ymt/dotfiles"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          github.com/H-ymt/dotfiles
+        </a>
+      </section>
+
+      <section className={styles.section}>
         <h2 className={styles.sectionHeading}>What I can do</h2>
         <div className={styles.stackContainer}>
           {stack.map((stack) => (
