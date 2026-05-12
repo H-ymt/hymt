@@ -4,14 +4,14 @@
   "private": true,
   "packageManager": "pnpm@10.18.3",
   "scripts": {
-    "dev": "astro dev",
-    "build": "pnpm fetch-knowledge && astro build",
+    "dev": "tsx scripts/fetch-knowledge.ts && tsx scripts/sync-local-kv.ts && astro dev",
+    "build": "tsx scripts/fetch-knowledge.ts && astro build",
     "preview": "astro build && wrangler dev --config dist/server/wrangler.json",
     "lint": "biome check .",
     "lint:fix": "biome check --fix .",
     "format": "biome format --fix .",
     "deploy": "pnpm build && wrangler deploy --config dist/server/wrangler.json && pnpm sync-kv",
-    "fetch-knowledge": "tsx scripts/fetch-knowledge.ts && tsx scripts/sync-local-kv.ts",
+    "fetch-knowledge": "tsx scripts/fetch-knowledge.ts",
     "sync-kv": "tsx scripts/sync-kv.ts",
     "sync-local-kv": "tsx scripts/sync-local-kv.ts"
   },
