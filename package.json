@@ -4,37 +4,28 @@
   "private": true,
   "packageManager": "pnpm@10.18.3",
   "scripts": {
-    "dev": "next dev",
-    "build": "pnpm fetch-knowledge && next build",
-    "build:worker": "npx @opennextjs/cloudflare build",
-    "start": "next start",
+    "dev": "astro dev",
+    "build": "pnpm fetch-knowledge && astro build",
+    "preview": "astro build && wrangler dev --config dist/server/wrangler.json",
     "lint": "biome check .",
     "lint:fix": "biome check --fix .",
     "format": "biome format --fix .",
-    "deploy": "pnpm build:worker && npx @opennextjs/cloudflare deploy && pnpm sync-kv",
-    "preview": "pnpm build:worker && npx @opennextjs/cloudflare preview",
-    "cf-typegen": "wrangler types --env-interface CloudflareEnv ./cloudflare-env.d.ts",
+    "deploy": "pnpm build && wrangler deploy --config dist/server/wrangler.json && pnpm sync-kv",
     "fetch-knowledge": "tsx scripts/fetch-knowledge.ts && tsx scripts/sync-local-kv.ts",
     "sync-kv": "tsx scripts/sync-kv.ts",
-    "sync-local-kv": "tsx scripts/sync-local-kv.ts",
-    "upload-assets": "tsx scripts/upload-assets.ts"
+    "sync-local-kv": "tsx scripts/sync-local-kv.ts"
   },
   "dependencies": {
-    "@opennextjs/cloudflare": "^1.19.1",
-    "@tanstack/react-query": "^5.99.0",
-    "next": "15.5.14",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "@astrojs/cloudflare": "^13.5.0",
+    "astro": "^6.3.1"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.9",
     "@biomejs/biome": "2.4.9",
     "@types/node": "^24.12.2",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "clsx": "^2.1.1",
     "dotenv": "^17.4.2",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
-    "wrangler": "^4.82.2"
+    "wrangler": "^4.90.1"
   }
 }
