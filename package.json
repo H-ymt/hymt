@@ -5,7 +5,7 @@
   "packageManager": "pnpm@10.18.3",
   "scripts": {
     "dev": "tsx scripts/fetch-knowledge.ts && tsx scripts/sync-local-kv.ts && astro dev",
-    "build": "tsx scripts/fetch-knowledge.ts && astro build",
+    "build": "tsx scripts/fetch-knowledge.ts && astro build && tsx scripts/dedup-wrangler.ts",
     "preview": "astro build && wrangler dev --config dist/server/wrangler.json",
     "lint": "biome check .",
     "lint:fix": "biome check --fix .",
