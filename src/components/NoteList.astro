@@ -236,6 +236,15 @@ function formatDate(dateString: string): string {
     link.target = "_blank";
     link.rel = "noopener noreferrer";
     link.style.cssText = "color:var(--foreground);text-decoration:none;";
+    link.addEventListener("mouseenter", () => {
+      link.style.textDecoration = "underline";
+      link.style.textDecorationThickness = "0.0625rem";
+      link.style.textUnderlineOffset = "0.15em";
+      link.style.textDecorationColor = "color-mix(in srgb, var(--foreground) 40%, transparent)";
+    });
+    link.addEventListener("mouseleave", () => {
+      link.style.textDecoration = "none";
+    });
     link.textContent = entry.title;
     link.appendChild(buildExternalIcon());
 
@@ -387,7 +396,9 @@ function formatDate(dateString: string): string {
   }
 
   .entrySource {
+    margin-block-start: 0.15em;
     margin-inline-end: 0.375rem;
+    display: inline-block;
     vertical-align: middle;
   }
 
@@ -400,16 +411,15 @@ function formatDate(dateString: string): string {
   .entryLink {
     color: var(--foreground);
     text-decoration: none;
-    transition: text-decoration 0.2s;
   }
 
   .entryLink:hover {
     text-decoration: underline;
     text-decoration-thickness: 0.0625rem;
-    text-underline-offset: 0.125rem;
+    text-underline-offset: 0.15em;
     text-decoration-color: color-mix(
       in srgb,
-      var(--foreground) 80%,
+      var(--foreground) 40%,
       transparent
     );
   }
@@ -426,6 +436,17 @@ function formatDate(dateString: string): string {
 
   .entryLink:hover .externalIcon {
     opacity: 1;
+  }
+
+  :global(#entry-list a[href]:hover) {
+    text-decoration: underline;
+    text-decoration-thickness: 0.0625rem;
+    text-underline-offset: 0.15em;
+    text-decoration-color: color-mix(
+      in srgb,
+      var(--foreground) 40%,
+      transparent
+    );
   }
 
   .entrySummary {
