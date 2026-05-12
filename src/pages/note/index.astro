@@ -1,0 +1,31 @@
+---
+export const prerender = false;
+
+import NoteList from "../../components/NoteList.astro";
+import Container from "../../components/Container.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getEntries } from "../../lib/data/entries";
+import { getKnowledgeKV } from "../../lib/utils/cloudflare";
+
+const ITEMS_PER_PAGE = 10;
+
+const kv = getKnowledgeKV();
+const allEntries = await getEntries(kv ? { KNOWLEDGE_KV: kv } : undefined);
+const initialEntries = allEntries.slice(0, ITEMS_PER_PAGE);
+const hasMore = allEntries.length > ITEMS_PER_PAGE;
+---
+
+<BaseLayout title="Note - Yamato Handai">
+  <Container type="page">
+    <h1 class="pageTitle">Note</h1>
+    <NoteList initialEntries={initialEntries} hasMore={hasMore} />
+  </Container>
+</BaseLayout>
+
+<style>
+  .pageTitle {
+    margin-block-end: 0.75em;
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+</style>

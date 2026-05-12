@@ -1,0 +1,94 @@
+---
+const pathname = Astro.url.pathname;
+
+const items = [
+  { name: "Home", link: "/" },
+  { name: "Note", link: "/note" },
+  { name: "Projects", link: "https://portfolio.h-ymt.dev/" },
+  { name: "Resume", link: "https://portfolio.h-ymt.dev/resume" },
+];
+---
+
+<nav>
+  <ul class="list">
+    {
+      items.map((menu) => {
+        const isActive =
+          menu.link === "/" ? pathname === "/" : pathname.startsWith(menu.link);
+        const isExternal = /^https?:\/\//.test(menu.link);
+
+        return (
+          <li class="item">
+            <a
+              class:list={["link", { active: isActive }]}
+              href={menu.link}
+              aria-current={isActive ? "page" : undefined}
+              target={isExternal ? "_blank" : undefined}
+              rel={isExternal ? "noopener noreferrer" : undefined}
+            >
+              {menu.name}
+              {isExternal && (
+                <svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="externalIcon"
+                  aria-hidden="true"
+                >
+                  <path d="M13 5H19V11" />
+                  <path d="M19 5L5 19" />
+                </svg>
+              )}
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</nav>
+
+<style>
+  .list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+  }
+
+  .link {
+    padding-block: 0.25rem;
+    padding-inline: 0.755rem;
+    font-size: 0.875rem;
+    display: inline-block;
+  }
+
+  .link::after {
+    display: block;
+    width: 85%;
+    height: 0.0625rem;
+    margin-inline: auto;
+    content: "";
+    background: var(--foreground);
+    transform-origin: center;
+    scale: 0;
+    translate: 0 -0.125rem;
+    transition: scale 0.2s;
+  }
+
+  .link:hover::after {
+    scale: 1;
+  }
+
+  .link.active::after {
+    scale: 1;
+  }
+
+  .externalIcon {
+    translate: 0.05rem 0.05rem;
+    scale: 0.9;
+  }
+</style>

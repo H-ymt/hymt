@@ -41,9 +41,11 @@
       "**/*.jsx",
       "**/*.json",
       "**/*.css",
+      "!.astro",
+      "!dist",
       "!.next",
-      "!node_modules",
       "!.open-next",
+      "!node_modules",
       "!.wrangler",
       "!cloudflare-env.d.ts"
     ]
