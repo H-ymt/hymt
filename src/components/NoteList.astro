@@ -296,7 +296,10 @@ function formatDate(dateString: string): string {
 
         page = nextPage;
         hasMore = data.hasMore;
-        if (!hasMore) observer.disconnect();
+        if (!hasMore) {
+          observer.disconnect();
+          target.hidden = true;
+        }
       } catch (e) {
         console.error(e);
       } finally {
