@@ -9,8 +9,7 @@ import { getKnowledgeKV } from "../../lib/utils/cloudflare";
 
 const ITEMS_PER_PAGE = 10;
 
-const cloudflareEnv = Astro.locals.runtime?.env as CloudflareEnv | undefined;
-const kv = cloudflareEnv ? getKnowledgeKV(cloudflareEnv) : undefined;
+const kv = getKnowledgeKV();
 const allEntries = await getEntries(kv ? { KNOWLEDGE_KV: kv } : undefined);
 const initialEntries = allEntries.slice(0, ITEMS_PER_PAGE);
 const hasMore = allEntries.length > ITEMS_PER_PAGE;

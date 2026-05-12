@@ -4,13 +4,12 @@ import { getKnowledgeKV } from "../../lib/utils/cloudflare";
 
 const ITEMS_PER_PAGE = 10;
 
-export const GET: APIRoute = async ({ request, locals }) => {
+export const GET: APIRoute = async ({ request }) => {
   const url = new URL(request.url);
   const page = parseInt(url.searchParams.get("page") || "1", 10);
   const limit = parseInt(url.searchParams.get("limit") || String(ITEMS_PER_PAGE), 10);
 
-  const env = locals.runtime?.env as CloudflareEnv | undefined;
-  const kv = env ? getKnowledgeKV(env) : undefined;
+  const kv = getKnowledgeKV();
   const allEntries = await getEntries(kv ? { KNOWLEDGE_KV: kv } : undefined);
 
   const startIndex = (page - 1) * limit;

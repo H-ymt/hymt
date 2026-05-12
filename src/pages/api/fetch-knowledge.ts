@@ -3,7 +3,7 @@ import { saveEntries } from "../../lib/data/entries";
 import { fetchKnowledgeEntries } from "../../lib/fetch-knowledge-worker";
 import { getFetchKnowledgeEnv, getKnowledgeKV } from "../../lib/utils/cloudflare";
 
-export const POST: APIRoute = async ({ request, locals }) => {
+export const POST: APIRoute = async ({ request }) => {
   const authHeader = request.headers.get("authorization");
   const cronSecret = process.env.CRON_SECRET;
 
@@ -16,8 +16,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
   try {
     const fetchEnv = getFetchKnowledgeEnv();
-    const cloudflareEnv = locals.runtime?.env as CloudflareEnv | undefined;
-    const kv = cloudflareEnv ? getKnowledgeKV(cloudflareEnv) : undefined;
+    const kv = getKnowledgeKV();
 
     if (!kv) {
       const entries = await fetchKnowledgeEntries(fetchEnv, { source: "all" });
