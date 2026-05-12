@@ -259,13 +259,13 @@ function formatDate(dateString: string): string {
     return li;
   }
 
-  const list = document.getElementById("entry-list");
+  const list = document.getElementById("entry-list") as HTMLUListElement | null;
   const target = document.getElementById("observer-target");
   const loadingContainer = document.getElementById("loading-container");
 
   if (list && target) {
-    let page = parseInt((list as HTMLElement).dataset.page ?? "1", 10);
-    let hasMore = (list as HTMLElement).dataset.hasMore === "true";
+    let page = parseInt(list.dataset.page ?? "1", 10);
+    let hasMore = list.dataset.hasMore === "true";
     let isFetching = false;
 
     async function loadMore() {
@@ -281,7 +281,7 @@ function formatDate(dateString: string): string {
         const data = (await res.json()) as { entries: EntryData[]; hasMore: boolean };
 
         for (const entry of data.entries) {
-          list!.insertBefore(buildEntryItem(entry), target);
+          list.appendChild(buildEntryItem(entry));
         }
 
         page = nextPage;
