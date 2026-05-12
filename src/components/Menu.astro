@@ -13,7 +13,8 @@ const items = [
   <ul class="list">
     {
       items.map((menu) => {
-        const isActive = menu.link === "/" ? pathname === "/" : pathname.startsWith(menu.link);
+        const isActive =
+          menu.link === "/" ? pathname === "/" : pathname.startsWith(menu.link);
         const isExternal = /^https?:\/\//.test(menu.link);
 
         return (
@@ -87,6 +88,7 @@ const items = [
   }
 
   .externalIcon {
-    translate: 0.1875rem 0rem;
+    translate: 0.05rem 0.05rem;
+    scale: 0.9;
   }
 </style>
