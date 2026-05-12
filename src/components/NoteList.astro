@@ -152,7 +152,7 @@ function formatDate(dateString: string): string {
     svg.setAttribute("viewBox", "0 0 16 16");
     svg.setAttribute("fill", "currentColor");
     svg.setAttribute("aria-hidden", "true");
-    svg.className = "sourceIcon";
+    svg.setAttribute("class", "sourceIcon");
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     path.setAttribute(
       "d",
@@ -167,7 +167,7 @@ function formatDate(dateString: string): string {
     svg.setAttribute("viewBox", "0 0 24 24");
     svg.setAttribute("fill", "currentColor");
     svg.setAttribute("aria-hidden", "true");
-    svg.className = "sourceIcon";
+    svg.setAttribute("class", "sourceIcon");
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     path.setAttribute(
       "d",
@@ -186,7 +186,7 @@ function formatDate(dateString: string): string {
     svg.setAttribute("stroke-linecap", "round");
     svg.setAttribute("stroke-linejoin", "round");
     svg.setAttribute("aria-hidden", "true");
-    svg.className = "externalIcon";
+    svg.setAttribute("class", "externalIcon");
     const p1 = document.createElementNS("http://www.w3.org/2000/svg", "path");
     p1.setAttribute("d", "M13 5H19V11");
     const p2 = document.createElementNS("http://www.w3.org/2000/svg", "path");
