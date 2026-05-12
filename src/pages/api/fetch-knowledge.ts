@@ -31,10 +31,18 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    let options: { source?: "all" | "gist" | "zenn"; force?: boolean } = {};
+    const ALLOWED_SOURCES = ["all", "gist", "zenn"] as const;
+    type Source = (typeof ALLOWED_SOURCES)[number];
+    let options: { source?: Source; force?: boolean } = {};
     try {
-      const body = (await request.json()) as { source?: "all" | "gist" | "zenn"; force?: boolean };
-      options = { source: body.source || "all", force: body.force === true };
+      const body = (await request.json()) as { source?: unknown; force?: unknown };
+      if (body.source !== undefined && !ALLOWED_SOURCES.includes(body.source as Source)) {
+        return new Response(
+          JSON.stringify({ error: "Invalid source. Must be one of: all, gist, zenn" }),
+          { status: 400, headers: { "Content-Type": "application/json" } },
+        );
+      }
+      options = { source: (body.source as Source) || "all", force: body.force === true };
     } catch {
       // ボディなしの場合はデフォルト値を使用
     }
@@ -53,10 +61,7 @@ export const POST: APIRoute = async ({ request }) => {
   } catch (error) {
     console.error("[fetch-knowledge API] Error:", error);
     return new Response(
-      JSON.stringify({
-        error: "Failed to fetch knowledge entries",
-        message: error instanceof Error ? error.message : String(error),
-      }),
+      JSON.stringify({ error: "Internal server error" }),
       { status: 500, headers: { "Content-Type": "application/json" } },
     );
   }

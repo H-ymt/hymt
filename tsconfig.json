@@ -6,6 +6,6 @@
     },
     "types": ["node"]
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/*.astro"],
+  "include": ["**/*.ts", "**/*.tsx", "**/*.astro", "cloudflare-env.d.ts"],
   "exclude": ["node_modules"]
 }

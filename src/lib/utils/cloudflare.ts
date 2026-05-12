@@ -11,8 +11,8 @@ export function getFetchKnowledgeEnv(): {
 } {
   const cfEnv = env as CloudflareEnv;
   return {
-    GITHUB_USERNAME: cfEnv.GITHUB_USERNAME || process.env.GITHUB_USERNAME,
-    GITHUB_TOKEN: cfEnv.GITHUB_TOKEN || process.env.GITHUB_TOKEN,
-    ZENN_USER: cfEnv.ZENN_USER || process.env.ZENN_USER,
+    GITHUB_USERNAME: cfEnv.GITHUB_USERNAME,
+    GITHUB_TOKEN: cfEnv.GITHUB_TOKEN,
+    ZENN_USER: cfEnv.ZENN_USER,
   };
 }
