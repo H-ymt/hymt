@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "tsx scripts/fetch-knowledge.ts && tsx scripts/sync-local-kv.ts && astro dev",
     "build": "tsx scripts/fetch-knowledge.ts && astro build && tsx scripts/dedup-wrangler.ts",
-    "preview": "astro build && wrangler dev --config dist/server/wrangler.json",
+    "preview": "astro build && tsx scripts/dedup-wrangler.ts && wrangler dev --config dist/server/wrangler.json",
     "lint": "biome check .",
     "lint:fix": "biome check --fix .",
     "format": "biome format --fix .",
@@ -17,7 +17,8 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.5.0",
-    "astro": "^6.3.1"
+    "astro": "^6.3.1",
+    "resend": "^6.12.3"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
