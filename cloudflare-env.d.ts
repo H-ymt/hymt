@@ -5,4 +5,5 @@ interface CloudflareEnv {
   GITHUB_USERNAME?: string;
   GITHUB_TOKEN?: string;
   ZENN_USER?: string;
+  RESEND_API_KEY?: string;
 }

@@ -4,6 +4,10 @@ export function getKnowledgeKV(): KVNamespace | undefined {
   return (env as CloudflareEnv).KNOWLEDGE_KV;
 }
 
+export function getResendApiKey(): string | undefined {
+  return (env as CloudflareEnv).RESEND_API_KEY;
+}
+
 export function getFetchKnowledgeEnv(): {
   GITHUB_USERNAME?: string;
   GITHUB_TOKEN?: string;
