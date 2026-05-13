@@ -33,8 +33,19 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <label for="message" class="label">Message</label>
         <textarea id="message" name="message" class="textarea" rows="6" required></textarea>
       </div>
+      <div
+        class="cf-turnstile"
+        data-sitekey="0x4AAAAAADOGZc4W0EQsUR38"
+        data-theme="auto"
+      ></div>
       <button type="submit" id="submitBtn" class="button">Send</button>
     </form>
+
+    <script
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+      async
+      defer
+    ></script>
   </Container>
 </BaseLayout>
 
@@ -64,10 +75,15 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         successMessage.hidden = false;
         form.hidden = true;
       } else {
+        // @ts-ignore
+        if (window.turnstile) window.turnstile.reset();
+
         errorMessage.textContent = json.error ?? "Something went wrong. Please try again later.";
         errorMessage.hidden = false;
       }
     } catch {
+      // @ts-ignore
+      if (window.turnstile) window.turnstile.reset();
       errorMessage.textContent = "Something went wrong. Please try again later.";
       errorMessage.hidden = false;
     } finally {
@@ -99,12 +115,12 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
   }
 
   .message.success {
-    background: color-mix(in srgb, var(--foreground) 6%, transparent);
-    color: var(--foreground);
+    background: color-mix(in srgb, #22c55e 12%, transparent);
+    color: #16a34a;
   }
 
   .message.error {
-    background: color-mix(in srgb, #ef4444 10%, transparent);
+    background: color-mix(in srgb, #ef4444 12%, transparent);
     color: #dc2626;
   }
 

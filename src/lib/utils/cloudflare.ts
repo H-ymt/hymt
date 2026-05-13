@@ -8,6 +8,10 @@ export function getResendApiKey(): string | undefined {
   return (env as CloudflareEnv).RESEND_API_KEY;
 }
 
+export function getTurnstileSecretKey(): string | undefined {
+  return (env as CloudflareEnv).TURNSTILE_SECRET_KEY;
+}
+
 export function getFetchKnowledgeEnv(): {
   GITHUB_USERNAME?: string;
   GITHUB_TOKEN?: string;

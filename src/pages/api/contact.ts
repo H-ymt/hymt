@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro";
 import { Resend } from "resend";
-import { getResendApiKey } from "../../lib/utils/cloudflare";
+import { getResendApiKey, getTurnstileSecretKey } from "../../lib/utils/cloudflare";
 
 interface FormFields {
   name: string;
@@ -26,6 +26,28 @@ function validateForm(
 
 export const POST: APIRoute = async ({ request }) => {
   const formData = await request.formData();
+
+  const token = String(formData.get("cf-turnstile-response") ?? "");
+  const secretKey = getTurnstileSecretKey();
+  if (!secretKey) {
+    return new Response(
+      JSON.stringify({ success: false, error: "CAPTCHA service is not configured." }),
+      { status: 500, headers: { "Content-Type": "application/json" } },
+    );
+  }
+  const verifyRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({ secret: secretKey, response: token }),
+  });
+  const verifyData = await verifyRes.json() as { success: boolean };
+  if (!verifyData.success) {
+    return new Response(
+      JSON.stringify({ success: false, error: "CAPTCHA verification failed. Please try again." }),
+      { status: 400, headers: { "Content-Type": "application/json" } },
+    );
+  }
+
   const raw = {
     name: String(formData.get("name") ?? ""),
     email: String(formData.get("email") ?? ""),
@@ -51,7 +73,7 @@ export const POST: APIRoute = async ({ request }) => {
   const resend = new Resend(apiKey);
   const { error } = await resend.emails.send({
     from: "contact@h-ymt.dev",
-    to: ["glanz.web.creative@gmail.com"],
+    to: ["y.handai1272@gmail.com"],
     subject: `Contact from ${result.data.name}`,
     replyTo: result.data.email,
     text: `Name: ${result.data.name}\nEmail: ${result.data.email}\n\n${result.data.message}`,
