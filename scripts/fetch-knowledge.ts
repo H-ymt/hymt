@@ -8,10 +8,9 @@ import type { KnowledgeEntry } from "../src/lib/types";
 import { ensureUniqueSlugs, timeIt, toSinceIso } from "../src/lib/utils";
 
 // 環境変数を読み込む
-const envLocalPath = join(process.cwd(), ".env.local");
-const envPath = join(process.cwd(), ".env");
-config({ path: envLocalPath });
-config({ path: envPath }); // .envファイルも読み込む
+config({ path: join(process.cwd(), ".env.local") });
+config({ path: join(process.cwd(), ".env") });
+config({ path: join(process.cwd(), ".dev.vars") });
 
 interface Env {
   GITHUB_USERNAME?: string;
