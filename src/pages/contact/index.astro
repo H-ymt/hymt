@@ -8,10 +8,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     <h1 class="pageTitle">Contact</h1>
     <p class="pageDescription">Feel free to reach out. I'll get back to you as soon as possible.</p>
 
-    <div id="successMessage" class="message success" hidden>
+    <div id="successMessage" class="message success" role="status" aria-live="polite" hidden>
       Your message has been sent. Thank you for reaching out!
     </div>
-    <div id="errorMessage" class="message error" hidden></div>
+    <div id="errorMessage" class="message error" role="alert" aria-live="assertive" hidden></div>
 
     <form id="contactForm" class="form" novalidate>
       <div class="field">
@@ -50,10 +50,15 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 </BaseLayout>
 
 <script>
-  const form = document.getElementById("contactForm") as HTMLFormElement;
-  const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement;
-  const successMessage = document.getElementById("successMessage") as HTMLElement;
-  const errorMessage = document.getElementById("errorMessage") as HTMLElement;
+  const form = document.getElementById("contactForm") as HTMLFormElement | null;
+  const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement | null;
+  const successMessage = document.getElementById("successMessage") as HTMLElement | null;
+  const errorMessage = document.getElementById("errorMessage") as HTMLElement | null;
+
+  if (!form || !submitBtn || !successMessage || !errorMessage) {
+    console.warn("Contact form: required elements not found.");
+    throw new Error("Contact form elements not found");
+  }
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
