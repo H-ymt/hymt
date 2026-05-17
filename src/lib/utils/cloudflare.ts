@@ -12,6 +12,10 @@ export function getTurnstileSecretKey(): string | undefined {
   return (env as CloudflareEnv).TURNSTILE_SECRET_KEY;
 }
 
+export function getCronSecret(): string | undefined {
+  return (env as CloudflareEnv).CRON_SECRET;
+}
+
 export function getFetchKnowledgeEnv(): {
   GITHUB_USERNAME?: string;
   GITHUB_TOKEN?: string;

@@ -1,11 +1,11 @@
 import type { APIRoute } from "astro";
 import { saveEntries } from "../../lib/data/entries";
 import { fetchKnowledgeEntries } from "../../lib/fetch-knowledge-worker";
-import { getFetchKnowledgeEnv, getKnowledgeKV } from "../../lib/utils/cloudflare";
+import { getCronSecret, getFetchKnowledgeEnv, getKnowledgeKV } from "../../lib/utils/cloudflare";
 
 export const POST: APIRoute = async ({ request }) => {
   const authHeader = request.headers.get("authorization");
-  const cronSecret = process.env.CRON_SECRET;
+  const cronSecret = getCronSecret();
 
   if (!cronSecret || authHeader !== `Bearer ${cronSecret}`) {
     return new Response(JSON.stringify({ error: "Unauthorized" }), {
