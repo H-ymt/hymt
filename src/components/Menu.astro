@@ -28,6 +28,7 @@ const items = [
               rel={isExternal ? "noopener noreferrer" : undefined}
             >
               {menu.name}
+            </a>
               {isExternal && (
                 <svg
                   width="11"
@@ -45,7 +46,6 @@ const items = [
                   <path d="M19 5L5 19" />
                 </svg>
               )}
-            </a>
           </li>
         );
       })
@@ -58,11 +58,11 @@ const items = [
     display: flex;
     align-items: center;
     list-style: none;
+    gap: 1.25rem;
   }
 
   .link {
     padding-block: 0.25rem;
-    padding-inline: 0.755rem;
     font-size: 0.875rem;
     display: inline-block;
   }
