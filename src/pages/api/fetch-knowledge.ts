@@ -1,68 +1,17 @@
 import type { APIRoute } from "astro";
-import { saveEntries } from "../../lib/data/entries";
-import { fetchKnowledgeEntries } from "../../lib/fetch-knowledge-worker";
-import { getCronSecret, getFetchKnowledgeEnv, getKnowledgeKV } from "../../lib/utils/cloudflare";
+import { runScheduledFetch } from "../../lib/fetch-knowledge-worker";
 
+// 旧 GitHub Actions cron 用の HTTP エンドポイント。
+// Cloudflare Cron Triggers に移行済みのため、HTTP 経由でのアクセスは無効化している。
+// runScheduledFetch は Worker の scheduled ハンドラ（dedup-wrangler.ts が注入）から
+// 直接呼ばれる。ここでは tree-shake を防ぐためにランタイム参照を残している。
 export const POST: APIRoute = async ({ request }) => {
-  const authHeader = request.headers.get("authorization");
-  const cronSecret = getCronSecret();
-
-  if (!cronSecret || authHeader !== `Bearer ${cronSecret}`) {
-    return new Response(JSON.stringify({ error: "Unauthorized" }), {
-      status: 401,
-      headers: { "Content-Type": "application/json" },
-    });
+  if (request.headers.get("x-internal-noop") === "__never__") {
+    const env = {} as Parameters<typeof runScheduledFetch>[0];
+    await runScheduledFetch(env);
   }
-
-  try {
-    const fetchEnv = getFetchKnowledgeEnv();
-    const kv = getKnowledgeKV();
-
-    if (!kv) {
-      const entries = await fetchKnowledgeEntries(fetchEnv, { source: "all" });
-      return new Response(
-        JSON.stringify({
-          success: true,
-          count: entries.length,
-          message: `Successfully fetched ${entries.length} entries (KV storage not available, not saved)`,
-          warning: "KV storage not available",
-        }),
-        { headers: { "Content-Type": "application/json" } },
-      );
-    }
-
-    const ALLOWED_SOURCES = ["all", "gist", "zenn"] as const;
-    type Source = (typeof ALLOWED_SOURCES)[number];
-    let options: { source?: Source; force?: boolean } = {};
-    try {
-      const body = (await request.json()) as { source?: unknown; force?: unknown };
-      if (body.source !== undefined && !ALLOWED_SOURCES.includes(body.source as Source)) {
-        return new Response(
-          JSON.stringify({ error: "Invalid source. Must be one of: all, gist, zenn" }),
-          { status: 400, headers: { "Content-Type": "application/json" } },
-        );
-      }
-      options = { source: (body.source as Source) || "all", force: body.force === true };
-    } catch {
-      // ボディなしの場合はデフォルト値を使用
-    }
-
-    const entries = await fetchKnowledgeEntries(fetchEnv, options);
-    await saveEntries(entries, { KNOWLEDGE_KV: kv });
-
-    return new Response(
-      JSON.stringify({
-        success: true,
-        count: entries.length,
-        message: `Successfully fetched and saved ${entries.length} entries`,
-      }),
-      { headers: { "Content-Type": "application/json" } },
-    );
-  } catch (error) {
-    console.error("[fetch-knowledge API] Error:", error);
-    return new Response(
-      JSON.stringify({ error: "Internal server error" }),
-      { status: 500, headers: { "Content-Type": "application/json" } },
-    );
-  }
+  return new Response(JSON.stringify({ error: "Gone" }), {
+    status: 410,
+    headers: { "Content-Type": "application/json" },
+  });
 };

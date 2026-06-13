@@ -1,6 +1,7 @@
 import { normalizeGist, normalizeZenn } from "./adapters/normalize";
 import { createGistClient } from "./clients/gist";
 import { createZennClient } from "./clients/zenn";
+import { saveEntries } from "./data/entries";
 import type { KnowledgeEntry } from "./types";
 import { ensureUniqueSlugs, timeIt, toSinceIso } from "./utils";
 
@@ -96,4 +97,18 @@ export async function fetchKnowledgeEntries(
 
   console.log(`[fetch-knowledge-worker] Completed! ${entries.length} entries fetched`);
   return entries;
+}
+
+export interface ScheduledFetchEnv extends FetchKnowledgeEnv {
+  KNOWLEDGE_KV?: KVNamespace;
+}
+
+export async function runScheduledFetch(env: ScheduledFetchEnv): Promise<number> {
+  const entries = await fetchKnowledgeEntries(env, { source: "all" });
+  if (env.KNOWLEDGE_KV) {
+    await saveEntries(entries, { KNOWLEDGE_KV: env.KNOWLEDGE_KV });
+  } else {
+    console.warn("[runScheduledFetch] KNOWLEDGE_KV not bound; skipping save");
+  }
+  return entries.length;
 }
