@@ -1,5 +1,5 @@
-import type { KnowledgeEntry } from "../types";
 import entriesJson from "../../data/entries.json";
+import type { KnowledgeEntry } from "../types";
 
 const KV_KEY = "knowledge:entries";
 
