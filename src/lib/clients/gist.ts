@@ -1,4 +1,5 @@
-import { getETag, parseLinkHeader, setETag } from "../utils";
+import { getETag, setETag } from "../utils/etag";
+import { parseLinkHeader } from "../utils";
 
 export interface GistApiFileInfo {
   readonly filename: string;
