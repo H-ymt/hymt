@@ -13,7 +13,11 @@ function validateForm(
 ): { valid: true; data: FormFields } | { valid: false; error: string } {
   const { name, email, message } = data;
 
-  const trimmed = { name: name?.trim() ?? "", email: email?.trim() ?? "", message: message?.trim() ?? "" };
+  const trimmed = {
+    name: name?.trim() ?? "",
+    email: email?.trim() ?? "",
+    message: message?.trim() ?? "",
+  };
 
   if (!trimmed.name || !trimmed.email || !trimmed.message) {
     return { valid: false, error: "All fields are required." };
@@ -54,7 +58,7 @@ export const POST: APIRoute = async ({ request }) => {
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams({ secret: secretKey, response: token }),
   });
-  const verifyData = await verifyRes.json() as { success: boolean };
+  const verifyData = (await verifyRes.json()) as { success: boolean };
   if (!verifyData.success) {
     return new Response(
       JSON.stringify({ success: false, error: "CAPTCHA verification failed. Please try again." }),
@@ -95,7 +99,10 @@ export const POST: APIRoute = async ({ request }) => {
 
   if (error) {
     return new Response(
-      JSON.stringify({ success: false, error: "Failed to send your message. Please try again later." }),
+      JSON.stringify({
+        success: false,
+        error: "Failed to send your message. Please try again later.",
+      }),
       { status: 500, headers: { "Content-Type": "application/json" } },
     );
   }
