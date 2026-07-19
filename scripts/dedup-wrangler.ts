@@ -51,10 +51,11 @@ async function injectScheduledHandler(): Promise<void> {
   const chunk = await findChunkExporting("runScheduledFetch");
   await ensureExport(chunk, "runScheduledFetch");
 
+  const entryContent = await readFile(entryPath, "utf-8");
   const workerEntryChunk = (await readdir(chunksDir)).find((f) => f.startsWith("worker-entry_"));
-  if (!workerEntryChunk) throw new Error("worker-entry chunk not found");
 
-  const newEntry = `globalThis.process ??= {};
+  if (workerEntryChunk) {
+    const newEntry = `globalThis.process ??= {};
 globalThis.process.env ??= {};
 import { w as astroWorker } from "./chunks/${workerEntryChunk}";
 import { runScheduledFetch } from "./chunks/${chunk}";
@@ -81,7 +82,42 @@ export default {
   },
 };
 `;
-  await writeFile(entryPath, newEntry, "utf-8");
+    await writeFile(entryPath, newEntry, "utf-8");
+    return;
+  }
+
+  const scheduledHandler = `
+import { runScheduledFetch } from "./chunks/${chunk}";
+
+export default {
+  fetch: worker_entry_default.fetch.bind(worker_entry_default),
+  async scheduled(_controller, env, ctx) {
+    const task = (async () => {
+      try {
+        const count = await runScheduledFetch({
+          GITHUB_USERNAME: env.GITHUB_USERNAME,
+          GITHUB_TOKEN: env.GITHUB_TOKEN,
+          ZENN_USER: env.ZENN_USER,
+          KNOWLEDGE_KV: env.KNOWLEDGE_KV,
+        });
+        console.log("[scheduled] fetched " + count + " entries");
+      } catch (err) {
+        console.error("[scheduled] failed:", err);
+        throw err;
+      }
+    })();
+    ctx.waitUntil(task);
+  },
+};
+`;
+
+  const exportPattern = /export \{ worker_entry_default as default \};\s*$/;
+  if (!exportPattern.test(entryContent)) {
+    throw new Error("worker entry export not found in entry.mjs");
+  }
+
+  const updatedEntry = entryContent.replace(exportPattern, scheduledHandler);
+  await writeFile(entryPath, updatedEntry, "utf-8");
 }
 
 async function main(): Promise<void> {
