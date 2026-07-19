@@ -1,4 +1,4 @@
-import { getETag, setETag } from "../utils";
+import { getETag, setETag } from "../utils/etag";
 
 export interface ZennFeedItem {
   readonly id?: string;

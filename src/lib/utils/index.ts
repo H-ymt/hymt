@@ -1,42 +1,4 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
-import { join } from "node:path";
 import type { ISODateString, Slug, Tag } from "../types";
-
-const cacheDir = join(process.cwd(), ".cache");
-const etagJsonPath = join(cacheDir, "etag.json");
-
-/**
- * ETagを取得する
- */
-export async function getETag(key: string): Promise<string | undefined> {
-  try {
-    const content = await readFile(etagJsonPath, "utf-8");
-    const etags: Record<string, string> = JSON.parse(content);
-    return etags[key];
-  } catch {
-    return undefined;
-  }
-}
-
-/**
- * ETagを保存する
- */
-export async function setETag(key: string, etag: string): Promise<void> {
-  try {
-    await mkdir(cacheDir, { recursive: true });
-    let etags: Record<string, string> = {};
-    try {
-      const content = await readFile(etagJsonPath, "utf-8");
-      etags = JSON.parse(content);
-    } catch {
-      // ファイルが存在しない場合は空オブジェクトから開始
-    }
-    etags[key] = etag;
-    await writeFile(etagJsonPath, JSON.stringify(etags, null, 2));
-  } catch (error) {
-    console.warn(`[setETag] Failed to save ETag for ${key}:`, error);
-  }
-}
 
 /**
  * Linkヘッダーをパースする
