@@ -40,7 +40,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           data-theme="auto"
         ></div>
       </div>
-      <button type="submit" id="submitBtn" class="button">Submit</button>
+      <button type="submit" id="submitBtn" class="button">Send</button>
     </form>
 
     <script
@@ -82,15 +82,13 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         successMessage.hidden = false;
         form.hidden = true;
       } else {
-        // @ts-ignore
-        if (window.turnstile) window.turnstile.reset();
+        window.turnstile?.reset();
 
         errorMessage.textContent = json.error ?? "Something went wrong. Please try again later.";
         errorMessage.hidden = false;
       }
     } catch {
-      // @ts-ignore
-      if (window.turnstile) window.turnstile.reset();
+      window.turnstile?.reset();
       errorMessage.textContent = "Something went wrong. Please try again later.";
       errorMessage.hidden = false;
     } finally {
@@ -101,13 +99,6 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 </script>
 
 <style>
-  .pageTitle {
-    margin-block-end: 0.75em;
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: var(--foreground);
-  }
-
   .pageDescription {
     font-size: 0.9375rem;
     color: var(--foreground-muted);

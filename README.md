@@ -1,12 +1,12 @@
-Personal Website built with Next.js and Cloudflare Workers 🚀
+Personal Website built with Astro and Cloudflare Workers
 
 ## Stack
 
-- Next.js
+- Astro 7
 - TypeScript
-- CSS Modules
 - Cloudflare Workers
-- Cloudflare R2/KV
+- Cloudflare KV
+- Biome
 
 ## Deploy
 

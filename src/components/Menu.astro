@@ -1,13 +1,8 @@
 ---
-const pathname = Astro.url.pathname;
+import ExternalLinkIcon from "./ExternalLinkIcon.astro";
+import { navItems } from "../data/nav";
 
-const items = [
-  { name: "Home", link: "/" },
-  { name: "Note", link: "/note" },
-  { name: "Contact", link: "/contact" },
-  { name: "Projects", link: "https://portfolio.h-ymt.dev/" },
-  { name: "Resume", link: "https://portfolio.h-ymt.dev/resume" },
-];
+const pathname = Astro.url.pathname;
 ---
 
 <nav class="nav">
@@ -24,7 +19,7 @@ const items = [
   </button>
   <ul class="list" id="site-menu" data-menu>
     {
-      items.map((menu) => {
+      navItems.map((menu) => {
         const isActive =
           menu.link === "/" ? pathname === "/" : pathname.startsWith(menu.link);
         const isExternal = /^https?:\/\//.test(menu.link);
@@ -40,23 +35,7 @@ const items = [
             >
               {menu.name}
             </a>
-            {isExternal && (
-              <svg
-                width="11"
-                height="11"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="externalIcon"
-                aria-hidden="true"
-              >
-                <path d="M13 5H19V11" />
-                <path d="M19 5L5 19" />
-              </svg>
-            )}
+            {isExternal && <ExternalLinkIcon />}
           </li>
         );
       })
@@ -183,7 +162,7 @@ const items = [
     outline-offset: 0.25rem;
   }
 
-  .externalIcon {
+  .item :global(.externalIcon) {
     translate: 0.05rem 0.05rem;
     scale: 0.9;
   }
@@ -267,7 +246,7 @@ const items = [
       font-size: 1.25rem;
     }
 
-    .externalIcon {
+    .item :global(.externalIcon) {
       width: 0.75rem;
       height: 0.75rem;
       scale: 1;

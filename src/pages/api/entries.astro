@@ -1,0 +1,32 @@
+---
+export const partial = true;
+
+import EntryCard from "../../components/EntryCard.astro";
+import { ITEMS_PER_PAGE, MAX_ENTRIES_LIMIT } from "../../lib/constants";
+import { getEntries } from "../../lib/data/entries";
+import { getKnowledgeKV } from "../../lib/utils/cloudflare";
+
+const url = Astro.url;
+
+const rawPage = parseInt(url.searchParams.get("page") || "1", 10);
+const rawLimit = parseInt(url.searchParams.get("limit") || String(ITEMS_PER_PAGE), 10);
+const page = Number.isNaN(rawPage) || rawPage < 1 ? 1 : rawPage;
+const limit =
+  Number.isNaN(rawLimit) || rawLimit < 1 ? ITEMS_PER_PAGE : Math.min(rawLimit, MAX_ENTRIES_LIMIT);
+
+const kv = getKnowledgeKV();
+const allEntries = await getEntries(kv ? { KNOWLEDGE_KV: kv } : undefined);
+
+const startIndex = (page - 1) * limit;
+const endIndex = startIndex + limit;
+const entries = allEntries.slice(startIndex, endIndex);
+const hasMore = endIndex < allEntries.length;
+
+Astro.response.headers.set("X-Has-More", hasMore ? "true" : "false");
+---
+
+{
+  entries.map((entry) => (
+    <EntryCard entry={entry} />
+  ))
+}
