@@ -10,8 +10,19 @@ const items = [
 ];
 ---
 
-<nav>
-  <ul class="list">
+<nav class="nav">
+  <button
+    type="button"
+    class="menuToggle"
+    data-menu-toggle
+    aria-expanded="false"
+    aria-controls="site-menu"
+    aria-label="Open menu"
+  >
+    <span class="menuToggleBar"></span>
+    <span class="menuToggleBar"></span>
+  </button>
+  <ul class="list" id="site-menu" data-menu>
     {
       items.map((menu) => {
         const isActive =
@@ -29,23 +40,23 @@ const items = [
             >
               {menu.name}
             </a>
-              {isExternal && (
-                <svg
-                  width="11"
-                  height="11"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="externalIcon"
-                  aria-hidden="true"
-                >
-                  <path d="M13 5H19V11" />
-                  <path d="M19 5L5 19" />
-                </svg>
-              )}
+            {isExternal && (
+              <svg
+                width="11"
+                height="11"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="externalIcon"
+                aria-hidden="true"
+              >
+                <path d="M13 5H19V11" />
+                <path d="M19 5L5 19" />
+              </svg>
+            )}
           </li>
         );
       })
@@ -53,12 +64,93 @@ const items = [
   </ul>
 </nav>
 
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+  const menu = document.querySelector<HTMLElement>("[data-menu]");
+  const mq = window.matchMedia("(width <= 40rem)");
+
+  if (toggle && menu) {
+    const links = [...menu.querySelectorAll<HTMLAnchorElement>("a")];
+
+    let scrollY = 0;
+
+    const lockScroll = () => {
+      scrollY = window.scrollY;
+      document.documentElement.classList.add("menu-open");
+      document.body.classList.add("menu-open");
+      document.body.style.top = `-${scrollY}px`;
+    };
+
+    const unlockScroll = () => {
+      document.documentElement.classList.remove("menu-open");
+      document.body.classList.remove("menu-open");
+      document.body.style.top = "";
+      window.scrollTo(0, scrollY);
+    };
+
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+
+      if (open) {
+        lockScroll();
+      } else {
+        unlockScroll();
+      }
+
+      if (!mq.matches) return;
+
+      if (open) {
+        links[0]?.focus();
+      } else {
+        toggle.focus();
+      }
+    };
+
+    const isOpen = () => toggle.getAttribute("aria-expanded") === "true";
+
+    toggle.addEventListener("click", () => {
+      setOpen(!isOpen());
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && isOpen()) {
+        setOpen(false);
+      }
+    });
+
+    links.forEach((link) => {
+      if (link.target !== "_blank") {
+        link.addEventListener("click", () => setOpen(false));
+      }
+    });
+
+    mq.addEventListener("change", () => {
+      if (!mq.matches && isOpen()) setOpen(false);
+    });
+  }
+</script>
+
 <style>
+  .nav {
+    display: flex;
+    align-items: center;
+  }
+
+  .menuToggle {
+    display: none;
+  }
+
   .list {
     display: flex;
     align-items: center;
     list-style: none;
     gap: 1.25rem;
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
   }
 
   .link {
@@ -80,16 +172,113 @@ const items = [
     transition: scale 0.2s;
   }
 
-  .link:hover::after {
+  .link:hover::after,
+  .link:focus-visible::after,
+  .link.active::after {
     scale: 1;
   }
 
-  .link.active::after {
-    scale: 1;
+  .link:focus-visible {
+    outline: 0.125rem solid var(--foreground);
+    outline-offset: 0.25rem;
   }
 
   .externalIcon {
     translate: 0.05rem 0.05rem;
     scale: 0.9;
+  }
+
+  @media screen and (width <= 40rem) {
+    .nav {
+      min-height: 2.75rem;
+    }
+
+    .menuToggle {
+      position: fixed;
+      top: 0.25rem;
+      right: 0.25rem;
+      z-index: 30;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.375rem;
+      width: 2.75rem;
+      height: 2.75rem;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      color: var(--foreground);
+    }
+
+    .menuToggle:focus-visible {
+      outline: 0.125rem solid var(--foreground);
+      outline-offset: 0.125rem;
+    }
+
+    .menuToggleBar {
+      display: block;
+      width: 1.125rem;
+      height: 0.09375rem;
+      margin-inline: auto;
+      background: currentColor;
+      transition:
+        translate 0.2s ease,
+        rotate 0.2s ease,
+        opacity 0.2s ease;
+    }
+
+    :global(body.menu-open) .menuToggleBar:first-child {
+      translate: 0 0.234375rem;
+      rotate: 35deg;
+    }
+
+    :global(body.menu-open) .menuToggleBar:last-child {
+      translate: 0 -0.234375rem;
+      rotate: -35deg;
+    }
+
+    .list {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      background: var(--background);
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease;
+    }
+
+    :global(body.menu-open) .list {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .link {
+      font-size: 1.25rem;
+    }
+
+    .externalIcon {
+      width: 0.75rem;
+      height: 0.75rem;
+      scale: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .link::after,
+    .menuToggleBar,
+    .list {
+      transition: none;
+    }
   }
 </style>
