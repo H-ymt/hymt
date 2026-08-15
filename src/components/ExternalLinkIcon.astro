@@ -1,0 +1,25 @@
+---
+interface Props {
+  class?: string;
+  width?: number;
+  height?: number;
+}
+
+const { class: className, width = 11, height = 11 } = Astro.props;
+---
+
+<svg
+  class:list={["externalIcon", className]}
+  width={width}
+  height={height}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+>
+  <path d="M13 5H19V11" />
+  <path d="M19 5L5 19" />
+</svg>
