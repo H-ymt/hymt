@@ -6,7 +6,8 @@
   --container-width: 48rem;
 
   --font-base:
-    "Gen Interface JP", arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+    "Gen Interface JP", arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP",
+    sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 @media (prefers-color-scheme: dark) {
