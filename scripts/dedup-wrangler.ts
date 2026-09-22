@@ -1,5 +1,6 @@
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
+import { CACHE_TAG_ENTRIES } from "../src/lib/constants";
 
 const distServerDir = join(process.cwd(), "dist/server");
 const wranglerJsonPath = join(distServerDir, "wrangler.json");
@@ -19,8 +20,7 @@ async function dedupKvNamespaces(): Promise<void> {
     });
   }
 
-  config.triggers = config.triggers ?? {};
-  config.triggers.crons = ["0 */6 * * *"];
+  // triggers.crons はアダプタが wrangler.jsonc から引き継ぐので、ここでは触らない。
 
   await writeFile(wranglerJsonPath, JSON.stringify(config), "utf-8");
 }
@@ -47,6 +47,39 @@ async function ensureExport(chunkFile: string, symbol: string): Promise<void> {
   await writeFile(path, updated, "utf-8");
 }
 
+/**
+ * scheduled ハンドラ本体。fetch の束縛先だけが注入先によって変わる。
+ *
+ * キャッシュの破棄は `cloudflare:workers` の `cache` を使う。
+ * これは ExecutionContext ではなくモジュールのトップレベル export で、
+ * @astrojs/cloudflare の cache provider (dist/cache/provider.js) と同じ経路。
+ */
+function buildScheduledHandler(fetchBinding: string): string {
+  return `export default {
+  fetch: ${fetchBinding},
+  async scheduled(_controller, env, ctx) {
+    const task = (async () => {
+      try {
+        const count = await runScheduledFetch({
+          GITHUB_USERNAME: env.GITHUB_USERNAME,
+          GITHUB_TOKEN: env.GITHUB_TOKEN,
+          ZENN_USER: env.ZENN_USER,
+          KNOWLEDGE_KV: env.KNOWLEDGE_KV,
+        });
+        console.log("[scheduled] fetched " + count + " entries");
+        // KV を更新したので、entries タグの付いたエッジキャッシュを破棄する
+        await cache.purge({ tags: ["${CACHE_TAG_ENTRIES}"] });
+      } catch (err) {
+        console.error("[scheduled] failed:", err);
+        throw err;
+      }
+    })();
+    ctx.waitUntil(task);
+  },
+};
+`;
+}
+
 async function injectScheduledHandler(): Promise<void> {
   const chunk = await findChunkExporting("runScheduledFetch");
   await ensureExport(chunk, "runScheduledFetch");
@@ -59,57 +92,18 @@ async function injectScheduledHandler(): Promise<void> {
 globalThis.process.env ??= {};
 import { w as astroWorker } from "./chunks/${workerEntryChunk}";
 import { runScheduledFetch } from "./chunks/${chunk}";
-import "cloudflare:workers";
+import { cache } from "cloudflare:workers";
 
-export default {
-  fetch: astroWorker.fetch.bind(astroWorker),
-  async scheduled(_controller, env, ctx) {
-    const task = (async () => {
-      try {
-        const count = await runScheduledFetch({
-          GITHUB_USERNAME: env.GITHUB_USERNAME,
-          GITHUB_TOKEN: env.GITHUB_TOKEN,
-          ZENN_USER: env.ZENN_USER,
-          KNOWLEDGE_KV: env.KNOWLEDGE_KV,
-        });
-        console.log("[scheduled] fetched " + count + " entries");
-      } catch (err) {
-        console.error("[scheduled] failed:", err);
-        throw err;
-      }
-    })();
-    ctx.waitUntil(task);
-  },
-};
-`;
+${buildScheduledHandler("astroWorker.fetch.bind(astroWorker)")}`;
     await writeFile(entryPath, newEntry, "utf-8");
     return;
   }
 
   const scheduledHandler = `
 import { runScheduledFetch } from "./chunks/${chunk}";
+import { cache } from "cloudflare:workers";
 
-export default {
-  fetch: worker_entry_default.fetch.bind(worker_entry_default),
-  async scheduled(_controller, env, ctx) {
-    const task = (async () => {
-      try {
-        const count = await runScheduledFetch({
-          GITHUB_USERNAME: env.GITHUB_USERNAME,
-          GITHUB_TOKEN: env.GITHUB_TOKEN,
-          ZENN_USER: env.ZENN_USER,
-          KNOWLEDGE_KV: env.KNOWLEDGE_KV,
-        });
-        console.log("[scheduled] fetched " + count + " entries");
-      } catch (err) {
-        console.error("[scheduled] failed:", err);
-        throw err;
-      }
-    })();
-    ctx.waitUntil(task);
-  },
-};
-`;
+${buildScheduledHandler("worker_entry_default.fetch.bind(worker_entry_default)")}`;
 
   const exportPattern = /export \{ worker_entry_default as default \};\s*$/;
   if (!exportPattern.test(entryContent)) {
