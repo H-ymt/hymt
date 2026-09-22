@@ -47,7 +47,9 @@
       "!.open-next",
       "!node_modules",
       "!.wrangler",
-      "!cloudflare-env.d.ts"
+      "!cloudflare-env.d.ts",
+      "!public/fonts",
+      "!src/styles/fonts.css"
     ]
   }
 }

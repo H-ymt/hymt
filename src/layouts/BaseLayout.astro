@@ -1,6 +1,11 @@
 ---
 import Header from "../components/Header.astro";
-import { FONT_CDN_BASE, FONT_WEIGHTS } from "../lib/constants";
+import {
+  FONT_PRELOAD_SUBSETS,
+  FONT_PRELOAD_WEIGHT,
+  FONT_SUBSET_DIR,
+} from "../lib/constants";
+import "../styles/fonts.css";
 import "../styles/global.css";
 
 interface Props {
@@ -25,11 +30,16 @@ const {
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-    {/* @latest は CDN のキャッシュ寿命が短いためバージョンを固定する。
-        ウェイトごとに分割された CSS を読む（all.css は全ウェイト 1.7MB で重い）。 */}
-    {FONT_WEIGHTS.map((weight) => (
-      <link rel="stylesheet" href={`${FONT_CDN_BASE}/${weight}.css`} />
+    {/* かな・英数・常用漢字のサブセットだけ先読みし、本文の FOUT を抑える。
+        フォントは自ドメイン配信なので CSS の解析を待たずに取得が始まる。 */}
+    {FONT_PRELOAD_SUBSETS.map((subset) => (
+      <link
+        rel="preload"
+        as="font"
+        type="font/woff2"
+        crossorigin
+        href={`/${FONT_SUBSET_DIR}/${FONT_PRELOAD_WEIGHT}/${String(subset).padStart(3, "0")}.woff2`}
+      />
     ))}
   </head>
   <body>

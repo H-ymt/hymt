@@ -30,6 +30,9 @@ importers:
       dotenv:
         specifier: ^18.0.1
         version: 18.0.1
+      gen-interface-jp:
+        specifier: 0.8.0
+        version: 0.8.0
       tsx:
         specifier: ^4.23.15
         version: 4.23.15
@@ -1340,6 +1343,9 @@ packages:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
+
+  gen-interface-jp@0.8.0:
+    resolution: {integrity: sha512-7rIytSAfuugVjYithrQseT0zqeUIkJd0LY3Ugdfbk/FxzMSeagcskeZlof5uWJ5liW3Zhn7pdLHq2OIvAftx+A==}
 
   get-caller-file@2.0.5:
     resolution: {integrity: sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==}
@@ -3332,6 +3338,8 @@ snapshots:
 
   fsevents@2.3.3:
     optional: true
+
+  gen-interface-jp@0.8.0: {}
 
   get-caller-file@2.0.5: {}
 
