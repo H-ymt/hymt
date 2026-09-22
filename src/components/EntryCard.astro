@@ -11,28 +11,28 @@ interface Props {
 const { entry } = Astro.props;
 ---
 
-<li class="entryItem">
+<li class="entry-item">
   <article class="entry">
-    <header class="entryHeader">
-      <div class="entryMeta">
-        <time class="entryDate" datetime={entry.publishedAt}>
+    <header class="entry-header">
+      <div class="entry-meta">
+        <time class="entry-date" datetime={entry.publishedAt}>
           {formatDate(entry.publishedAt)}
         </time>
       </div>
-      <h2 class="entryTitle">
-        <span class="entrySource">
+      <h2 class="entry-title">
+        <span class="entry-source">
           <SourceIcon source={entry.source} />
         </span>
-        <a href={entry.url} target="_blank" rel="noopener noreferrer" class="entryLink">
+        <a href={entry.url} target="_blank" rel="noopener noreferrer" class="entry-link">
           {entry.title}
           <ExternalLinkIcon />
         </a>
       </h2>
     </header>
-    {entry.summary && <p class="entrySummary">{entry.summary}</p>}
+    {entry.summary && <p class="entry-summary">{entry.summary}</p>}
     {
       entry.tags.length > 0 && (
-        <ul class="tagList">
+        <ul class="tag-list">
           {entry.tags.map((tag: Tag) => (
             <li class="tag">{tag}</li>
           ))}
@@ -43,12 +43,12 @@ const { entry } = Astro.props;
 </li>
 
 <style>
-  .entryItem {
+  .entry-item {
     padding-block-end: 2rem;
     border-bottom: 0.0313rem solid var(--border);
   }
 
-  .entryItem:last-child {
+  .entry-item:last-child {
     border-bottom: none;
   }
 
@@ -58,13 +58,13 @@ const { entry } = Astro.props;
     gap: 0.325rem;
   }
 
-  .entryHeader {
+  .entry-header {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
   }
 
-  .entryMeta {
+  .entry-meta {
     display: flex;
     gap: 0.75rem;
     align-items: center;
@@ -72,36 +72,36 @@ const { entry } = Astro.props;
     color: var(--foreground-muted);
   }
 
-  .entryDate {
+  .entry-date {
     font-size: 0.875rem;
   }
 
-  .entryTitle {
+  .entry-title {
     margin: 0;
     font-size: 1rem;
     font-weight: 500;
   }
 
-  .entrySource {
+  .entry-source {
     margin-block-start: 0.15em;
     margin-inline-end: 0.375rem;
     display: inline-block;
     vertical-align: middle;
   }
 
-  .entryLink {
+  .entry-link {
     color: var(--foreground);
     text-decoration: none;
   }
 
-  .entryLink:hover {
+  .entry-link:hover {
     text-decoration: underline;
     text-decoration-thickness: 0.0625rem;
     text-underline-offset: 0.15em;
     text-decoration-color: color-mix(in srgb, var(--foreground) 40%, transparent);
   }
 
-  .entryLink :global(.externalIcon) {
+  .entry-link :global(.external-icon) {
     width: 0.6875rem;
     height: 0.6875rem;
     margin-inline-start: 0.35rem;
@@ -111,18 +111,18 @@ const { entry } = Astro.props;
     transition: opacity 0.2s;
   }
 
-  .entryLink:hover :global(.externalIcon) {
+  .entry-link:hover :global(.external-icon) {
     opacity: 1;
   }
 
-  .entrySummary {
+  .entry-summary {
     margin: 0;
     font-size: 0.875rem;
     line-height: 1.4;
     color: var(--foreground-muted);
   }
 
-  .tagList {
+  .tag-list {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
@@ -140,7 +140,7 @@ const { entry } = Astro.props;
   }
 
   @media screen and (width <= 48rem) {
-    .entryItem {
+    .entry-item {
       padding-block-end: 1.5rem;
     }
   }

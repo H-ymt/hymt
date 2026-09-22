@@ -15,14 +15,14 @@ const { initialEntries, hasMore } = Astro.props;
   initialEntries.length === 0 ? (
     <div class="empty">
       <p>記事がありません。</p>
-      <p class="emptySub">
+      <p class="empty-sub">
         entries.jsonを生成するには、fetch-knowledgeスクリプトを実行してください。
       </p>
     </div>
   ) : (
     <section class="section">
       <ul
-        class="entryList"
+        class="entry-list"
         id="entry-list"
         data-has-more={hasMore ? "true" : "false"}
         data-page="1"
@@ -32,8 +32,8 @@ const { initialEntries, hasMore } = Astro.props;
           <EntryCard entry={entry} />
         ))}
       </ul>
-      <div id="observer-target" class="observerTarget">
-        <div id="loading-container" class="loadingContainer" hidden>
+      <div id="observer-target" class="observer-target">
+        <div id="loading-container" class="loading-container" hidden>
           <svg
             class="spinner"
             viewBox="0 0 24 24"
@@ -72,6 +72,8 @@ const { initialEntries, hasMore } = Astro.props;
   const loadingContainer = document.getElementById("loading-container");
 
   if (list && target) {
+    // 非 null の絞り込みは async な loadMore のクロージャ内までは保持されないため、
+    // ここで束縛し直して以降は entryList / observerTarget を使う。
     const entryList = list;
     const observerTarget = target;
     let page = parseInt(entryList.dataset.page ?? "1", 10);
@@ -82,7 +84,7 @@ const { initialEntries, hasMore } = Astro.props;
     async function loadMore() {
       if (!hasMore || isFetching) return;
       isFetching = true;
-      if (loadingContainer) (loadingContainer as HTMLElement).hidden = false;
+      if (loadingContainer) loadingContainer.hidden = false;
 
       try {
         const nextPage = page + 1;
@@ -101,7 +103,7 @@ const { initialEntries, hasMore } = Astro.props;
         console.error(e);
       } finally {
         isFetching = false;
-        if (loadingContainer) (loadingContainer as HTMLElement).hidden = true;
+        if (loadingContainer) loadingContainer.hidden = true;
       }
     }
 
@@ -127,12 +129,12 @@ const { initialEntries, hasMore } = Astro.props;
     text-align: center;
   }
 
-  .emptySub {
+  .empty-sub {
     margin-block-start: 0.5rem;
     font-size: 0.875rem;
   }
 
-  .entryList {
+  .entry-list {
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -140,26 +142,22 @@ const { initialEntries, hasMore } = Astro.props;
   }
 
   @media screen and (width <= 48rem) {
-    .entryList {
+    .entry-list {
       gap: 1.5rem;
     }
   }
 
-  .observerTarget {
+  .observer-target {
     padding-block: 2rem;
     margin-block-start: 2rem;
     text-align: center;
   }
 
-  .loadingContainer {
+  .loading-container:not([hidden]) {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     align-items: center;
-  }
-
-  .loadingContainer[hidden] {
-    display: none;
   }
 
   .spinner {
