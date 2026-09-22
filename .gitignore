@@ -13,6 +13,10 @@
 /.astro/
 /dist/
 
+# fonts (scripts/copy-fonts.ts がビルド時に生成する)
+/public/fonts/
+/src/styles/fonts.css
+
 # production
 /build
 

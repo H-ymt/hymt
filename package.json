@@ -4,8 +4,8 @@
   "private": true,
   "packageManager": "pnpm@10.18.3",
   "scripts": {
-    "dev": "tsx scripts/fetch-knowledge.ts && tsx scripts/sync-local-kv.ts && astro dev",
-    "build": "tsx scripts/fetch-knowledge.ts && astro build && tsx scripts/dedup-wrangler.ts",
+    "dev": "tsx scripts/fetch-knowledge.ts && tsx scripts/copy-fonts.ts && tsx scripts/sync-local-kv.ts && astro dev",
+    "build": "tsx scripts/fetch-knowledge.ts && tsx scripts/copy-fonts.ts && astro build && tsx scripts/dedup-wrangler.ts",
     "preview": "astro build && tsx scripts/dedup-wrangler.ts && wrangler dev --config dist/server/wrangler.json",
     "lint": "biome check .",
     "lint:fix": "biome check --fix .",
@@ -25,6 +25,7 @@
     "@biomejs/biome": "2.5.14",
     "@types/node": "^26.6.2",
     "dotenv": "^18.0.1",
+    "gen-interface-jp": "0.8.0",
     "tsx": "^4.23.15",
     "typescript": "^6.0.3",
     "wrangler": "^4.135.0"
