@@ -1,31 +1,47 @@
 [
   {
+    "id": "64a5ffbee57a67dda54dc9f41eaaaa4b",
+    "source": "gist",
+    "slug": "ui-64a5ffbe",
+    "title": "行に対してアイコンを綺麗に中央寄せされるUIの実装",
+    "summary": "行に対してアイコンを綺麗に中央寄せされるUIの実装",
+    "url": "https://gist.github.com/H-ymt/64a5ffbee57a67dda54dc9f41eaaaa4b",
+    "tags": [
+      "gist",
+      "markdown"
+    ],
+    "publishedAt": "2026-03-27T04:10:00.000Z",
+    "updatedAt": "2026-05-13T05:53:28.000Z",
+    "author": "H-ymt"
+  },
+  {
     "id": "5a2293ad9f0455135bbaed642f43bab1",
     "source": "gist",
-    "slug": "html-5a2293ad",
-    "title": "アクセシビリティやパフォーマンス、HTML 属性、ブラウザ仕様まわりなどを、人がレビューする前に機械的にチェックするための、自分用レビューガイド兼エージェントスキル",
-    "summary": "アクセシビリティやパフォーマンス、HTML 属性、ブラウザ仕様まわりなどを、人がレビューする前に機械的にチェックするための、自分用レビューガイド兼エージェントスキル",
+    "slug": "-5a2293ad",
+    "title": "人がレビューする前に機械的にチェックするための、自分用レビューガイド兼エージェントスキル",
+    "summary": "人がレビューする前に機械的にチェックするための、自分用レビューガイド兼エージェントスキル",
     "url": "https://gist.github.com/H-ymt/5a2293ad9f0455135bbaed642f43bab1",
     "tags": [
       "gist"
     ],
     "publishedAt": "2026-03-27T01:09:42.000Z",
-    "updatedAt": "2026-03-27T01:10:32.000Z",
+    "updatedAt": "2026-05-14T01:24:27.000Z",
     "author": "H-ymt"
   },
   {
     "id": "2528072de138aa4607425d976b388458",
     "source": "gist",
-    "slug": "ssgssr-js-ai-2528072d",
-    "title": "プロジェクト内のページ実装全般に関するルールです。SSG/SSR の使い分け、ルーティング、コンポーネント構造、クライアント JS の有無やハイドレーション条件など、フロントエンドページ実装時に AI エージェントが従うべき指針をまとめています。",
-    "summary": "プロジェクト内のページ実装全般に関するルールです。SSG/SSR の使い分け、ルーティング、コンポーネント構造、クライアント JS の有無やハイドレーション条件など、フロントエンドページ実装時に AI エージェントが従うべき指針をまとめています。",
+    "slug": "ai-2528072d",
+    "title": "フロントエンド実装時に AI エージェントが従うべきルール（テンプレート）",
+    "summary": "フロントエンド実装時に AI エージェントが従うべきルール（テンプレート）",
     "url": "https://gist.github.com/H-ymt/2528072de138aa4607425d976b388458",
     "tags": [
       "gist",
+      "markdown",
       "markdown"
     ],
     "publishedAt": "2026-03-15T11:26:16.000Z",
-    "updatedAt": "2026-03-27T01:17:32.000Z",
+    "updatedAt": "2026-03-27T04:12:51.000Z",
     "author": "H-ymt"
   },
   {
@@ -53,21 +69,6 @@
     ],
     "publishedAt": "2025-10-15T13:22:22.000Z",
     "updatedAt": "2025-12-28T01:15:33.000Z",
-    "author": "H-ymt"
-  },
-  {
-    "id": "6405c20df939f89c058efcf5ed2cf7ff",
-    "source": "gist",
-    "slug": "agentsmd-6405c20d",
-    "title": "AGENTS.md のサンプル",
-    "summary": "AGENTS.md のサンプル",
-    "url": "https://gist.github.com/H-ymt/6405c20df939f89c058efcf5ed2cf7ff",
-    "tags": [
-      "gist",
-      "markdown"
-    ],
-    "publishedAt": "2025-09-21T10:23:20.000Z",
-    "updatedAt": "2025-12-22T13:30:11.000Z",
     "author": "H-ymt"
   },
   {
@@ -101,15 +102,15 @@
     "id": "bd73f11aae14ea471c43c19c939dca08",
     "source": "gist",
     "slug": "react-x-css-modules-bd73f11a",
-    "title": "汎用性を考えた React x CSS Modules でつくるボタンコンポーネント",
-    "summary": "汎用性を考えた React x CSS Modules でつくるボタンコンポーネント",
+    "title": "React x CSS Modules でつくるボタンコンポーネント",
+    "summary": "React x CSS Modules でつくるボタンコンポーネント",
     "url": "https://gist.github.com/H-ymt/bd73f11aae14ea471c43c19c939dca08",
     "tags": [
       "gist",
       "markdown"
     ],
     "publishedAt": "2025-03-23T11:07:52.000Z",
-    "updatedAt": "2025-10-15T13:13:48.000Z",
+    "updatedAt": "2026-05-13T00:35:46.000Z",
     "author": "H-ymt"
   },
   {
