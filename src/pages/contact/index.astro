@@ -1,19 +1,20 @@
 ---
+export const prerender = true;
 import Container from "../../components/Container.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Contact - Yamato Handai" description="Feel free to reach out via the contact form.">
   <Container type="page">
-    <h1 class="pageTitle">Contact</h1>
-    <p class="pageDescription">Feel free to reach out. I'll get back to you as soon as possible.</p>
+    <h1 class="page-title">Contact</h1>
+    <p class="page-description">Feel free to reach out. I'll get back to you as soon as possible.</p>
 
-    <div id="successMessage" class="message success" role="status" aria-live="polite" hidden>
+    <div id="success-message" class="message success" role="status" aria-live="polite" hidden>
       Your message has been sent. Thank you for reaching out!
     </div>
-    <div id="errorMessage" class="message error" role="alert" aria-live="assertive" hidden></div>
+    <div id="error-message" class="message error" role="alert" aria-live="assertive" hidden></div>
 
-    <form id="contactForm" class="form" novalidate>
+    <form id="contact-form" class="form" novalidate>
       <div class="field">
         <label for="name" class="label">Name</label>
         <input type="text" id="name" name="name" class="input" autocomplete="name" required />
@@ -40,7 +41,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           data-theme="auto"
         ></div>
       </div>
-      <button type="submit" id="submitBtn" class="button">Send</button>
+      <button type="submit" id="submit-btn" class="button">Send</button>
     </form>
 
     <script
@@ -52,10 +53,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 </BaseLayout>
 
 <script>
-  const form = document.getElementById("contactForm") as HTMLFormElement | null;
-  const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement | null;
-  const successMessage = document.getElementById("successMessage") as HTMLElement | null;
-  const errorMessage = document.getElementById("errorMessage") as HTMLElement | null;
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+  const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement | null;
+  const successMessage = document.getElementById("success-message") as HTMLElement | null;
+  const errorMessage = document.getElementById("error-message") as HTMLElement | null;
 
   if (!form || !submitBtn || !successMessage || !errorMessage) {
     console.warn("Contact form: required elements not found.");
@@ -99,7 +100,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 </script>
 
 <style>
-  .pageDescription {
+  .page-description {
     font-size: 0.9375rem;
     color: var(--foreground-muted);
   }

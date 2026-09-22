@@ -9,30 +9,30 @@ import { bio, stack } from "../data/home";
   <Container type="page">
     <h1 class="sr-only">Yamato Handai Personal Website</h1>
     <div class="intro">
-      <p class="introHeading">
+      <p class="intro-heading">
         A frontend engineer focused on building fast, accessible experiences for the modern web.
       </p>
-      <p class="introBody">
+      <p class="intro-body">
         I build websites and web applications using WordPress, React, and modern frontend tools,
         with a strong focus on performance, accessibility, and clean, maintainable code.
       </p>
     </div>
 
     <section class="section">
-      <h2 class="sectionHeading">Biography</h2>
-      <ol class="bioList">
+      <h2 class="section-heading">Biography</h2>
+      <ol class="bio-list">
         {
           bio.map(({ id, date, body }, index) => (
             <li
-              class="bioItem"
+              class="bio-item"
               data-current={index === bio.length - 1 ? "true" : "false"}
             >
               {date && (
-                <time class="bioDate" datetime={`${date.replace(".", "-")}-01`}>
+                <time class="bio-date" datetime={`${date.replace(".", "-")}-01`}>
                   {date}
                 </time>
               )}
-              <span class="bioBody">{body}</span>
+              <span class="bio-body">{body}</span>
             </li>
           ))
         }
@@ -40,13 +40,13 @@ import { bio, stack } from "../data/home";
     </section>
 
     <section class="section">
-      <h2 class="sectionHeading">Dotfiles</h2>
-      <p class="dotfilesBody">
+      <h2 class="section-heading">Dotfiles</h2>
+      <p class="dotfiles-body">
         My personal development environment configuration, including shell, editor, and CLI
         tooling setup.
       </p>
       <a
-        class="dotfilesLink"
+        class="dotfiles-link"
         href="https://github.com/H-ymt/dotfiles"
         target="_blank"
         rel="noopener noreferrer"
@@ -56,25 +56,25 @@ import { bio, stack } from "../data/home";
     </section>
 
     <section class="section">
-      <h2 class="sectionHeading">What I can do</h2>
-      <div class="stackContainer">
+      <h2 class="section-heading">What I can do</h2>
+      <div class="stack-container">
         {
           stack.map((s) => (
-            <div class="stackCard">
-              <h3 class="stackCategory">{s.category}</h3>
-              <div class="stackItems">
+            <div class="stack-card">
+              <h3 class="stack-category">{s.category}</h3>
+              <div class="stack-items">
                 {s.items.map((item) => (
-                  <div class="stackItem">
+                  <div class="stack-item">
                     {item.logo && (
                       <img
-                        class="stackLogo"
+                        class="stack-logo"
                         src={item.logo}
                         alt=""
                         width="30"
                         height="30"
                       />
                     )}
-                    <p class="stackLabel">{item.label}</p>
+                    <p class="stack-label">{item.label}</p>
                   </div>
                 ))}
               </div>
@@ -95,14 +95,14 @@ import { bio, stack } from "../data/home";
     text-wrap: balance;
   }
 
-  .introHeading {
+  .intro-heading {
     font-size: 2rem;
     line-height: 1.3;
     font-weight: 700;
     color: var(--foreground);
   }
 
-  .introBody {
+  .intro-body {
     font-size: 1em;
     color: var(--foreground-muted);
   }
@@ -112,7 +112,7 @@ import { bio, stack } from "../data/home";
       padding-block: 0;
     }
 
-    .introHeading {
+    .intro-heading {
       font-size: 1.5rem;
     }
   }
@@ -121,15 +121,15 @@ import { bio, stack } from "../data/home";
     margin-block-start: 8rem;
   }
 
-  .sectionHeading {
+  .section-heading {
     font-size: 1.125rem;
   }
 
-  .bioList {
+  .bio-list {
     list-style: none;
   }
 
-  .bioItem {
+  .bio-item {
     display: grid;
     gap: 0.125rem;
     padding-block: 0.5em;
@@ -139,52 +139,52 @@ import { bio, stack } from "../data/home";
     border-inline-start: 0.125rem solid var(--border);
   }
 
-  .bioDate {
+  .bio-date {
     margin-block-end: 0.125rem;
     font-size: 0.95em;
   }
 
-  .bioItem[data-current="true"] {
+  .bio-item[data-current="true"] {
     font-weight: 500;
     color: var(--foreground);
     border-inline-start-color: var(--foreground);
   }
 
-  .dotfilesBody {
+  .dotfiles-body {
     margin-block: 0.875rem 0.75rem;
     font-size: 0.9375rem;
     color: var(--foreground-muted);
   }
 
-  .dotfilesLink {
+  .dotfiles-link {
     font-size: 0.9375rem;
     color: var(--foreground);
     text-decoration: underline;
     text-underline-offset: 0.25em;
   }
 
-  .stackContainer {
+  .stack-container {
     display: grid;
     gap: 3rem;
   }
 
-  .stackCard {
+  .stack-card {
     width: 100%;
   }
 
-  .stackCategory {
+  .stack-category {
     margin-block: 0.75rem 0.875em;
     font-size: 1rem;
     font-weight: 500;
   }
 
-  .stackItems {
+  .stack-items {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(5.5rem, 1fr));
     gap: 2rem;
   }
 
-  .stackItem {
+  .stack-item {
     display: flex;
     gap: 0.5rem;
     align-items: center;
@@ -192,7 +192,7 @@ import { bio, stack } from "../data/home";
     border-radius: 0.375rem;
   }
 
-  .stackLabel {
+  .stack-label {
     font-size: 0.75rem;
     line-height: 1.5;
     color: var(--foreground);

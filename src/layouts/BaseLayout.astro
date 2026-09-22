@@ -1,5 +1,6 @@
 ---
 import Header from "../components/Header.astro";
+import { FONT_CDN_BASE, FONT_WEIGHTS } from "../lib/constants";
 import "../styles/global.css";
 
 interface Props {
@@ -25,9 +26,11 @@ const {
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gen-interface-jp@latest/cdn/400.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gen-interface-jp@latest/cdn/500.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gen-interface-jp@latest/cdn/700.css" />
+    {/* @latest は CDN のキャッシュ寿命が短いためバージョンを固定する。
+        ウェイトごとに分割された CSS を読む（all.css は全ウェイト 1.7MB で重い）。 */}
+    {FONT_WEIGHTS.map((weight) => (
+      <link rel="stylesheet" href={`${FONT_CDN_BASE}/${weight}.css`} />
+    ))}
   </head>
   <body>
     <Header />

@@ -8,14 +8,14 @@ const pathname = Astro.url.pathname;
 <nav class="nav">
   <button
     type="button"
-    class="menuToggle"
+    class="menu-toggle"
     data-menu-toggle
     aria-expanded="false"
     aria-controls="site-menu"
     aria-label="Open menu"
   >
-    <span class="menuToggleBar"></span>
-    <span class="menuToggleBar"></span>
+    <span class="menu-toggle-bar"></span>
+    <span class="menu-toggle-bar"></span>
   </button>
   <ul class="list" id="site-menu" data-menu>
     {
@@ -116,7 +116,7 @@ const pathname = Astro.url.pathname;
     align-items: center;
   }
 
-  .menuToggle {
+  .menu-toggle {
     display: none;
   }
 
@@ -162,7 +162,7 @@ const pathname = Astro.url.pathname;
     outline-offset: 0.25rem;
   }
 
-  .item :global(.externalIcon) {
+  .item :global(.external-icon) {
     translate: 0.05rem 0.05rem;
     scale: 0.9;
   }
@@ -172,7 +172,7 @@ const pathname = Astro.url.pathname;
       min-height: 2.75rem;
     }
 
-    .menuToggle {
+    .menu-toggle {
       position: fixed;
       top: 0.25rem;
       right: 0.25rem;
@@ -190,12 +190,12 @@ const pathname = Astro.url.pathname;
       color: var(--foreground);
     }
 
-    .menuToggle:focus-visible {
+    .menu-toggle:focus-visible {
       outline: 0.125rem solid var(--foreground);
       outline-offset: 0.125rem;
     }
 
-    .menuToggleBar {
+    .menu-toggle-bar {
       display: block;
       width: 1.125rem;
       height: 0.09375rem;
@@ -207,12 +207,12 @@ const pathname = Astro.url.pathname;
         opacity 0.2s ease;
     }
 
-    :global(body.menu-open) .menuToggleBar:first-child {
+    :global(body.menu-open) .menu-toggle-bar:first-child {
       translate: 0 0.234375rem;
       rotate: 35deg;
     }
 
-    :global(body.menu-open) .menuToggleBar:last-child {
+    :global(body.menu-open) .menu-toggle-bar:last-child {
       translate: 0 -0.234375rem;
       rotate: -35deg;
     }
@@ -246,7 +246,7 @@ const pathname = Astro.url.pathname;
       font-size: 1.25rem;
     }
 
-    .item :global(.externalIcon) {
+    .item :global(.external-icon) {
       width: 0.75rem;
       height: 0.75rem;
       scale: 1;
@@ -255,7 +255,7 @@ const pathname = Astro.url.pathname;
 
   @media (prefers-reduced-motion: reduce) {
     .link::after,
-    .menuToggleBar,
+    .menu-toggle-bar,
     .list {
       transition: none;
     }
