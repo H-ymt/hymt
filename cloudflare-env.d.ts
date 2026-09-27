@@ -2,7 +2,7 @@ type KVNamespace = import("@cloudflare/workers-types").KVNamespace;
 
 // send_email binding（Cloudflare Email Sending）のうち、このアプリが使う部分
 interface SendEmailMessage {
-  from: string;
+  from: string | { email: string; name?: string };
   to: string;
   subject: string;
   text: string;
