@@ -62,22 +62,22 @@ import { bio, stack } from "../data/home";
           stack.map((s) => (
             <div class="stack-card">
               <h3 class="stack-category">{s.category}</h3>
-              <div class="stack-items">
+              <ul class="stack-items">
                 {s.items.map((item) => (
-                  <div class="stack-item">
+                  <li class="stack-item">
                     {item.logo && (
                       <img
                         class="stack-logo"
                         src={item.logo}
                         alt=""
-                        width="30"
-                        height="30"
+                        width="20"
+                        height="20"
                       />
                     )}
-                    <p class="stack-label">{item.label}</p>
-                  </div>
+                    <span class="stack-label">{item.label}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           ))
         }
@@ -165,7 +165,7 @@ import { bio, stack } from "../data/home";
 
   .stack-container {
     display: grid;
-    gap: 3rem;
+    gap: 2rem;
   }
 
   .stack-card {
@@ -173,28 +173,38 @@ import { bio, stack } from "../data/home";
   }
 
   .stack-category {
-    margin-block: 0.75rem 0.875em;
+    margin-block: 0.75rem;
     font-size: 1rem;
     font-weight: 500;
   }
 
   .stack-items {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(5.5rem, 1fr));
-    gap: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
   }
 
   .stack-item {
-    display: flex;
+    display: inline-flex;
     gap: 0.5rem;
     align-items: center;
-    font-size: 0.875rem;
-    border-radius: 0.375rem;
+    padding: 0.3125rem 0.75rem 0.3125rem 0.375rem;
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+  }
+
+  .stack-logo {
+    flex-shrink: 0;
+    border-radius: 0.3125rem;
   }
 
   .stack-label {
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
     line-height: 1.5;
+    white-space: nowrap;
     color: var(--foreground);
   }
 </style>
