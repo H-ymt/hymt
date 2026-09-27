@@ -4,8 +4,8 @@ export function getKnowledgeKV(): KVNamespace | undefined {
   return (env as CloudflareEnv).KNOWLEDGE_KV;
 }
 
-export function getResendApiKey(): string | undefined {
-  return (env as CloudflareEnv).RESEND_API_KEY;
+export function getEmailSender(): SendEmailBinding | undefined {
+  return (env as CloudflareEnv).SEND_EMAIL;
 }
 
 export function getTurnstileSecretKey(): string | undefined {

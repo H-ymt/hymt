@@ -1,46 +1,7 @@
 import type { APIRoute } from "astro";
-import { Resend } from "resend";
-import { getResendApiKey, getTurnstileSecretKey } from "../../lib/utils/cloudflare";
-
-interface FormFields {
-  name: string;
-  email: string;
-  message: string;
-}
-
-function validateForm(
-  data: Record<string, string>,
-): { valid: true; data: FormFields } | { valid: false; error: string } {
-  const { name, email, message } = data;
-
-  const trimmed = {
-    name: name?.trim() ?? "",
-    email: email?.trim() ?? "",
-    message: message?.trim() ?? "",
-  };
-
-  if (!trimmed.name || !trimmed.email || !trimmed.message) {
-    return { valid: false, error: "All fields are required." };
-  }
-
-  if (trimmed.name.length > 100) {
-    return { valid: false, error: "Name must be 100 characters or fewer." };
-  }
-
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed.email)) {
-    return { valid: false, error: "Please enter a valid email address." };
-  }
-
-  if (trimmed.email.length > 254) {
-    return { valid: false, error: "Email must be 254 characters or fewer." };
-  }
-
-  if (trimmed.message.length > 2000) {
-    return { valid: false, error: "Message must be 2000 characters or fewer." };
-  }
-
-  return { valid: true, data: trimmed };
-}
+import { sendContactEmail } from "../../lib/contact/send-contact-email";
+import { validateForm } from "../../lib/contact/validate-form";
+import { getEmailSender, getTurnstileSecretKey } from "../../lib/utils/cloudflare";
 
 export const POST: APIRoute = async ({ request }) => {
   const formData = await request.formData();
@@ -80,24 +41,18 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 
-  const apiKey = getResendApiKey();
-  if (!apiKey) {
+  const sender = getEmailSender();
+  if (!sender) {
     return new Response(
       JSON.stringify({ success: false, error: "Mail service is not configured." }),
       { status: 500, headers: { "Content-Type": "application/json" } },
     );
   }
 
-  const resend = new Resend(apiKey);
-  const { error } = await resend.emails.send({
-    from: "noreply@h-ymt.dev",
-    to: ["y.handai1272@gmail.com"],
-    subject: `Contact from ${result.data.name}`,
-    replyTo: result.data.email,
-    text: `Name: ${result.data.name}\nEmail: ${result.data.email}\n\n${result.data.message}`,
-  });
+  const sent = await sendContactEmail(sender, result.data);
 
-  if (error) {
+  if (!sent.ok) {
+    console.error(`Failed to send contact email: ${sent.code}`);
     return new Response(
       JSON.stringify({
         success: false,
