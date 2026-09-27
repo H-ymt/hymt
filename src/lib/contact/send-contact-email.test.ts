@@ -10,11 +10,11 @@ describe("sendContactEmail", () => {
     const result = await sendContactEmail({ send }, fields);
 
     expect(send).toHaveBeenCalledWith({
-      from: "noreply@h-ymt.dev",
+      from: { email: "noreply@h-ymt.dev", name: "h-ymt.dev" },
       to: "y.handai1272@gmail.com",
       replyTo: "taro@example.com",
-      subject: "Contact from Taro",
-      text: "Name: Taro\nEmail: taro@example.com\n\nHello",
+      subject: "[h-ymt.dev] お問い合わせ: Taro",
+      text: "Hello\n\n---\nName: Taro\nEmail: taro@example.com",
     });
     expect(result).toEqual({ ok: true });
   });
