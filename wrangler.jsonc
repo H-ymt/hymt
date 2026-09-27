@@ -26,6 +26,13 @@
       "id": "cfe3bfbb717248738dce1190e5bd2337"
     }
   ],
+  "send_email": [
+    {
+      "name": "SEND_EMAIL",
+      "allowed_sender_addresses": ["noreply@h-ymt.dev"],
+      "allowed_destination_addresses": ["y.handai1272@gmail.com"]
+    }
+  ],
   "routes": [
     {
       "pattern": "h-ymt.dev",

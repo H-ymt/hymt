@@ -10,6 +10,7 @@
     "lint": "biome check .",
     "lint:fix": "biome check --fix .",
     "format": "biome format --fix .",
+    "test": "vitest run",
     "deploy": "pnpm build && wrangler deploy --config dist/server/wrangler.json && pnpm sync-kv",
     "fetch-knowledge": "tsx scripts/fetch-knowledge.ts",
     "sync-kv": "tsx scripts/sync-kv.ts",
@@ -17,8 +18,7 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.3.2",
-    "astro": "^7.3.3",
-    "resend": "^6.28.1"
+    "astro": "^7.3.3"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
@@ -28,6 +28,7 @@
     "gen-interface-jp": "0.8.0",
     "tsx": "^4.23.15",
     "typescript": "^6.0.3",
+    "vitest": "^5.0.2",
     "wrangler": "^4.135.0"
   }
 }
